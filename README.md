@@ -1,2 +1,2 @@
-# 8wk-program
-8 week Fat loss program
+# VIII-wk-program
+VIII week Fat loss protocol
