@@ -5,214 +5,676 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="8WK PROGRAM">
-<meta name="theme-color" content="#050508">
-<title>8-Week Fat Loss Program</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<meta name="apple-mobile-web-app-title" content="THE CUT">
+<meta name="theme-color" content="#0e0e0c">
+<title>The Cut Protocol — 8 Week Command Center</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@400;500;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#050508;--bg2:#0a0a10;--bg3:#0f0f18;--bd:#1a1a28;--tx:#d8d8e8;--mu:#555568;--fa:#1e1e2e;--p1:#4ade80;--p2:#facc15;--p3:#fb923c;--p4:#f87171;--cy:#22d3ee;--ck:#4ade80;--log:#3b82f6;}
-*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
-html,body{height:100%;background:var(--bg);color:var(--tx);font-family:'DM Mono',monospace;overflow:hidden;}
-#splash{position:fixed;inset:0;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:999;transition:opacity .6s ease;}
-#splash.hide{opacity:0;pointer-events:none;}
-.sp-title{font-family:'Bebas Neue',sans-serif;font-size:52px;letter-spacing:6px;color:#fff;line-height:1;text-align:center;}
-.sp-sub{font-size:10px;letter-spacing:4px;color:var(--mu);margin-top:8px;}
-.sp-bar{width:120px;height:2px;background:var(--fa);margin-top:32px;border-radius:2px;overflow:hidden;}
-.sp-fill{height:100%;background:var(--p1);width:0;animation:spLoad 1.4s ease forwards;}
-@keyframes spLoad{to{width:100%;}}
-#app{display:flex;flex-direction:column;height:100vh;height:100dvh;}
-#topbar{flex-shrink:0;background:var(--bg2);border-bottom:1px solid var(--bd);padding:10px 16px 8px;position:relative;}
-.tb-phase{font-size:9px;letter-spacing:3px;margin-bottom:2px;}
-.tb-title{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:3px;color:#fff;}
-.tb-meta{font-size:9px;color:var(--mu);letter-spacing:1px;margin-top:1px;}
-.mstrip{display:flex;gap:0;margin-top:8px;overflow-x:auto;scrollbar-width:none;}
-.mstrip::-webkit-scrollbar{display:none;}
-.mi{flex-shrink:0;text-align:center;padding:0 10px;border-right:1px solid var(--fa);}
-.mi:last-child{border-right:none;}
-.ml{font-size:7px;letter-spacing:2px;color:var(--mu);display:block;}
-.mv{font-size:13px;font-weight:500;display:block;margin-top:1px;}
-#navtabs{flex-shrink:0;display:flex;background:var(--bg2);border-bottom:1px solid var(--bd);}
-.ntab{flex:1;padding:10px 4px;text-align:center;font-size:9px;letter-spacing:2px;color:var(--mu);cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;}
-.ntab.active{color:#fff;}
-#main{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;}
-#wkbar{display:flex;overflow-x:auto;scrollbar-width:none;padding:12px 16px;gap:8px;background:var(--bg);border-bottom:1px solid var(--bd);flex-shrink:0;}
-#wkbar::-webkit-scrollbar{display:none;}
-.wb{flex-shrink:0;padding:6px 14px;border-radius:2px;border:1px solid var(--bd);background:transparent;color:var(--mu);font-family:'DM Mono',monospace;font-size:11px;letter-spacing:1px;cursor:pointer;transition:all .15s;white-space:nowrap;}
-.wb.active{color:#fff;}
-#dgrid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;padding:12px 16px;border-bottom:1px solid var(--bd);}
-.dc{border-radius:4px;border:1px solid var(--bd);padding:6px 4px;text-align:center;cursor:pointer;transition:all .15s;min-height:52px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;}
-.dc.active{background:#0f0f1a;}
-.dc.done{border-color:var(--ck);background:#0a150a;}
-.dc-name{font-size:7px;letter-spacing:1px;color:var(--mu);}
-.dc-type{font-size:8px;}
-.dc-prog{font-size:8px;}
-#dayview{padding:0 16px 100px;}
-.dh{padding:16px 0 12px;}
-.dh-label{font-size:8px;letter-spacing:3px;}
-.dh-title{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:2px;color:#fff;margin-top:3px;line-height:1.1;}
-.dh-time{font-size:10px;color:var(--mu);margin-top:3px;}
-.pbw{height:3px;background:var(--fa);border-radius:2px;margin-top:10px;}
-.pbf{height:100%;border-radius:2px;transition:width .3s ease;}
-.sec{border:1px solid var(--bd);border-radius:6px;margin-bottom:12px;overflow:hidden;}
-.sh{padding:10px 14px;background:var(--bg3);display:flex;justify-content:space-between;align-items:center;font-size:9px;letter-spacing:2px;cursor:pointer;}
-.sh-t{flex:1;}
-.sc{color:var(--mu);margin-left:8px;white-space:nowrap;}
-.sb{}
-.sb.col{display:none;}
-.ci{display:flex;align-items:flex-start;gap:12px;padding:10px 14px;border-bottom:1px solid #0c0c16;cursor:pointer;transition:background .12s;}
-.ci:last-child{border-bottom:none;}
-.ci.chk{background:#080f08;}
-.ci:active{background:#0f0f1a;}
-.cb{width:18px;height:18px;min-width:18px;border-radius:3px;border:1px solid #333;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--ck);flex-shrink:0;margin-top:1px;transition:all .15s;}
-.chk .cb{background:#0f2010;border-color:var(--ck);}
-.ct{font-size:12px;line-height:1.55;color:var(--tx);}
-.chk .ct{color:var(--mu);text-decoration:line-through;}
-/* LOGGING SECTION */
-.log-sec{border:2px solid var(--log);border-radius:6px;margin-bottom:12px;overflow:hidden;background:#050a18;}
-.log-head{padding:10px 14px;background:#070e20;display:flex;justify-content:space-between;align-items:center;font-size:9px;letter-spacing:2px;color:var(--log);}
-.log-body{padding:14px;}
-.log-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;}
-.log-field{display:flex;flex-direction:column;gap:4px;}
-.log-label{font-size:8px;letter-spacing:2px;color:var(--mu);}
-.log-input{background:var(--bg3);border:1px solid var(--bd);color:var(--tx);font-family:'DM Mono',monospace;font-size:13px;padding:8px 10px;border-radius:4px;width:100%;transition:border-color .2s;}
-.log-input:focus{outline:none;border-color:var(--log);box-shadow:0 0 0 2px rgba(59,130,246,.15);}
-.log-full{grid-column:1/-1;}
-.log-textarea{background:var(--bg3);border:1px solid var(--bd);color:var(--tx);font-family:'DM Mono',monospace;font-size:12px;padding:8px 10px;border-radius:4px;width:100%;resize:none;min-height:70px;transition:border-color .2s;}
-.log-textarea:focus{outline:none;border-color:var(--log);box-shadow:0 0 0 2px rgba(59,130,246,.15);}
-.log-whiskey{display:flex;gap:8px;align-items:center;}
-.wbtn{flex:1;padding:8px 6px;border:1px solid var(--bd);background:transparent;color:var(--mu);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1px;cursor:pointer;border-radius:4px;transition:all .15s;text-align:center;}
-.wbtn.sel{border-color:var(--p3);background:rgba(251,146,60,.15);color:var(--p3);}
-.wbtn.sel0{border-color:var(--p1);background:rgba(74,222,128,.15);color:var(--p1);}
-.log-save-indicator{font-size:9px;color:var(--mu);letter-spacing:1px;margin-top:8px;text-align:right;transition:color .3s;}
-.log-save-indicator.saved{color:var(--ck);}
-.macro-bars{margin-top:10px;}
-.mbar-row{margin-bottom:6px;}
-.mbar-label{font-size:9px;color:var(--mu);letter-spacing:1px;margin-bottom:2px;display:flex;justify-content:space-between;}
-.mbar-track{height:6px;background:var(--fa);border-radius:3px;overflow:hidden;}
-.mbar-fill{height:100%;border-radius:3px;transition:width .4s ease;}
-/* OVERVIEW */
-#ovview{padding:16px;overflow-y:auto;}
-.ov-sec{margin-bottom:24px;}
-.ov-hd{font-size:9px;letter-spacing:3px;color:var(--mu);margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--fa);}
-.ph-cards{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
-.ph-card{border-radius:6px;padding:12px;border:1px solid;}
-.ph-wk{font-size:8px;letter-spacing:2px;margin-bottom:3px;}
-.ph-name{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:2px;color:#fff;}
-.ph-desc{font-size:10px;color:var(--mu);margin-top:5px;line-height:1.5;}
-.ph-mac{display:flex;gap:10px;margin-top:8px;font-size:10px;}
-.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;}
-.cal-hd{text-align:center;font-size:7px;letter-spacing:1px;color:var(--mu);padding:3px 0;}
-.cal-c{border-radius:3px;border:1px solid var(--bd);padding:4px 2px;text-align:center;min-height:42px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;cursor:pointer;transition:border-color .15s;}
-.cal-c.done{border-color:var(--ck);background:#06100a;}
-.cal-c.partial{border-color:var(--p2);}
-.cal-wk{font-size:7px;color:#333;}
-.cal-ty{font-size:7px;}
-.cal-pc{font-size:7px;}
-/* NAV */
-.daynav{display:flex;justify-content:space-between;padding:16px 0 8px;}
-.navb{padding:10px 20px;border-radius:4px;border:1px solid var(--bd);background:transparent;color:var(--mu);font-family:'DM Mono',monospace;font-size:11px;letter-spacing:1px;cursor:pointer;transition:all .15s;}
-.navb:active{opacity:.7;}
-/* TOAST */
-#toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(60px);background:var(--log);color:#fff;font-size:11px;letter-spacing:2px;padding:10px 20px;border-radius:4px;z-index:500;transition:transform .3s ease;white-space:nowrap;font-family:'DM Mono',monospace;}
-#toast.show{transform:translateX(-50%) translateY(0);}
-#toast.green{background:var(--ck);color:#000;}
+:root {
+  --bg:       #0e0e0c;
+  --panel:    #1a1a17;
+  --panel2:   #201f1c;
+  --line:     #2a2926;
+  --ink:      #e8e3d6;
+  --ink-dim:  #8a8678;
+  --ink-mute: #5a5750;
+  --accent:   #c9a96e;
+  --acchot:   #d4b97a;
+  --green:    #6b8e4e;
+  --red:      #a94c3a;
+  --blue:     #6ba3c9;
+  /* phase colors from fat-loss file, re-mapped to warm palette */
+  --ph1: #6b8e4e;   /* foundation — green */
+  --ph2: #c9a96e;   /* accelerate — gold */
+  --ph3: #c87941;   /* push — amber */
+  --ph4: #a94c3a;   /* peak — red */
+  --gym:    #c9a96e;
+  --rest:   #8a84c9;
+  --cardio: #4eb8c9;
+  --grain: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E");
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+html, body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+  height: 100%; height: 100dvh;
+}
+body::before {
+  content: "";
+  position: fixed; inset: 0;
+  background-image: var(--grain);
+  opacity: 0.035;
+  pointer-events: none;
+  z-index: 999;
+  mix-blend-mode: overlay;
+}
+ 
+/* ── SPLASH ─────────────────────────────────────────── */
+#splash {
+  position: fixed; inset: 0;
+  background: var(--bg);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  z-index: 9999;
+  transition: opacity .7s ease;
+}
+#splash.hide { opacity: 0; pointer-events: none; }
+.sp-eyebrow { font-size: 10px; letter-spacing: .3em; color: var(--ink-mute); text-transform: uppercase; margin-bottom: 14px; }
+.sp-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(52px,12vw,88px); line-height: .9; letter-spacing: .04em; color: var(--ink); text-align: center; }
+.sp-title span { color: var(--accent); }
+.sp-sub { font-family: 'Fraunces', serif; font-style: italic; font-size: 16px; color: var(--ink-dim); margin-top: 14px; text-align: center; }
+.sp-bar { width: 140px; height: 2px; background: var(--panel); margin-top: 36px; overflow: hidden; }
+.sp-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--acchot)); width: 0; animation: spLoad 1.6s ease forwards; }
+@keyframes spLoad { to { width: 100%; } }
+.sp-dots { display: flex; gap: 8px; margin-top: 16px; }
+.sp-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--line); }
+.sp-dot.a { background: var(--ph1); }
+.sp-dot.b { background: var(--ph2); }
+.sp-dot.c { background: var(--ph3); }
+.sp-dot.d { background: var(--ph4); }
+ 
+/* ── APP SHELL ──────────────────────────────────────── */
+#app { display: none; flex-direction: column; height: 100vh; height: 100dvh; }
+ 
+/* ── TOPBAR ─────────────────────────────────────────── */
+#topbar {
+  flex-shrink: 0;
+  background: var(--panel);
+  border-bottom: 1px solid var(--line);
+  padding: 10px 16px 0;
+}
+.tb-eyebrow { font-size: 9px; letter-spacing: .22em; color: var(--accent); text-transform: uppercase; margin-bottom: 2px; }
+.tb-title { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: .05em; color: var(--ink); }
+.tb-meta { font-size: 9px; color: var(--ink-mute); letter-spacing: .08em; margin-top: 1px; }
+.mstrip { display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; margin-top: 10px; }
+.mstrip::-webkit-scrollbar { display: none; }
+.mi { flex-shrink: 0; text-align: center; padding: 6px 12px; border-right: 1px solid var(--line); }
+.mi:last-child { border-right: none; }
+.ml { font-size: 7px; letter-spacing: .18em; color: var(--ink-mute); display: block; text-transform: uppercase; }
+.mv { font-size: 13px; font-weight: 500; display: block; margin-top: 2px; }
+ 
+/* ── TAB BAR ─────────────────────────────────────────── */
+#tabs {
+  flex-shrink: 0;
+  display: flex;
+  background: var(--panel);
+  border-bottom: 1px solid var(--line);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+#tabs::-webkit-scrollbar { display: none; }
+.tab {
+  flex-shrink: 0;
+  padding: 12px 18px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  border-bottom: 2px solid transparent;
+  transition: color .2s, border-color .2s;
+  white-space: nowrap;
+}
+.tab:hover { color: var(--ink); }
+.tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+ 
+/* ── MAIN SCROLL ─────────────────────────────────────── */
+#main { flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+.panel { display: none; }
+.panel.active { display: block; animation: fadeIn .25s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(3px); } to { opacity: 1; transform: none; } }
+ 
+/* ── WEEK BAR ─────────────────────────────────────────── */
+#wkbar {
+  display: flex; overflow-x: auto; scrollbar-width: none;
+  padding: 10px 14px; gap: 6px;
+  background: var(--bg); border-bottom: 1px solid var(--line); flex-shrink: 0;
+}
+#wkbar::-webkit-scrollbar { display: none; }
+.wb {
+  flex-shrink: 0; padding: 5px 13px;
+  border: 1px solid var(--line); background: transparent;
+  color: var(--ink-mute); font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: .1em; cursor: pointer;
+  transition: all .15s; white-space: nowrap;
+}
+.wb.active { color: var(--accent); border-color: var(--accent); }
+ 
+/* ── DAY GRID ─────────────────────────────────────────── */
+#dgrid {
+  display: grid; grid-template-columns: repeat(7,1fr);
+  gap: 5px; padding: 10px 14px;
+  border-bottom: 1px solid var(--line);
+}
+.dc {
+  border: 1px solid var(--line); padding: 6px 3px;
+  text-align: center; cursor: pointer;
+  transition: all .15s; min-height: 54px;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 2px;
+}
+.dc.sel { border-color: var(--accent); background: rgba(201,169,110,.08); }
+.dc.done { border-color: var(--green); background: rgba(107,142,78,.1); }
+.dc-name { font-size: 7px; letter-spacing: .12em; color: var(--ink-mute); text-transform: uppercase; }
+.dc-type { font-size: 9px; }
+.dc-prog { font-size: 8px; color: var(--ink-mute); }
+ 
+/* ── DAY VIEW ─────────────────────────────────────────── */
+#dayview { padding: 0 16px 100px; }
+.dh { padding: 16px 0 10px; }
+.dh-eyebrow { font-size: 8px; letter-spacing: .25em; color: var(--accent); text-transform: uppercase; }
+.dh-title { font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: .03em; color: var(--ink); margin-top: 4px; line-height: 1.05; }
+.dh-date { font-size: 10px; color: var(--ink-mute); margin-top: 3px; }
+.dh-pbar { height: 3px; background: var(--line); margin-top: 12px; overflow: hidden; }
+.dh-pfill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--acchot)); transition: width .4s ease; }
+.dh-pmeta { display: flex; justify-content: space-between; font-size: 9px; color: var(--ink-mute); letter-spacing: .12em; text-transform: uppercase; margin-top: 6px; }
+ 
+/* ── SECTIONS ─────────────────────────────────────────── */
+.sec {
+  border: 1px solid var(--line);
+  margin-bottom: 10px; overflow: hidden;
+}
+.sec-head {
+  padding: 10px 14px;
+  background: var(--panel);
+  display: flex; justify-content: space-between;
+  align-items: center; cursor: pointer;
+  font-size: 9px; letter-spacing: .2em; text-transform: uppercase;
+}
+.sec-head-title { color: var(--ink); }
+.sec-head-meta { color: var(--ink-mute); font-size: 8px; margin-left: 10px; white-space: nowrap; }
+.sec-body { }
+.sec-body.collapsed { display: none; }
+ 
+/* training item row */
+.ti {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 9px 14px; border-bottom: 1px solid rgba(42,41,38,.4);
+  cursor: pointer; transition: background .12s;
+}
+.ti:last-child { border-bottom: none; }
+.ti:hover { background: rgba(255,255,255,.012); }
+.ti.done { background: rgba(107,142,78,.05); }
+.ti .cb {
+  flex-shrink: 0; width: 17px; height: 17px;
+  border: 1.5px solid var(--ink-mute); margin-top: 2px;
+  display: flex; align-items: center; justify-content: center;
+  transition: all .18s; font-size: 11px;
+}
+.ti.done .cb { background: var(--green); border-color: var(--green); color: var(--bg); }
+.ti .ct { font-size: 12px; line-height: 1.5; color: var(--ink); }
+.ti.done .ct { color: var(--ink-mute); text-decoration: line-through; }
+ 
+/* supplement item row — slightly richer */
+.si {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 12px 14px; border-bottom: 1px solid rgba(42,41,38,.4);
+  cursor: pointer; transition: background .12s;
+}
+.si:last-child { border-bottom: none; }
+.si:hover { background: rgba(255,255,255,.012); }
+.si.done { background: rgba(201,169,110,.04); }
+.si.optional { opacity: .82; }
+.si .cb {
+  flex-shrink: 0; width: 19px; height: 19px;
+  border: 1.5px solid var(--ink-mute); margin-top: 2px;
+  display: flex; align-items: center; justify-content: center;
+  transition: all .18s; font-size: 12px;
+}
+.si.done .cb { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.si-info { flex: 1; min-width: 0; }
+.si-name { font-size: 13px; color: var(--ink); font-weight: 500; }
+.si.done .si-name { color: var(--ink-mute); text-decoration: line-through; }
+.si-dose { color: var(--accent); font-weight: 700; margin-left: 5px; font-size: 12px; }
+.si-product { font-size: 10px; color: var(--ink-mute); margin-top: 2px; }
+.si-detail { font-family: 'Fraunces', serif; font-size: 12px; font-style: italic; color: var(--ink-dim); margin-top: 3px; }
+.si.optional .si-name::before { content: "OPTIONAL · "; font-size: 9px; letter-spacing: .15em; color: var(--ink-mute); }
+ 
+/* daily log section (blue border) */
+.log-sec { border: 1px solid var(--blue); margin-bottom: 10px; overflow: hidden; background: rgba(107,163,201,.03); }
+.log-head { padding: 10px 14px; background: rgba(107,163,201,.06); display: flex; justify-content: space-between; align-items: center; font-size: 9px; letter-spacing: .2em; text-transform: uppercase; color: var(--blue); }
+.log-body { padding: 14px; }
+.log-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+.log-field { display: flex; flex-direction: column; gap: 4px; }
+.log-label { font-size: 8px; letter-spacing: .18em; color: var(--ink-mute); text-transform: uppercase; }
+.log-input {
+  background: var(--panel); border: 1px solid var(--line);
+  color: var(--ink); font-family: 'JetBrains Mono', monospace;
+  font-size: 13px; padding: 8px 10px; width: 100%; transition: border-color .2s;
+}
+.log-input:focus { outline: none; border-color: var(--blue); box-shadow: 0 0 0 2px rgba(107,163,201,.12); }
+.log-full { grid-column: 1/-1; }
+.log-textarea {
+  background: var(--panel); border: 1px solid var(--line);
+  color: var(--ink); font-family: 'JetBrains Mono', monospace;
+  font-size: 12px; padding: 8px 10px; width: 100%; resize: none; min-height: 64px; transition: border-color .2s;
+}
+.log-textarea:focus { outline: none; border-color: var(--blue); }
+.log-whiskey { display: flex; gap: 6px; align-items: center; }
+.wbtn {
+  flex: 1; padding: 7px 4px; border: 1px solid var(--line);
+  background: transparent; color: var(--ink-mute);
+  font-family: 'JetBrains Mono', monospace; font-size: 10px;
+  letter-spacing: .05em; cursor: pointer; transition: all .15s; text-align: center;
+}
+.wbtn.sel { border-color: var(--accent); background: rgba(201,169,110,.12); color: var(--accent); }
+.wbtn.sel0 { border-color: var(--green); background: rgba(107,142,78,.12); color: var(--green); }
+.log-saved { font-size: 9px; color: var(--ink-mute); letter-spacing: .1em; margin-top: 8px; text-align: right; transition: color .3s; }
+.log-saved.ok { color: var(--green); }
+.macro-bars { margin-top: 10px; }
+.mbar-row { margin-bottom: 5px; }
+.mbar-label { font-size: 9px; color: var(--ink-mute); letter-spacing: .08em; margin-bottom: 2px; display: flex; justify-content: space-between; }
+.mbar-track { height: 5px; background: var(--line); overflow: hidden; }
+.mbar-fill { height: 100%; transition: width .4s ease; }
+ 
+/* ── DAY NAV ─────────────────────────────────────────── */
+.daynav { display: flex; justify-content: space-between; padding: 14px 0 6px; }
+.navb {
+  padding: 9px 18px; border: 1px solid var(--line);
+  background: transparent; color: var(--ink-mute);
+  font-family: 'JetBrains Mono', monospace; font-size: 10px;
+  letter-spacing: .12em; cursor: pointer; transition: all .15s;
+}
+.navb:hover { border-color: var(--accent); color: var(--accent); }
+.navb:disabled { opacity: .3; cursor: not-allowed; }
+ 
+/* ── OVERVIEW ─────────────────────────────────────────── */
+#ovview { padding: 16px; }
+.ov-sec { margin-bottom: 28px; }
+.ov-hd { font-size: 9px; letter-spacing: .25em; color: var(--ink-mute); text-transform: uppercase; margin-bottom: 12px; padding-bottom: 6px; border-bottom: 1px solid var(--line); }
+.ph-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.ph-card { padding: 14px; border: 1px solid; }
+.ph-wk { font-size: 8px; letter-spacing: .2em; margin-bottom: 3px; text-transform: uppercase; }
+.ph-name { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: .05em; color: var(--ink); }
+.ph-desc { font-size: 10px; color: var(--ink-dim); margin-top: 5px; line-height: 1.5; font-family: 'Fraunces', serif; font-style: italic; }
+.ph-mac { display: flex; gap: 10px; margin-top: 8px; font-size: 10px; flex-wrap: wrap; }
+.cal-grid { display: grid; grid-template-columns: repeat(7,1fr); gap: 3px; }
+.cal-hd { text-align: center; font-size: 7px; letter-spacing: .1em; color: var(--ink-mute); padding: 3px 0; }
+.cal-c {
+  border: 1px solid var(--line); padding: 4px 2px;
+  text-align: center; min-height: 44px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px;
+  cursor: pointer; transition: border-color .15s;
+}
+.cal-c.done { border-color: var(--green); background: rgba(107,142,78,.1); }
+.cal-c.partial { border-color: var(--accent); background: rgba(201,169,110,.06); }
+.cal-wk { font-size: 7px; color: var(--ink-mute); }
+.cal-ty { font-size: 7px; }
+.cal-pc { font-size: 7px; }
+ 
+/* ── SUPPLEMENTS TAB (scrollable doc) ───────────────── */
+#supp-panel { padding: 20px 16px 80px; }
+.doc-sec { margin-bottom: 32px; padding-bottom: 28px; border-bottom: 1px solid var(--line); }
+.doc-sec:last-child { border-bottom: none; }
+.doc-h2 { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: .03em; margin-bottom: 14px; }
+.doc-h2 .num { color: var(--accent); font-size: .6em; margin-right: 12px; letter-spacing: .1em; }
+.doc-h3 { font-family: 'Bebas Neue', sans-serif; font-size: 17px; color: var(--accent); margin: 18px 0 8px; letter-spacing: .04em; }
+.doc-p { font-family: 'Fraunces', serif; font-size: 14px; line-height: 1.7; color: var(--ink); margin-bottom: 10px; }
+.doc-ul { padding-left: 16px; margin-bottom: 12px; }
+.doc-li { font-family: 'Fraunces', serif; font-size: 14px; line-height: 1.65; color: var(--ink); margin-bottom: 5px; }
+.callout { border-left: 2px solid var(--accent); background: rgba(201,169,110,.06); padding: 14px 18px; margin: 14px 0; }
+.callout .clabel { font-size: 9px; letter-spacing: .2em; color: var(--accent); text-transform: uppercase; margin-bottom: 5px; }
+ 
+/* ── BUY TAB ─────────────────────────────────────────── */
+#buy-panel { padding: 20px 16px 80px; }
+.source-card {
+  border: 1px solid var(--line); padding: 16px;
+  margin-bottom: 10px; display: grid;
+  grid-template-columns: 1fr auto; align-items: center; gap: 14px;
+}
+.sc-name { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--ink); font-weight: 500; }
+.sc-dose { font-size: 10px; color: var(--accent); margin-top: 3px; }
+.sc-where { font-family: 'Fraunces', serif; font-size: 12px; color: var(--ink-dim); font-style: italic; margin-top: 3px; }
+.buy-btn {
+  background: var(--accent); color: var(--bg);
+  text-decoration: none; padding: 9px 16px;
+  font-family: 'JetBrains Mono', monospace; font-size: 10px;
+  letter-spacing: .16em; text-transform: uppercase; font-weight: 700;
+  border: 1px solid var(--accent); transition: all .2s; white-space: nowrap;
+}
+.buy-btn:hover { background: transparent; color: var(--accent); }
+.buy-btn-alt { background: transparent; color: var(--ink); border-color: var(--line); }
+.buy-btn-alt:hover { border-color: var(--accent); color: var(--accent); }
+@media (max-width: 560px) { .source-card { grid-template-columns: 1fr; } }
+ 
+/* ── REVIEW TABLE ─────────────────────────────────────── */
+.rev-table { width: 100%; border-collapse: collapse; margin: 12px 0 20px; font-family: 'JetBrains Mono', monospace; font-size: 11px; }
+.rev-table th, .rev-table td { padding: 10px 8px; text-align: left; border-bottom: 1px solid var(--line); vertical-align: top; }
+.rev-table th { font-size: 9px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-mute); font-weight: 500; }
+.rev-table td { color: var(--ink); }
+.vdict { display: inline-block; font-size: 8px; letter-spacing: .16em; text-transform: uppercase; padding: 2px 7px; border: 1px solid; font-weight: 700; white-space: nowrap; }
+.v-keep  { color: var(--green); border-color: var(--green); }
+.v-adj   { color: var(--accent); border-color: var(--accent); }
+.v-drop  { color: var(--red);   border-color: var(--red); }
+.v-add   { color: var(--blue);  border-color: var(--blue); }
+ 
+/* ── MISC ─────────────────────────────────────────────── */
+.badge { display: inline-block; font-size: 9px; letter-spacing: .14em; color: var(--accent); border: 1px solid var(--accent); padding: 2px 7px; margin-left: 6px; vertical-align: middle; text-transform: uppercase; }
+.badge-new { color: var(--blue); border-color: var(--blue); }
+.stamp { display: inline-block; font-size: 9px; letter-spacing: .22em; color: var(--accent); border: 1px solid var(--accent); padding: 3px 9px; text-transform: uppercase; margin-bottom: 14px; }
+.btn { background: transparent; border: 1px solid var(--line); color: var(--ink); padding: 9px 16px; cursor: pointer; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: .16em; text-transform: uppercase; transition: all .2s; }
+.btn:hover { border-color: var(--accent); color: var(--accent); }
+.btn-danger:hover { border-color: var(--red); color: var(--red); }
+.controls { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 16px; }
+.toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(60px); background: var(--green); color: var(--bg); font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: .18em; text-transform: uppercase; padding: 9px 18px; z-index: 5000; transition: transform .3s ease; white-space: nowrap; pointer-events: none; }
+.toast.show { transform: translateX(-50%) translateY(0); }
 </style>
 </head>
 <body>
+ 
+<!-- SPLASH -->
 <div id="splash">
-  <div class="sp-title">8 WEEK<br>PROGRAM</div>
-  <div class="sp-sub">FAT LOSS · MUSCLE RETENTION · LIFETIME</div>
-  <div style="margin-top:20px;display:flex;gap:6px;">
-    <span style="width:8px;height:8px;border-radius:50%;background:var(--p1);display:inline-block;"></span>
-    <span style="width:8px;height:8px;border-radius:50%;background:var(--p2);display:inline-block;"></span>
-    <span style="width:8px;height:8px;border-radius:50%;background:var(--p3);display:inline-block;"></span>
-    <span style="width:8px;height:8px;border-radius:50%;background:var(--p4);display:inline-block;"></span>
+  <div class="sp-eyebrow">Operation 200 → 185</div>
+  <div class="sp-title">The<br><span>Cut</span><br>Protocol</div>
+  <div class="sp-sub">Fat Loss · Muscle Retention · Testosterone · Lifetime</div>
+  <div class="sp-dots">
+    <div class="sp-dot a"></div><div class="sp-dot b"></div>
+    <div class="sp-dot c"></div><div class="sp-dot d"></div>
   </div>
   <div class="sp-bar"><div class="sp-fill"></div></div>
 </div>
-
-<div id="app" style="display:none">
+ 
+<!-- APP -->
+<div id="app">
+  <!-- TOPBAR -->
   <div id="topbar">
-    <div class="tb-phase" id="tb-phase">▸ FOUNDATION PHASE — WEEKS 1-2</div>
-    <div class="tb-title">8-WEEK FAT LOSS</div>
-    <div class="tb-meta">200LBS · 17.1% BF → TARGET 12–13% BF · STARTING TODAY</div>
+    <div class="tb-eyebrow" id="tb-phase">▸ FOUNDATION — WEEKS 1–2</div>
+    <div class="tb-title">THE CUT PROTOCOL</div>
+    <div class="tb-meta">200 LBS · 17.1% BF → TARGET 185 LBS · ~12% BF · 8 WEEKS</div>
     <div class="mstrip" id="mstrip"></div>
   </div>
-  <div id="navtabs">
-    <div class="ntab active" id="tab-daily" onclick="switchView('daily')">DAILY LOG</div>
-    <div class="ntab" id="tab-overview" onclick="switchView('overview')">OVERVIEW</div>
+  <!-- TABS -->
+  <div id="tabs">
+    <button class="tab active" data-panel="daily">Daily Log</button>
+    <button class="tab" data-panel="overview">Overview</button>
+    <button class="tab" data-panel="supplog">Supplements</button>
+    <button class="tab" data-panel="stack">The Stack</button>
+    <button class="tab" data-panel="buy">Buy & Settings</button>
   </div>
+  <!-- MAIN -->
   <div id="main">
-    <div id="dailyview">
+ 
+    <!-- ══ DAILY LOG ══════════════════════════════════════════ -->
+    <div class="panel active" id="panel-daily">
       <div id="wkbar"></div>
       <div id="dgrid"></div>
       <div id="dayview"></div>
     </div>
-    <div id="ovview" style="display:none"></div>
-  </div>
-</div>
-<div id="toast">✓ SAVED</div>
-
+ 
+    <!-- ══ OVERVIEW ══════════════════════════════════════════ -->
+    <div class="panel" id="panel-overview">
+      <div id="ovview"></div>
+    </div>
+ 
+    <!-- ══ SUPPLEMENTS DAILY CHECKLIST ══════════════════════ -->
+    <div class="panel" id="panel-supplog">
+      <div style="padding:0 16px 80px;" id="supplog-inner"></div>
+    </div>
+ 
+    <!-- ══ THE STACK (reference doc) ════════════════════════ -->
+    <div class="panel" id="panel-stack">
+      <div id="supp-panel">
+ 
+        <div style="margin-bottom:24px;">
+          <span class="stamp">8-Week Supplement Protocol · v2</span>
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:clamp(32px,6vw,56px);line-height:.95;color:var(--ink);margin-top:8px;">The <span style="color:var(--accent);">Stack</span></div>
+          <div style="font-family:'Fraunces',serif;font-style:italic;font-size:15px;color:var(--ink-dim);margin-top:10px;max-width:620px;">Every compound verified against the literature. Doses calibrated for fat loss, muscle preservation, and testosterone protection simultaneously.</div>
+        </div>
+ 
+        <div class="doc-sec">
+          <div class="doc-h2"><span class="num">01</span>Morning Stack <span class="badge">With Breakfast / Fat</span></div>
+          <div class="doc-h3">Jocko Combat Tested 3.0 — 4 capsules</div>
+          <div class="doc-p">The 3.0 reformulation replaced fadogia with <strong>TestFactor</strong> — four placebo-controlled human trials behind it. Delivers 1,600 IU D3, 15mg zinc, tongkat ali, shilajit, DIM, and boron, all at meaningful doses, no proprietary blends. Fat-soluble actives require a fat-containing meal for proper absorption.</div>
+          <div class="doc-h3">Jocko Vitamin D3 — 1 softgel (5,000 IU)</div>
+          <div class="doc-p">Stacks with Combat Tested for ~6,600 IU/day — the intake most studies require to push serum 25(OH)D into the 40–60 ng/mL optimal testosterone zone. Take together with Combat Tested and fat.</div>
+          <div class="doc-h3">Thorne Basic Nutrients 2/Day — 2 capsules <span class="badge badge-new">Replaces Olly</span></div>
+          <div class="doc-p">NSF Certified for Sport. Methylated B-vitamins (5-MTHF, methylcobalamin), no added sugar (3g removed from daily caloric load), no iron. A significant upgrade over the Olly gummy on every metric that matters during a cut.</div>
+          <div class="doc-h3">Creatine Monohydrate — 5g (Dose 1 of 2)</div>
+          <div class="doc-p">First of two daily 5g doses. Splitting the 10g total minimizes GI distress. <strong>Why 10g?</strong> Brain creatine literature — not the muscle literature — supports this. Creatine has limited blood-brain-barrier permeability; studies showing 5–15% brain creatine increases and cognitive benefits during metabolic stress used 10–20g/day for several weeks. Muscle saturation tops out at 5g. You're targeting both.</div>
+          <div class="doc-h3">Re-Lyte Electrolytes — 1 scoop (AM)</div>
+          <div class="doc-p">810mg sodium, 400mg potassium, 50mg magnesium per scoop. On a 500-cal/day deficit with fasted cardio, electrolyte depletion is real and will tank your energy and performance. Non-negotiable daily scoop. Second scoop on training/heavy sweat days only.</div>
+        </div>
+ 
+        <div class="doc-sec">
+          <div class="doc-h2"><span class="num">02</span>Training Window <span class="badge">Pre / Intra / Post</span></div>
+          <div class="doc-h3">Jocko Mölk — 1 scoop pre-workout</div>
+          <div class="doc-p">Multi-source blend (whey concentrate + isolate + casein + egg) with digestive enzymes. 22g protein, fast and slow-release amino acids. 30–60 min before lifting.</div>
+          <div class="doc-h3">Re-Lyte — 1 scoop intra-workout (training days only)</div>
+          <div class="doc-p">Sip during sessions over 60 min or any cardio in heat. Skip on full rest days. This is the only context where the second daily scoop is justified.</div>
+          <div class="doc-h3">Jocko Mölk — 1 scoop post-workout</div>
+          <div class="doc-p">Second 22g serving within 30–60 min post-training. Combined with food protein, this puts you at ~80g protein from the training session alone — well above the ~40g threshold for maximal MPS stimulation shown in the Witard et al. 2014 and Moore et al. 2009 dose-response studies.</div>
+        </div>
+ 
+        <div class="doc-sec">
+          <div class="doc-h2"><span class="num">03</span>Evening Stack <span class="badge">With Dinner / Fat</span></div>
+          <div class="doc-h3">Creatine Monohydrate — 5g (Dose 2 of 2)</div>
+          <div class="doc-p">Second 5g dose. Take with lunch or your post-workout shake — consistency of total daily intake matters more than exact timing.</div>
+          <div class="doc-h3">Jocko Krill Oil — 2 softgels <span class="badge">Reduced from 3</span></div>
+          <div class="doc-p">Phospholipid-form omega-3s + astaxanthin antioxidant. Phospholipid bioavailability exceeds standard triglyceride fish oil by ~60% (Ulven et al. 2011). Dropped to label dose (2 caps) because 3 was above the studied dose, and the Nordic Naturals below handles the bulk EPA/DHA load.</div>
+          <div class="doc-h3">Nordic Naturals Ultimate Omega 2X — 2 softgels <span class="badge badge-new">New</span></div>
+          <div class="doc-p">2,150mg omega-3 per 2 softgels (1,125mg EPA + 875mg DHA). This hits the 2g+ EPA/DHA dose used in studies showing enhanced MPS, reduced DOMS, and protection of testosterone in resistance-trained men. IFOS 5-star rated. Take with dinner alongside krill oil.</div>
+          <div class="doc-h3">Ashwagandha KSM-66 — 600mg <span class="badge badge-new">New</span></div>
+          <div class="doc-p">The single most evidence-dense addition for your goals. KSM-66 at 600mg/day × 8+ weeks: meaningful serum cortisol reduction, modest testosterone increase, significant sleep quality improvement. 12-month safety study in 191 subjects showed no adverse effects on liver, kidney, or thyroid. Take with dinner.</div>
+        </div>
+ 
+        <div class="doc-sec">
+          <div class="doc-h2"><span class="num">04</span>Sleep Stack <span class="badge">60–90 Min Before Bed</span></div>
+          <div class="doc-h3">Doctor's Best Magnesium Glycinate — 2 tablets (200mg elemental)</div>
+          <div class="doc-p">Glycinate chelate is the best-studied form for sleep — multiple RCTs showing reduced sleep onset latency and improved sleep quality. Glycine itself has separate, modest sleep-promoting effects. Magnesium is also a required cofactor for testosterone synthesis. Read the label: you want 200mg <strong>elemental</strong> magnesium, not 200mg of the compound.</div>
+          <div class="doc-h3">Sports Research Suntheanine L-Theanine — 200mg</div>
+          <div class="doc-p">2025 systematic review of 13 RCTs: 200–450mg/day effective for sleep without grogginess. L-theanine promotes alpha-wave brain activity — calming, not sedating. Pairs cleanly with magnesium glycinate. Suntheanine is the patented, clinically studied form.</div>
+          <div class="callout">
+            <div class="clabel">Sleep Hygiene — Non-Negotiable</div>
+            <div class="doc-p" style="margin:0;">No caffeine after 12 PM. No screens 30 min before bed (or use blue blockers). Bedroom 65–68°F, dark, cool. Consistent sleep/wake time within 30 min, including weekends. <strong>These four behaviors outperform any supplement stack.</strong></div>
+          </div>
+        </div>
+ 
+      </div>
+    </div>
+ 
+    <!-- ══ BUY & SETTINGS ════════════════════════════════════ -->
+    <div class="panel" id="panel-buy">
+      <div id="buy-panel">
+        <div style="margin-bottom:20px;">
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:.03em;color:var(--ink);">Buy List <span style="color:var(--accent);">& Settings</span></div>
+          <div style="font-family:'Fraunces',serif;font-style:italic;font-size:14px;color:var(--ink-dim);margin-top:6px;">Every product verified against its label and clinical literature before recommendation.</div>
+        </div>
+ 
+        <div class="doc-h3" style="margin-top:0;">New Additions & Replacement</div>
+ 
+        <div class="source-card">
+          <div><div class="sc-name">NutraBio Ashwagandha KSM-66</div><div class="sc-dose">600mg per cap · 60 caps · 60-day supply</div><div class="sc-where">Zero fillers. The exact extract used in every major ashwagandha RCT.</div></div>
+          <a href="https://www.amazon.com/NutraBio-Ashwagandha-Supplement-Vegetable-Capsules/dp/B0BGVCXVXD" target="_blank" rel="noopener" class="buy-btn">Amazon</a>
+        </div>
+        <div class="source-card">
+          <div><div class="sc-name">Nutricost KSM-66 (Budget Alt)</div><div class="sc-dose">600mg + BioPerine · 60 caps</div><div class="sc-where">Same extract, lower cost, BioPerine enhances absorption. Clinically equivalent.</div></div>
+          <a href="https://www.amazon.com/Nutricost-KSM-66-Ashwagandha-Extract-Veggie/dp/B079K32QB6" target="_blank" rel="noopener" class="buy-btn buy-btn-alt">Alt Pick</a>
+        </div>
+        <div class="source-card">
+          <div><div class="sc-name">Doctor's Best Magnesium Glycinate</div><div class="sc-dose">200mg elemental per 2 tabs · 240 tabs · 4-month supply</div><div class="sc-where">TRAACS chelate. Label lists elemental magnesium — exactly the dose you want.</div></div>
+          <a href="https://www.amazon.com/Doctors-Best-Absorption-Magnesium-Glycinate/dp/B000BD0RT0" target="_blank" rel="noopener" class="buy-btn">Amazon</a>
+        </div>
+        <div class="source-card">
+          <div><div class="sc-name">Sports Research Suntheanine L-Theanine</div><div class="sc-dose">200mg per softgel · 60 softgels</div><div class="sc-where">Patented Suntheanine form. Used in nearly every L-theanine clinical trial. Third-party tested.</div></div>
+          <a href="https://www.amazon.com/Suntheanine%C2%AE-L-Theanine-Double-Strength-Cold-Pressed-Organic/dp/B00TXY32FY" target="_blank" rel="noopener" class="buy-btn">Amazon</a>
+        </div>
+        <div class="source-card">
+          <div><div class="sc-name">Nordic Naturals Ultimate Omega 2X</div><div class="sc-dose">2,150mg omega-3 per 2 softgels (1,125 EPA + 875 DHA)</div><div class="sc-where">Highest concentration in their lineup. IFOS 5-star. Triglyceride form. Hits 2g EPA/DHA in 2 caps.</div></div>
+          <a href="https://www.amazon.com/Nordic-Naturals-Ultimate-Supports-Immune/dp/B015TQ7USO" target="_blank" rel="noopener" class="buy-btn">Amazon</a>
+        </div>
+        <div class="source-card">
+          <div><div class="sc-name">Thorne Basic Nutrients 2/Day</div><div class="sc-dose">60 caps · 30-day supply · Replaces Olly Men's Multi</div><div class="sc-where">NSF Certified for Sport. Methylated Bs, no iron, no sugar. Best-in-class daily multi.</div></div>
+          <a href="https://www.amazon.com/Thorne-Basic-Nutrients-Comprehensive-Bioavailability/dp/B00FOTMGTU" target="_blank" rel="noopener" class="buy-btn">Amazon</a>
+        </div>
+ 
+        <div class="doc-h3" style="margin-top:24px;">Restock Current Stack</div>
+        <div class="source-card">
+          <div><div class="sc-name">Jocko Combat Tested 3.0</div><div class="sc-dose">4 caps/day · 30-day supply</div><div class="sc-where">Subscribe & save 10% at jockofuel.com, or Amazon.</div></div>
+          <a href="https://jockofuel.com/products/combat-tested-3-0" target="_blank" rel="noopener" class="buy-btn">Jocko Fuel</a>
+        </div>
+        <div class="source-card">
+          <div><div class="sc-name">Jocko Creatine Monohydrate</div><div class="sc-dose">10g/day = 2 scoops · burns through fast at this dose</div><div class="sc-where">At 10g/day, any Creapure-sourced creatine is identical and cheaper (Nutricost, Bulk Supplements).</div></div>
+          <a href="https://www.amazon.com/Jocko-Fuel-Creatine-Monohydrate-Powder/dp/B0BT23VBLJ" target="_blank" rel="noopener" class="buy-btn">Amazon</a>
+        </div>
+        <div class="source-card">
+          <div><div class="sc-name">Jocko Mölk Protein</div><div class="sc-dose">2 scoops/day</div><div class="sc-where">jockofuel.com or Amazon.</div></div>
+          <a href="https://jockofuel.com/products/jocko-protein-powder" target="_blank" rel="noopener" class="buy-btn">Jocko Fuel</a>
+        </div>
+        <div class="source-card">
+          <div><div class="sc-name">Jocko Vitamin D3 + Krill Oil</div><div class="sc-dose">D3: 1 cap/day · Krill: 2 softgels/day</div><div class="sc-where">jockofuel.com or Amazon individually.</div></div>
+          <a href="https://jockofuel.com" target="_blank" rel="noopener" class="buy-btn">Jocko Fuel</a>
+        </div>
+        <div class="source-card">
+          <div><div class="sc-name">Redmond Re-Lyte</div><div class="sc-dose">1 scoop daily + 1 on training days</div><div class="sc-where">Best price direct at redmond.life. All flavors identical.</div></div>
+          <a href="https://redmond.life/products/re-lyte-hydration" target="_blank" rel="noopener" class="buy-btn">Redmond.life</a>
+        </div>
+ 
+        <div class="doc-h3" style="margin-top:28px;">Stack Review — Verdicts</div>
+        <table class="rev-table">
+          <thead><tr><th>Supplement</th><th>Verdict</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td>Combat Tested 3.0</td><td><span class="vdict v-keep">Keep</span></td><td>3.0 TestFactor upgrade is real. Full doses, no blends. Take with fat.</td></tr>
+            <tr><td>Creatine</td><td><span class="vdict v-keep">10g/day</span></td><td>Brain literature supports 10g. Muscle literature supports 5g. You're targeting both — keep 10g.</td></tr>
+            <tr><td>Mölk Protein</td><td><span class="vdict v-keep">Keep</span></td><td>Multi-source blend. 44g/day toward 200g target. Time pre/post workout.</td></tr>
+            <tr><td>Vitamin D3</td><td><span class="vdict v-keep">Keep</span></td><td>~6,600 IU/day total. Optimal for testosterone. Take with fat.</td></tr>
+            <tr><td>Krill Oil</td><td><span class="vdict v-adj">Reduce to 2</span></td><td>Drop from 3 to label dose. Paired with Nordic Naturals for full EPA/DHA.</td></tr>
+            <tr><td>Olly Men's Multi</td><td><span class="vdict v-drop">Replace</span></td><td>3g sugar on a cut, weak doses. Use current bottle then swap to Thorne.</td></tr>
+            <tr><td>Re-Lyte</td><td><span class="vdict v-adj">1+1 rule</span></td><td>1 scoop every day. 2nd scoop on training/heavy sweat days only.</td></tr>
+          </tbody>
+        </table>
+ 
+        <div class="doc-h3" style="margin-top:8px;">Settings</div>
+        <div class="controls">
+          <button class="btn" id="export-btn">Export Progress (JSON)</button>
+          <button class="btn btn-danger" id="reset-btn">Reset All Progress</button>
+        </div>
+        <div style="font-size:11px;color:var(--ink-mute);">Data saves to browser localStorage automatically on every check-off.</div>
+ 
+        <div style="margin-top:48px;padding-top:20px;border-top:1px solid var(--line);font-family:'Fraunces',serif;font-style:italic;font-size:12px;color:var(--ink-mute);text-align:center;">
+          "Discipline equals freedom." — Track honestly. Adjust based on outcomes. Stay on the path.
+        </div>
+      </div>
+    </div>
+ 
+  </div><!-- /main -->
+</div><!-- /app -->
+ 
+<div class="toast" id="toast">✓ SAVED</div>
+ 
 <script>
-// ─── STATE ────────────────────────────────────────────────────────────────────
-var S = { w:1, d:0, view:'daily', chk:{}, log:{} };
-
-function save(){
-  try{
-    localStorage.setItem('flp2_chk', JSON.stringify(S.chk));
-    localStorage.setItem('flp2_log', JSON.stringify(S.log));
-    localStorage.setItem('flp2_w', S.w);
-    localStorage.setItem('flp2_d', S.d);
-  }catch(e){}
+// ═══════════════════════════════════════════════════════
+//  UNIFIED STATE
+// ═══════════════════════════════════════════════════════
+var S = {
+  // fat loss program state
+  w: 1, d: 0,
+  chk: {},   // training/meal/habit check-offs: "w-d-si-ii" → true
+  log: {},   // daily logs: "w-d" → {bw, bf, notes, whiskey, cal, prot}
+  // supplement state
+  suppChk: {}, // "suppDay-itemId" → true
+  suppStart: null,
+  // active tab
+  activeTab: 'daily'
+};
+ 
+// ═══════════════════════════════════════════════════════
+//  STORAGE  (localStorage only — robust, no API quirks)
+// ═══════════════════════════════════════════════════════
+var LS_KEY = 'cutProtocol_unified_v1';
+ 
+function saveAll() {
+  try {
+    localStorage.setItem(LS_KEY, JSON.stringify(S));
+    var el = document.getElementById('last-saved');
+    if (el) el.textContent = new Date().toLocaleString('en-US',{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'});
+  } catch(e) {}
+  showToast('SAVED');
 }
-
-function load(){
-  try{
-    var c=localStorage.getItem('flp2_chk'); if(c) S.chk=JSON.parse(c);
-    var l=localStorage.getItem('flp2_log'); if(l) S.log=JSON.parse(l);
-    var w=localStorage.getItem('flp2_w'); if(w) S.w=parseInt(w);
-    var d=localStorage.getItem('flp2_d'); if(d) S.d=parseInt(d);
-  }catch(e){}
+ 
+function loadAll() {
+  try {
+    var raw = localStorage.getItem(LS_KEY);
+    if (raw) {
+      var parsed = JSON.parse(raw);
+      S.w = parsed.w || 1;
+      S.d = parsed.d || 0;
+      S.chk = parsed.chk || {};
+      S.log = parsed.log || {};
+      S.suppChk = parsed.suppChk || {};
+      S.suppStart = parsed.suppStart || null;
+    }
+    // Migrate old fat loss keys if present
+    var oldChk = localStorage.getItem('flp2_chk');
+    var oldLog = localStorage.getItem('flp2_log');
+    if (oldChk && Object.keys(S.chk).length === 0) S.chk = JSON.parse(oldChk);
+    if (oldLog && Object.keys(S.log).length === 0) S.log = JSON.parse(oldLog);
+    // Migrate old supplement keys if present
+    var oldSupp = localStorage.getItem('supplementProtocol_v2');
+    if (oldSupp && Object.keys(S.suppChk).length === 0) {
+      var op = JSON.parse(oldSupp);
+      if (op.checks) S.suppChk = op.checks;
+      if (op.startDate && !S.suppStart) S.suppStart = op.startDate;
+    }
+  } catch(e) {}
+  if (!S.suppStart) S.suppStart = new Date().toISOString().slice(0,10);
 }
-
-// ─── MACROS BY PHASE ─────────────────────────────────────────────────────────
-var MACROS={'1-2':{cal:2200,p:220,c:175,f:65},'3-4':{cal:2200,p:225,c:160,f:65},'5-6':{cal:2100,p:225,c:145,f:62},'7-8':{cal:2000,p:230,c:125,f:58}};
-function phaseKey(w){return w<=2?'1-2':w<=4?'3-4':w<=6?'5-6':'7-8';}
-function phaseColor(w){return w<=2?'var(--p1)':w<=4?'var(--p2)':w<=6?'var(--p3)':'var(--p4)';}
-function phaseName(w){return w<=2?'FOUNDATION':w<=4?'ACCELERATE':w<=6?'PUSH':'PEAK';}
-function phaseBand(w){return w<=2?'WEEKS 1-2':w<=4?'WEEKS 3-4':w<=6?'WEEKS 5-6':'WEEKS 7-8';}
+ 
+function showToast(msg) {
+  var t = document.getElementById('toast');
+  t.textContent = '✓ ' + msg;
+  t.classList.add('show');
+  setTimeout(function(){ t.classList.remove('show'); }, 1600);
+}
+ 
+// ═══════════════════════════════════════════════════════
+//  PROGRAM DATA
+// ═══════════════════════════════════════════════════════
+var MACROS = {
+  '1-2': {cal:2200,p:220,c:175,f:65},
+  '3-4': {cal:2200,p:225,c:160,f:65},
+  '5-6': {cal:2100,p:225,c:145,f:62},
+  '7-8': {cal:2000,p:230,c:125,f:58}
+};
+function phaseKey(w){ return w<=2?'1-2':w<=4?'3-4':w<=6?'5-6':'7-8'; }
+function phaseColor(w){ return w<=2?'var(--ph1)':w<=4?'var(--ph2)':w<=6?'var(--ph3)':'var(--ph4)'; }
+function phaseName(w){ return w<=2?'FOUNDATION':w<=4?'ACCELERATE':w<=6?'PUSH':'PEAK'; }
+function phaseBand(w){ return w<=2?'WEEKS 1–2':w<=4?'WEEKS 3–4':w<=6?'WEEKS 5–6':'WEEKS 7–8'; }
 var DAYS=['MON','TUE','WED','THU','FRI','SAT','SUN'];
-var DAYSFULL=['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
-
-// ─── DATES ───────────────────────────────────────────────────────────────────
 var START = new Date(2026,4,4); // May 4 2026
+ 
 function dayDate(w,d){
-  var n=new Date(START);
-  n.setDate(n.getDate()+(w-1)*7+d);
+  var n=new Date(START); n.setDate(n.getDate()+(w-1)*7+d);
   var mo=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   return mo[n.getMonth()]+' '+n.getDate()+', 2026';
 }
-
-// ─── DAY TYPE ─────────────────────────────────────────────────────────────────
-function dtype(d){if(d===2)return'rest';if(d===6)return'cardio';return'gym';}
-function dtypeColor(d){var t=dtype(d);if(t==='rest')return'#818cf8';if(t==='cardio')return'#22d3ee';return'#f59e0b';}
-function dtypeShort(d){return['UPPER','LOWER','REST','PUSH','PULL','LEGS','CARDIO'][d];}
-
-// ─── CARDIO STRINGS ──────────────────────────────────────────────────────────
+function dtype(d){ return d===2?'rest':d===6?'cardio':'gym'; }
+function dtypeColor(d){ return d===2?'var(--rest)':d===6?'var(--cardio)':'var(--gym)'; }
+function dtypeLabel(d){ return ['UPPER','LOWER','REST','PUSH','PULL','LEGS','CARDIO'][d]; }
+ 
+// Cardio progressions
 function cardioStr(d,ci){
-  if(d===0){return ci===0?'20 min Treadmill — 2 min walk @3.5mph / 1 min jog @5.5mph, repeat':ci===1?'25 min Rower — 2 min moderate / 45 sec hard sprint, repeat':'30 min Treadmill — 90 sec walk / 60 sec jog @6mph, 1° incline added each week';}
+  if(d===0){return ci===0?'20 min Treadmill — 2 min walk @3.5mph / 1 min jog @5.5mph, repeat':ci===1?'25 min Rower — 2 min moderate / 45 sec hard sprint, repeat':'30 min Treadmill — 90 sec walk / 60 sec jog @6mph, +1° incline each week';}
   if(d===1){return ci===0?'15 min Rower — steady moderate pace (warm-up for legs)':ci===1?'20 min Rower — 1 min hard / 1 min easy intervals':'25 min Treadmill incline walk — 3.5–4mph at 8–10°';}
   if(d===3){return ci===0?'20 min Rower — steady state 65–70% HR':ci===1?'25 min Treadmill — 2 min walk / 1 min jog @5.5–6mph':'30 min Rower — 1 min hard / 1 min moderate, full duration';}
   if(d===4){return ci===0?'20 min Treadmill — 3.5mph walk at 5° incline':ci===1?'25 min Rower — 2 min moderate / 1 min sprint, repeat':'30 min Treadmill incline walk — 3.5mph at 10–12°';}
   if(d===5){return ci===0?'20 min Rower — steady moderate effort':ci===1?'25 min Treadmill intervals at 6° incline — 90s walk/60s jog':'30 min Rower — 1 min hard / 1 min easy, full duration';}
   return '';
 }
-
-// ─── WORKOUT ROTATIONS ───────────────────────────────────────────────────────
-// MON: Upper Body Chest+Back. Rotates every 3 weeks.
+ 
+// Workout rotations
 var CHEST_R=[
-  ['Barbell Bench Press — 4x10 @ 155lbs','Incline Dumbbell Press — 4x10 @ 50lb DBs','Cable Flyes 5° angle — 4x12 @ 30lbs each','PecDeck — 4x12 @ 100lbs'],
-  ['Dumbbell Bench Press — 4x10 @ 60lb DBs','Incline Barbell Press — 3x15 @ 70lbs','Seated Chest Press Machine — 4x12 progressive: 55/65/70/75lbs','Cable Flyes 9° angle — 4x10 @ 33lbs'],
+  ['Barbell Bench Press — 4x10 @ 155lbs','Incline Dumbbell Press — 4x10 @ 50lb DBs','Cable Flyes 5° — 4x12 @ 30lbs each','PecDeck — 4x12 @ 100lbs'],
+  ['Dumbbell Bench Press — 4x10 @ 60lb DBs','Incline Barbell Press — 3x15 @ 70lbs','Seated Chest Press Machine — 4x12 progressive: 55/65/70/75lbs','Cable Flyes 9° — 4x10 @ 33lbs'],
   ['Hex Dumbbell Press — 4x10 @ 55lb DBs','Decline Barbell Press — 4x12 @ 45s on bar','Seated Side Press — 4x10 @ 55lbs','Dumbbell Flyes — 3x15 @ 22.5lbs']
 ];
 var BACK_R=[
@@ -220,13 +682,11 @@ var BACK_R=[
   ['Pull-Ups — 3x10 with 30lb assist','Seated Row Machine — 3x10 @ 90lbs each side','Low Rows Machine (vert handle) — 4x10 @ 70lbs es','Back Flyes Machine — 4x10 @ 70lbs','Lawnmower Pulls — 3x8 @ 70lbs each'],
   ['Bent-Over Rows (heavier) — 3x8 @ 65lb DBs','Seated Lat Pulldown Machine — 4x10 @ 90–100lbs es','Crossbody Lat Pulls Kneeling — 3x10 @ 47lbs each','Cable Crossovers Guillotine — 4x8 @ 17lbs','Shrugs — 4-set ladder: 140/180/230/270lbs']
 ];
-// TUE: Lower Body Quad Dominant
 var QUAD_R=[
   ['Window Squat Machine — pyramid: 15x140/12x160/10x180/8x200/6x220/4x240lbs','Leg Press — 4x10 @ 220–260lbs','Quad Curl (non-rocking) — 4x10 @ 175lbs','Hamstring Curls — 4x10 @ 120lbs','Hip Abduction — 4x12 @ 130–145lbs','Calf Raises (Seated) — 3x20 @ 140lbs'],
   ['Barbell Back Squats — pyramid: 15x45s/12x55s/10x65s/10x65s/12x55s/15x45s','Squat Press Machine — 4x15 @ 270lbs','Leg Press — 4x12 @ 240–280lbs','Quad Curl Rocking Machine — 4x12 @ 125lbs','Hip Adduction — 4x12 progressive: 145/150/155/160lbs','Calf Raises (Standing) — 3x30 @ 220lbs'],
-  ['Window Machine Split Squat — 3x8 per leg @ 120lbs','Bulgarian Split Squat — 3x10 per leg @ 80lb DB or 36kg KB','Walking Lunges — 3x12 per leg @ 24kg KB each side','Single Leg Hamstring Curl — 4x10 @ 55lbs','Hip Thrust Machine — 3x12: 45s / 45s+25s / 2x45s','Calf Raises (Single Leg Seated) — 4x15 @ 70lbs']
+  ['Window Machine Split Squat — 3x8 per leg @ 120lbs','Bulgarian Split Squat — 3x10 per leg @ 80lb DB','Walking Lunges — 3x12 per leg @ 24kg KB each side','Single Leg Hamstring Curl — 4x10 @ 55lbs','Hip Thrust Machine — 3x12: 45s/45s+25s/2x45s','Calf Raises (Single Leg Seated) — 4x15 @ 70lbs']
 ];
-// THU: Push — Chest+Shoulders+Triceps
 var PUSH_CHEST_R=[
   ['Incline Dumbbell Press — 4x8 @ 55lb DBs','Dumbbell Flyes — 3x15 @ 22.5lbs','Seated Chest Press Machine — 4x10 @ 70lbs es'],
   ['Barbell Bench Press — 4x10 @ 155lbs','Cable Flyes 5° — 4x12 @ 30lbs','Decline Barbell Press — 4x10 @ 50s on bar'],
@@ -239,10 +699,9 @@ var PUSH_SHOULDER_R=[
 ];
 var PUSH_TRI_R=[
   ['Tricep Dips — 4x12 bodyweight','Tricep Pushdown — 4x10 @ 100lbs slow/controlled','Skullcrushers — 3x12 @ 65lbs'],
-  ['Close-Grip Bench Press (EZ bar) — 4x15 @ 95lbs','Overhead Cable Extension — 3x10 @ 130–140lbs','Seated Dips Machine — 4 progressive sets: 180/230/270/320lbs'],
+  ['Close-Grip Bench Press (EZ bar) — 4x15 @ 95lbs','Overhead Cable Extension — 3x10 @ 130–140lbs','Seated Dips Machine — 4 progressive: 180/230/270/320lbs'],
   ['Overhead DB Tricep Press — 4x12 @ 70lbs','Tricep Pushdown (slow) — 4x10 @ 100lbs','Overhead Cable Extension ladder — 3x8: 57.5/65/70lbs']
 ];
-// FRI: Pull — Back+Biceps
 var PULL_BACK_R=[
   ['Deadlifts (Barbell) — 3x8 @ 175lbs','Lat Pulldown Machine — 4x10 progressive: 150/160/170/180lbs','Seated Cable Rows — 4x12 @ 160lbs','Back Flyes Machine — 4x10 @ 70lbs','Face Pulls — 3x12 moderate'],
   ['Pull-Ups — 3x10 with 30lb assist','Bent-Over Rows — 3x10 @ 55lb DBs','Low Rows Machine (horiz handle) — 4x10 @ 65lbs es','Seated Lat Pulldown Machine — 4x10 @ 90lbs es','Lawnmower Pulls — 3x8 @ 70lbs'],
@@ -253,138 +712,199 @@ var PULL_BIC_R=[
   ['Incline DB Curl (palms out) — 4x10 @ 35lbs','Hammer Twist Curl — 4x15 @ 22.5lbs','Regular Preacher Curl (cambered bar) — 3x10 @ 55lbs'],
   ['Bayesian Cable Curl — 4x8 @ 30lbs','Reverse Hand Barbell Curls — 3x8 @ 40lbs','Seated High Bayesian Cable Curl — 4x10 @ 17.5lbs']
 ];
-// SAT: Legs Ham/Glute + Arms Finisher
 var SAT_LEG_R=[
-  ['RDLs (Barbell) — 4x10 @ 155lbs','Hamstring Curls — pyramid: 15x140/12x160/10x160/8x180/6x200lbs','Hip Thrust Machine — 3 progressive: 45s / 45s+25s / 2x45s','Hip Abduction Machine — pyramid: 15x115/12x120/10x130/8x140lbs','Hamstring Pushback Machine — 3x12 @ 185lbs','Calf Raises (Seated) — 3x20 @ 140lbs'],
-  ['Squat Press Machine — 4x10 @ 360lbs','Single Leg Hamstring Curl — 4x10 @ 55lbs each','Hip Adduction Machine — progressive: 4x15@145/4x12@150/4x10@155/4x8@160','Walking Lunges — 3x12 per leg @ 24kg KB each','Seated Leg Press Jumps — 4x15 @ 50lbs','Calf Raises (Single Leg Seated) — 4x15 @ 70lbs'],
-  ['Bulgarian Split Squat — 3x10 per leg @ 80lb DB / 36kg KB','Deadlifts — 3x10 @ 135lbs','Quad Curl (non-rocking) — 4x10 @ 175lbs','Hip Abduction + Adduction superset — 4x12 each @ 145lbs','Window Squat Machine — 3x12 @ 220lbs','Calf Raises (Standing) — 3x30 @ 220lbs']
+  ['RDLs (Barbell) — 4x10 @ 155lbs','Hamstring Curls — pyramid: 15x140/12x160/10x160/8x180/6x200lbs','Hip Thrust Machine — 3 progressive: 45s/45s+25s/2x45s','Hip Abduction Machine — pyramid: 15x115/12x120/10x130/8x140lbs','Hamstring Pushback Machine — 3x12 @ 185lbs','Calf Raises (Seated) — 3x20 @ 140lbs'],
+  ['Squat Press Machine — 4x10 @ 360lbs','Single Leg Hamstring Curl — 4x10 @ 55lbs each','Hip Adduction Machine — progressive: 4x15@145/4x12@150/4x10@155/4x8@160','Walking Lunges — 3x12 per leg @ 24kg KB','Seated Leg Press Jumps — 4x15 @ 50lbs','Calf Raises (Single Leg Seated) — 4x15 @ 70lbs'],
+  ['Bulgarian Split Squat — 3x10 per leg @ 80lb DB','Deadlifts — 3x10 @ 135lbs','Quad Curl (non-rocking) — 4x10 @ 175lbs','Hip Abduction + Adduction superset — 4x12 each @ 145lbs','Window Squat Machine — 3x12 @ 220lbs','Calf Raises (Standing) — 3x30 @ 220lbs']
 ];
 var SAT_ARM_R=[
   ['Head-Height Cable Curl (toward ear) — 3x10 @ 20lbs','Overhead DB Tricep Press — 3x10 @ 75lbs','Tricep Pushdown — 3x15 @ 57.5lbs each side (115lbs)'],
   ['Barbell Bicep Curls — 3x12 @ 50lbs','Skullcrushers — 3x12 @ 65lbs','Hammer Curls — 3x10 @ 37.5lbs'],
   ['Incline DB Curl (palms out) — 4x10 @ 35lbs','Close-Grip Bench Press (EZ bar) — 3x15 @ 105lbs','Preacher Curl (cambered bar) — 4x8 @ 20lbs each side']
 ];
-// SUN: Cardio + Core
 var SUN_CARDIO=[
-  ['OPTION A — Life Time Cycle Class (45–60 min): Best Sunday option — fun, social, high calorie burn','OPTION B — 30 min Elliptical at moderate effort, 65–70% max HR','OPTION C — 30 min Treadmill walk @ 3.5mph at 5–8° incline'],
-  ['OPTION A — Life Time Cycle Class (45–60 min): Lock this in as a weekly habit','OPTION B — 30 min Rower + 15 min Treadmill incline walk @ 8–10°','OPTION C — 35 min Elliptical + 10 min Core circuit']
+  ['OPTION A — Life Time Cycle Class (45–60 min): Best Sunday option','OPTION B — 30 min Elliptical at moderate effort, 65–70% max HR','OPTION C — 30 min Treadmill walk @ 3.5mph at 5–8° incline'],
+  ['OPTION A — Life Time Cycle Class (45–60 min): Lock this in as weekly habit','OPTION B — 30 min Rower + 15 min Treadmill incline walk @ 8–10°','OPTION C — 35 min Elliptical + 10 min Core circuit']
 ];
 var CORE_ITEMS=['Planks — 3 sets of 45–60 seconds, rest 30 sec between','Russian Twists — 3x12 per side','Leg Raises — 3x12','Mountain Climbers — 3x45 seconds','Kneeling Cable Ab Crunches — 3x12 @ 52.5lbs'];
-
-// ─── BUILD DAY SECTIONS ──────────────────────────────────────────────────────
-function preWO(){return{t:'PRE-WORKOUT — 5:15 AM',items:['Wake up — check Oura ring sleep score before getting out of bed','Drink 16oz water immediately upon waking','Jocko Creatine — 2–4 scoops (10–20g) mixed with water','Jocko Krill Oil, Vitamin D, Testosterone Optimizer, Daily Vitamin','Optional: 1 scoop Jocko Molk protein if energy is low','Drive to Life Time — arrive at gym by 5:28 AM']};}
-function postWO(extras){var items=['Jocko Molk protein shake — 1–2 scoops (30–50g protein) with water immediately post-workout','Drink 16oz water post-workout','Stretch the muscles you just trained — minimum 5 minutes'];return{t:'POST-WORKOUT RECOVERY',items:items.concat(extras||[])};}
-function habitSec(){return{t:'DAILY HABITS',items:['Hit 8,000+ steps — park farther at every clinic, walk between calls','Drink 80–96oz water total throughout the day (100–120oz on gym days)','Sleep target: 7–7.5 hours — in bed by 9:30–10 PM','Check Oura ring score before bed — note HRV trend','Compression sleeves on trained muscle groups tonight','Set tomorrow\'s 5:00 AM alarm before bed']};}
-
-function buildDay(w,d){
-  var m=MACROS[phaseKey(w)];
-  var wMod=(w-1)%3;
-  var ci=w<=2?0:w<=4?1:2;
-  var cardio=cardioStr(d,ci);
-
-  if(d===2) return buildRest(w,m);
-  if(d===0) return buildMon(w,m,wMod,ci,cardio);
-  if(d===1) return buildTue(w,m,wMod,ci,cardio);
-  if(d===3) return buildThu(w,m,wMod,ci,cardio);
-  if(d===4) return buildFri(w,m,wMod,ci,cardio);
-  if(d===5) return buildSat(w,m,wMod,ci,cardio);
-  if(d===6) return buildSun(w,m,ci);
+ 
+// ─── Section builders ────────────────────────────────────────────────────────
+function preWO(){
+  return {t:'PRE-WORKOUT — 5:15 AM',items:[
+    'Wake up — check Oura ring sleep score before getting out of bed',
+    'Drink 16oz water immediately upon waking',
+    'Jocko Creatine — 5g (1 scoop) mixed with water — Dose 1 of 2',
+    'Combat Tested 3.0 — 4 capsules | Jocko D3 — 1 softgel | Thorne Basic Nutrients — 2 capsules | Re-Lyte — 1 scoop',
+    'Optional: 1 scoop Jocko Mölk if energy is low',
+    'Drive to Life Time — arrive at gym by 5:28 AM'
+  ]};
 }
-
+function postWO(extras){
+  var items=['Jocko Mölk — 1–2 scoops (22–44g protein) with water immediately post-workout','Drink 16oz water post-workout','Stretch muscles trained — minimum 5 minutes'];
+  return {t:'POST-WORKOUT RECOVERY',items:items.concat(extras||[])};
+}
+function habitSec(){
+  return {t:'DAILY HABITS',items:[
+    'Hit 8,000+ steps — park farther at every clinic, walk between calls',
+    'Drink 100–128oz water total (hydration critical on a deficit with daily fasted cardio)',
+    'No caffeine after 12 PM — half-life is 6 hours; afternoon caffeine measurably degrades sleep',
+    'Sleep 7.5–9 hours — in bed by 9:30–10 PM (testosterone and cortisol require this)',
+    'Check Oura ring score before bed — note HRV trend',
+    'Compression sleeves on trained muscle groups tonight',
+    'Set tomorrow\'s 5:00 AM alarm before bed'
+  ]};
+}
 function mealPlan(m,meals){
-  var items=meals.concat([
+  return {t:'MEAL PLAN — '+m.cal+' KCAL TARGET',items:meals.concat([
     'Log ALL food in tracking app — every meal, every snack, every bite',
     'Target: '+m.cal+' cal | '+m.p+'g protein | '+m.c+'g carbs | '+m.f+'g fat'
-  ]);
-  return{t:'MEAL PLAN',items:items};
+  ])};
 }
-
+function eveningSupp(){
+  return {t:'EVENING SUPPLEMENTS — With Dinner',items:[
+    'Creatine — 5g (Dose 2 of 2) — with lunch or post-workout shake',
+    'Jocko Krill Oil — 2 softgels with dinner',
+    'Nordic Naturals Ultimate Omega 2X — 2 softgels with dinner (2,150mg omega-3)',
+    'Ashwagandha KSM-66 — 600mg (1 capsule) with dinner'
+  ]};
+}
+function sleepSupp(){
+  return {t:'SLEEP STACK — 60–90 Min Before Bed',items:[
+    'Doctor\'s Best Magnesium Glycinate — 2 tablets (200mg elemental)',
+    'Sports Research Suntheanine L-Theanine — 200mg (1 softgel)',
+    'Screens off or blue blockers on — protect melatonin'
+  ]};
+}
+ 
+// Day builders
 function buildMon(w,m,r,ci,cardio){
-  return{label:'UPPER BODY — Chest + Back',type:'gym',sections:[
+  return {label:'UPPER BODY — Chest + Back',type:'gym',sections:[
     preWO(),
     {t:'FASTED CARDIO — 5:30 AM',items:[cardio,'Target HR: 135–155 BPM (65–75% max)','Bring water — sip between intervals']},
     {t:'CHEST',items:CHEST_R[r]},
     {t:'BACK',items:BACK_R[r]},
     postWO(['10 min Steam Room or 3 min Cold Plunge if time allows']),
-    mealPlan(m,['Post-workout: Jocko Molk shake immediately — already done above','Meal 1 (optional): 2–3 egg bites + 3oz 99% lean ground turkey (~35g protein)','Lunch on road: 6oz chicken breast + frozen mixed veggies microwaved (~45g protein)','Dinner: 6oz lean steak or shrimp + mixed veggies + small rice or sweet potato (~40g protein)','Evening snack: 1 cup frozen blueberries if hungry (~80 cal)','Protein bar: only if still short on daily protein target']),
+    mealPlan(m,['Post-workout: Mölk shake immediately','Meal 1 (optional): 2–3 egg bites + 3oz 99% lean ground turkey (~35g protein)','Lunch on road: 6oz chicken breast + frozen mixed veggies (~45g protein)','Dinner: 6oz lean steak or shrimp + mixed veggies + small rice or sweet potato (~40g protein)','Evening snack: 1 cup frozen blueberries if hungry (~80 cal)']),
+    eveningSupp(),
+    sleepSupp(),
     habitSec()
   ]};
 }
-
 function buildTue(w,m,r,ci,cardio){
-  return{label:'LOWER BODY — Quad Dominant',type:'gym',sections:[
+  return {label:'LOWER BODY — Quad Dominant',type:'gym',sections:[
     preWO(),
     {t:'FASTED CARDIO — 5:30 AM (Keep moderate — heavy legs follow)',items:[cardio,'Keep HR moderate — legs need energy for squats/press','Hydrate well before loading the bar']},
     {t:'LEGS — QUAD DOMINANT',items:QUAD_R[r]},
     postWO(['10 min Hot Tub — great for quad and knee recovery','Stretch quads, hamstrings, hip flexors — minimum 5 minutes']),
-    mealPlan(m,['Post-workout: Protein shake immediately','Lunch on road: 5oz ground turkey + mixed veggies + small rice','Dinner: 6oz chicken breast + sweet potato (small) + mixed veggies','Note: Eat your carbs today — leg days are your highest calorie-burn training day']),
-    {t:'DAILY HABITS',items:['Hit 8,000+ steps','Drink 80–96oz water (aim for 100oz+ today — heavy training day)','Use compression LEG sleeves tonight — legs trained hard today','Sleep 7–7.5 hours — legs recover during deep sleep','Check Oura ring','Set 5:00 AM alarm']}
+    mealPlan(m,['Post-workout: Mölk shake immediately','Lunch on road: 5oz ground turkey + mixed veggies + small rice','Dinner: 6oz chicken breast + sweet potato (small) + mixed veggies','Note: Eat your carbs today — leg days are highest calorie-burn']),
+    eveningSupp(),
+    sleepSupp(),
+    {t:'DAILY HABITS',items:['Hit 8,000+ steps','Drink 100–128oz water (aim for 128oz today — heavy training)','No caffeine after 12 PM','Compression leg sleeves tonight','Sleep 7.5–9 hours — legs recover during deep sleep','Check Oura ring','Set 5:00 AM alarm']}
   ]};
 }
-
 function buildRest(w,m){
-  return{label:'FULL REST DAY — Active Recovery',type:'rest',sections:[
-    {t:'MORNING ROUTINE',items:['Wake naturally — no alarm, maximize sleep recovery','Check Oura ring — review HRV score and weekly recovery rating','Drink 16oz water immediately upon waking','Jocko Creatine — 2–4 scoops (10–20g) with water — take EVERY day including rest days','Jocko Krill Oil, Vitamin D, Testosterone Optimizer, Daily Vitamin']},
+  return {label:'FULL REST DAY — Active Recovery',type:'rest',sections:[
+    {t:'MORNING ROUTINE',items:[
+      'Wake naturally — no alarm, maximize sleep recovery',
+      'Check Oura ring — review HRV score and weekly recovery rating',
+      'Drink 16oz water immediately upon waking',
+      'Jocko Creatine — 5g (Dose 1) with water — take every day including rest days',
+      'Combat Tested 3.0 — 4 caps | Jocko D3 — 1 softgel | Thorne Basic Nutrients — 2 caps | Re-Lyte — 1 scoop',
+      'Creatine Dose 2 — 5g with lunch'
+    ]},
     {t:'ACTIVE RECOVERY — Fit Into Work Day',items:['Hit 10,000 steps today — this is your #1 physical target','Park farther away at every clinic visit','Take stairs at every opportunity during rounds','Walk 5–10 minutes after lunch if schedule allows','Light stretching: 10 min — focus on whatever is sore from Mon/Tue']},
-    mealPlan(m,['Breakfast: 2–3 egg bites + 3oz ground turkey + kefir','Lunch: 5–6oz chicken breast + frozen mixed veggies + side salad','Dinner: 5oz lean steak or 6oz shrimp + mixed veggies','Snack: Protein bar mid-afternoon to hit protein target','Evening: 1 cup frozen blueberries']),
-    {t:'RECOVERY PROTOCOLS',items:['Drink 80–96oz water throughout the day','Optional: 15–20 min Dry Sauna at Life Time if you pass by (excellent recovery)','Foam roll or stretch any tight areas — 10 min before bed','Compression sleeves on whatever body part is most sore tonight','In bed by 9:30 PM — this is your best recovery night of the week','Sleep: Aim for 7.5 hours minimum tonight']},
-    {t:'MINDSET & PREP',items:['Review food log from Mon–Tue — did you hit your protein both days?','Prep easy lunch options for Thu–Fri if possible','Confirm Thursday 5:00 AM alarm is set','Rest well tonight. You trained hard. Thursday is a push day — come back ready.']}
+    mealPlan(m,['Breakfast: 2–3 egg bites + 3oz ground turkey + kefir','Lunch: 5–6oz chicken breast + frozen mixed veggies + side salad','Dinner: 5oz lean steak or 6oz shrimp + mixed veggies','Snack: Protein bar mid-afternoon to hit protein target']),
+    eveningSupp(),
+    sleepSupp(),
+    {t:'RECOVERY PROTOCOLS',items:['Drink 100–128oz water throughout the day','Optional: 15–20 min Dry Sauna at Life Time if passing by','Foam roll or stretch any tight areas — 10 min before bed','Compression sleeves on most sore muscle group tonight','In bed by 9:30 PM — best recovery night of the week','Sleep: 7.5–9 hours minimum tonight']},
+    {t:'MINDSET & PREP',items:['Review food log from Mon–Tue — did you hit protein both days?','Prep easy lunch options for Thu–Fri if possible','Confirm Thursday 5:00 AM alarm is set','Rest well. Thursday is a push day — come back ready.']}
   ]};
 }
-
 function buildThu(w,m,r,ci,cardio){
-  return{label:'PUSH DAY — Chest + Shoulders + Triceps',type:'gym',sections:[
+  return {label:'PUSH DAY — Chest + Shoulders + Triceps',type:'gym',sections:[
     preWO(),
-    {t:'FASTED CARDIO — 5:30 AM',items:[cardio,'Target HR: 135–155 BPM','This is fasted cardio — fat oxidation is maximized right now']},
+    {t:'FASTED CARDIO — 5:30 AM',items:[cardio,'Target HR: 135–155 BPM','Fasted cardio — fat oxidation maximized right now']},
     {t:'CHEST',items:PUSH_CHEST_R[r]},
     {t:'SHOULDERS',items:PUSH_SHOULDER_R[r]},
     {t:'TRICEPS',items:PUSH_TRI_R[r]},
     postWO(['5 min shoulder + tricep stretch: cross-body pull, overhead reach','10 min Steam Room or Dry Sauna if schedule allows']),
-    mealPlan(m,['Post-workout: Protein shake immediately upon leaving gym','No breakfast needed if not hungry — shake covers it','Lunch on road: 6oz chicken breast + frozen veggies + optional small rice','Dinner: 6oz 99% lean ground turkey + mixed veggies','Snack: Kefir + nut granola (watch granola portion — calorie dense)']),
+    mealPlan(m,['Post-workout: Mölk shake immediately','Lunch on road: 6oz chicken breast + frozen veggies + optional small rice','Dinner: 6oz 99% lean ground turkey + mixed veggies','Snack: Kefir + nut granola — watch granola portion']),
+    eveningSupp(),
+    sleepSupp(),
     habitSec()
   ]};
 }
-
 function buildFri(w,m,r,ci,cardio){
-  return{label:'PULL DAY — Back + Biceps',type:'gym',sections:[
+  return {label:'PULL DAY — Back + Biceps',type:'gym',sections:[
     preWO(),
-    {t:'FASTED CARDIO — 5:30 AM',items:[cardio,'Incline walking: max fat burn with zero impact on back recovery','Target HR: 130–150 BPM']},
+    {t:'FASTED CARDIO — 5:30 AM',items:[cardio,'Incline walking: max fat burn, zero impact on back recovery','Target HR: 130–150 BPM']},
     {t:'BACK',items:PULL_BACK_R[r]},
     {t:'BICEPS',items:PULL_BIC_R[r]},
     postWO(['10 min Steam Room or Cold Plunge — it\'s Friday, reward the week','Stretch lats and biceps — doorway lat stretch, overhead reach']),
-    mealPlan(m,['Post-workout: Protein shake immediately','Lunch on road: 6oz shrimp + frozen mixed veggies + small rice','Dinner: 5–6oz lean steak + mixed veggies — Friday meal, make it enjoyable','Evening: Frozen blueberries 1 cup']),
-    {t:'DAILY HABITS',items:['Hit 8,000+ steps','Drink 80–96oz water','Even on Fridays — protect your sleep: 7–7.5 hours','Check Oura ring','Set Saturday 5:00 AM alarm']}
+    mealPlan(m,['Post-workout: Mölk shake immediately','Lunch on road: 6oz shrimp + frozen mixed veggies + small rice','Dinner: 5–6oz lean steak + mixed veggies — Friday meal, make it enjoyable','Evening: 1 cup frozen blueberries']),
+    eveningSupp(),
+    sleepSupp(),
+    {t:'DAILY HABITS',items:['Hit 8,000+ steps','Drink 100–128oz water','No caffeine after 12 PM','Sleep 7.5–9 hours — even on Fridays','Check Oura ring','Set Saturday 5:00 AM alarm']}
   ]};
 }
-
 function buildSat(w,m,r,ci,cardio){
-  return{label:'LEGS (Ham/Glute) + ARMS FINISHER',type:'gym',sections:[
+  return {label:'LEGS (Ham/Glute) + ARMS FINISHER',type:'gym',sections:[
     preWO(),
     {t:'FASTED CARDIO — 5:30 AM (Moderate — heavy legs follow)',items:[cardio,'Keep intensity moderate — heavy posterior chain work follows','Target HR: 130–150 BPM']},
     {t:'LEGS — HAMSTRING & GLUTE DOMINANT',items:SAT_LEG_R[r]},
     {t:'ARMS FINISHER — 15–20 min',items:SAT_ARM_R[r]},
-    {t:'POST-WORKOUT RECOVERY — Take Your Time (It\'s Saturday)',items:['Jocko Molk protein shake — 1–2 scoops immediately post-workout','Drink 16oz water post-workout','15 min Dry Sauna or Steam Room — maximum recovery benefit','3–5 min Cold Plunge immediately after sauna — reduces inflammation, boosts recovery hormones','OR: 15 min Hot Tub for legs if skipping sauna today','Use compression leg sleeves tonight']},
-    mealPlan(m,['Post-workout: Protein shake immediately','Brunch/Lunch: 3 eggs + 4oz ground turkey + fruit — real earned meal','Dinner: 5–6oz lean steak or shrimp + veggies + rice or sweet potato']),
-    {t:'DAILY HABITS',items:['Hit 8,000+ steps','Drink 80–96oz water — aim for 100oz today','Use ALL Life Time amenities today — sauna, cold plunge, hot tub','Sleep: Full 7.5 hours tonight — biggest recovery night of the week','No alarm needed for Sunday — sleep in and recover']}
+    {t:'POST-WORKOUT RECOVERY — Take Your Time (It\'s Saturday)',items:['Jocko Mölk — 1–2 scoops immediately post-workout','Drink 16oz water post-workout','15 min Dry Sauna or Steam Room — maximum recovery benefit','3–5 min Cold Plunge immediately after sauna — reduces inflammation, boosts recovery hormones','OR: 15 min Hot Tub for legs if skipping sauna','Compression leg sleeves tonight']},
+    mealPlan(m,['Post-workout: Mölk shake immediately','Brunch/Lunch: 3 eggs + 4oz ground turkey + fruit','Dinner: 5–6oz lean steak or shrimp + veggies + rice or sweet potato']),
+    eveningSupp(),
+    sleepSupp(),
+    {t:'DAILY HABITS',items:['Hit 8,000+ steps','Drink 100–128oz water','No caffeine after 12 PM','Use ALL Life Time amenities — sauna, cold plunge, hot tub','Sleep: 7.5–9 hours — biggest recovery night of the week','No alarm needed for Sunday — sleep in and recover']}
   ]};
 }
-
 function buildSun(w,m,ci){
-  var cOpt=ci===0?SUN_CARDIO[0]:SUN_CARDIO[1];
-  return{label:'ACTIVE RECOVERY — Cardio + Core',type:'cardio',sections:[
-    {t:'MORNING',items:['Wake naturally — no early alarm, maximize sleep','Check Oura ring — review full weekly recovery summary and HRV trend','Drink 16oz water upon waking','Jocko Creatine — 2–4 scoops (10–20g) with water — every day, no exceptions','Jocko Krill Oil, Vitamin D, Testosterone Optimizer, Daily Vitamin']},
-    {t:'CARDIO — CHOOSE 1 OPTION',items:cOpt},
+  return {label:'ACTIVE RECOVERY — Cardio + Core',type:'cardio',sections:[
+    {t:'MORNING',items:[
+      'Wake naturally — no early alarm, maximize sleep',
+      'Check Oura ring — review full weekly recovery summary and HRV trend',
+      'Drink 16oz water upon waking',
+      'Jocko Creatine — 5g (Dose 1) with water',
+      'Combat Tested 3.0 — 4 caps | Jocko D3 — 1 softgel | Thorne Basic Nutrients — 2 caps | Re-Lyte — 1 scoop',
+      'Creatine Dose 2 — 5g with brunch or post-cardio'
+    ]},
+    {t:'CARDIO — CHOOSE 1 OPTION',items:SUN_CARDIO[ci<2?ci:1]},
     {t:'CORE CIRCUIT — After Cardio (20 min)',items:CORE_ITEMS},
-    {t:'LIFE TIME RECOVERY — Full Protocol Today',items:['15–20 min Dry Sauna — Sunday is your prime recovery sauna session','5 min Cold Plunge immediately after sauna — boosts testosterone and recovery hormones','10 min Hot Tub — relax fully, let the week decompress','Full-body compression sleeves if available','Foam roll entire body — 10 min minimum: quads, hams, glutes, lats, upper back']},
+    {t:'LIFE TIME RECOVERY — Full Protocol Today',items:['15–20 min Dry Sauna — Sunday is your prime recovery sauna session','5 min Cold Plunge immediately after sauna — boosts testosterone and recovery hormones','10 min Hot Tub — relax, let the week decompress','Full-body foam roll — 10 min minimum: quads, hams, glutes, lats, upper back']},
     mealPlan(m,['Breakfast/Brunch: 3 eggs + kefir + nut granola (1 serving) + frozen blueberries','Lunch: 6oz chicken breast + mixed veggies','Dinner: 6oz ground turkey + veggies + small carb portion','Snack: Protein bar + frozen blueberries']),
-    {t:'WEEKLY REVIEW — Do This Every Sunday',items:['Weigh yourself — fasted, after bathroom, same time every Sunday','Log your weight and note any visible physical changes in notes below','Review Oura ring weekly summary — HRV trend, sleep quality','Review food log for the full week — did you hit protein EVERY day?','Reflect: Did you complete all 6 training days this week?','Prep Monday/Tuesday meals if possible — pre-cook turkey, portion veggies','Set Monday 5:00 AM alarm before bed','You did the work this week. Recover tonight. Attack Monday.']}
+    eveningSupp(),
+    sleepSupp(),
+    {t:'WEEKLY REVIEW — Do This Every Sunday',items:[
+      'Weigh yourself — fasted, after bathroom, same time every Sunday',
+      'Log your weight and note any visible physical changes in notes below',
+      'Review Oura ring weekly summary — HRV trend, sleep quality',
+      'Review food log for the full week — did you hit protein EVERY day?',
+      'Reflect: Did you complete all 6 training days this week?',
+      'Prep Monday/Tuesday meals — pre-cook turkey, portion veggies',
+      'Set Monday 5:00 AM alarm before bed',
+      'You did the work this week. Recover tonight. Attack Monday.'
+    ]}
   ]};
 }
-
-// ─── PROGRESS ────────────────────────────────────────────────────────────────
+ 
+function buildDay(w,d){
+  var m=MACROS[phaseKey(w)];
+  var r=(w-1)%3;
+  var ci=w<=2?0:w<=4?1:2;
+  var cardio=cardioStr(d,ci);
+  if(d===2) return buildRest(w,m);
+  if(d===0) return buildMon(w,m,r,ci,cardio);
+  if(d===1) return buildTue(w,m,r,ci,cardio);
+  if(d===3) return buildThu(w,m,r,ci,cardio);
+  if(d===4) return buildFri(w,m,r,ci,cardio);
+  if(d===5) return buildSat(w,m,r,ci,cardio);
+  if(d===6) return buildSun(w,m,ci);
+}
+ 
 function dayProgress(w,d){
-  var day=buildDay(w,d);
-  var tot=0,done=0;
+  var day=buildDay(w,d),tot=0,done=0;
   day.sections.forEach(function(sec,si){
     sec.items.forEach(function(_,ii){
       tot++;
@@ -393,437 +913,513 @@ function dayProgress(w,d){
   });
   return tot?Math.round(done/tot*100):0;
 }
-
-// ─── RENDER ───────────────────────────────────────────────────────────────────
-function render(){
-  renderTop();
-  renderWkBar();
-  renderGrid();
-  renderDay();
+ 
+// ═══════════════════════════════════════════════════════
+//  SUPPLEMENT DATA
+// ═══════════════════════════════════════════════════════
+var SUPP_PROTOCOL = [
+  { block:'Morning Stack', when:'On Wake / With Breakfast (with fat)', items:[
+    {id:'am-combat',   name:'Combat Tested 3.0',               product:'Jocko Combat Tested 3.0',                  dose:'4 capsules',              detail:'TestFactor, tongkat, shilajit, D, zinc, boron.'},
+    {id:'am-d3',       name:'Vitamin D3',                       product:'Jocko D3 5,000 IU',                        dose:'1 softgel',               detail:'~6,600 IU total with Combat Tested — optimal T range.'},
+    {id:'am-multi',    name:'Multivitamin',                     product:'Thorne Basic Nutrients 2/Day',             dose:'2 capsules',              detail:'Methylated Bs, NSF Certified, no sugar. Replaces Olly.'},
+    {id:'am-creat1',   name:'Creatine (Dose 1 of 2)',           product:'Jocko Creatine',                           dose:'5g (1 scoop)',            detail:'Brain + muscle creatine — 10g/day split.'},
+    {id:'am-relyte',   name:'Re-Lyte Electrolytes',             product:'Redmond Re-Lyte',                          dose:'1 scoop in 16–24oz water',detail:'Sodium/K/Mg — non-negotiable on daily fasted cardio deficit.'}
+  ]},
+  { block:'Training Window', when:'Around Workout (skip as noted on rest days)', items:[
+    {id:'tw-pre',      name:'Mölk Protein (Pre)',               product:'Jocko Mölk',                               dose:'1 scoop · 22g',           detail:'30–60 min pre-workout.'},
+    {id:'tw-intra',    name:'Re-Lyte (Training Day Only)',      product:'Redmond Re-Lyte',                          dose:'1 scoop intra',           detail:'Sip during 60+ min sessions or hot/sweaty cardio.', optional:true},
+    {id:'tw-post',     name:'Mölk Protein (Post)',              product:'Jocko Mölk',                               dose:'1 scoop · 22g',           detail:'Within 30–60 min post-workout. ~80g protein from session total.'}
+  ]},
+  { block:'Evening Stack', when:'With Dinner', items:[
+    {id:'ev-creat2',   name:'Creatine (Dose 2 of 2)',           product:'Jocko Creatine',                           dose:'5g (1 scoop)',            detail:'Second half of 10g daily total.'},
+    {id:'ev-krill',    name:'Krill Oil',                        product:'Jocko Krill Oil',                          dose:'2 softgels',              detail:'Phospholipid omega-3 + astaxanthin. Label dose.'},
+    {id:'ev-fishoil',  name:'Concentrated Fish Oil',            product:'Nordic Naturals Ultimate Omega 2X',        dose:'2 softgels (2,150mg ω-3)',detail:'Hits 2g EPA/DHA target for MPS + T protection.'},
+    {id:'ev-ashwa',    name:'Ashwagandha KSM-66',               product:'NutraBio KSM-66 600mg',                    dose:'1 capsule (600mg)',       detail:'Cortisol reduction, T support, sleep quality.'}
+  ]},
+  { block:'Sleep Stack', when:'60–90 min before bed', items:[
+    {id:'sl-mag',      name:'Magnesium Glycinate',              product:"Doctor's Best Magnesium Glycinate",        dose:'2 tablets (200mg elemental)', detail:'Best-studied form for sleep onset. T production cofactor.'},
+    {id:'sl-theanine', name:'L-Theanine',                       product:'Sports Research Suntheanine 200mg',        dose:'1 softgel',               detail:'Alpha-wave calm without sedation. Pairs with magnesium.'}
+  ]},
+  { block:'Daily Habits', when:'Throughout the day', items:[
+    {id:'h-protein',   name:'Hit 200g+ protein',                product:'Whole foods + Mölk',                       dose:'1g per lb',               detail:'Spread across 4–5 meals/snacks of 40–50g each.'},
+    {id:'h-water',     name:'100–128oz water',                  product:'—',                                        dose:'Daily minimum',           detail:'Deficit + fasted cardio = high depletion risk.'},
+    {id:'h-sleep',     name:'7.5–9 hours sleep',                product:'—',                                        dose:'Consistent timing',       detail:'Same bed/wake ±30 min. Testosterone requires this.'},
+    {id:'h-steps',     name:'8,000–10,000 steps',               product:'—',                                        dose:'Daily target',            detail:'On top of training. Drives the actual deficit.'},
+    {id:'h-caffeine',  name:'No caffeine after 12 PM',          product:'—',                                        dose:'Hard stop',               detail:'6-hour half-life. Afternoon caffeine degrades sleep.'}
+  ]}
+];
+ 
+function getSuppDay(){
+  if(!S.suppStart) return 1;
+  var start=new Date(S.suppStart);
+  var today=new Date();
+  start.setHours(0,0,0,0); today.setHours(0,0,0,0);
+  var diff=Math.floor((today-start)/(1000*60*60*24))+1;
+  return Math.max(1,Math.min(diff,56));
 }
-
+ 
+// ═══════════════════════════════════════════════════════
+//  RENDER TOPBAR
+// ═══════════════════════════════════════════════════════
 function renderTop(){
   var pc=phaseColor(S.w);
-  var el=document.getElementById('tb-phase');
-  el.textContent='▸ '+phaseName(S.w)+' PHASE — '+phaseBand(S.w);
-  el.style.color=pc;
+  document.getElementById('tb-phase').textContent='▸ '+phaseName(S.w)+' — '+phaseBand(S.w);
+  document.getElementById('tb-phase').style.color=pc;
   var m=MACROS[phaseKey(S.w)];
   document.getElementById('mstrip').innerHTML=[
-    {l:'CALORIES',v:m.cal+' kcal'},
-    {l:'PROTEIN',v:m.p+'g'},
-    {l:'CARBS',v:m.c+'g'},
-    {l:'FAT',v:m.f+'g'},
-    {l:'WATER',v:'100oz+'},
-    {l:'STEPS',v:'8K+'},
-    {l:'SLEEP',v:'7–7.5h'}
-  ].map(function(x){return'<div class="mi"><span class="ml">'+x.l+'</span><span class="mv" style="color:'+pc+'">'+x.v+'</span></div>';}).join('');
-  document.querySelectorAll('.ntab').forEach(function(t){t.style.borderBottomColor='';t.style.color='';});
-  var at=document.getElementById(S.view==='daily'?'tab-daily':'tab-overview');
-  at.style.borderBottomColor=pc;
-  at.style.color='#fff';
+    {l:'CALORIES',v:m.cal+' kcal'},{l:'PROTEIN',v:m.p+'g'},
+    {l:'CARBS',v:m.c+'g'},{l:'FAT',v:m.f+'g'},
+    {l:'WATER',v:'100oz+'},{l:'STEPS',v:'8K+'},{l:'SLEEP',v:'7.5–9h'}
+  ].map(function(x){
+    return '<div class="mi"><span class="ml">'+x.l+'</span><span class="mv" style="color:'+pc+'">'+x.v+'</span></div>';
+  }).join('');
 }
-
+ 
+// ═══════════════════════════════════════════════════════
+//  RENDER WEEK BAR
+// ═══════════════════════════════════════════════════════
 function renderWkBar(){
-  var wb=document.getElementById('wkbar');
-  wb.innerHTML='';
-  for(var w=1;w<=8;w++){
-    (function(ww){
-      var btn=document.createElement('button');
-      btn.className='wb'+(ww===S.w?' active':'');
-      btn.textContent='WK '+ww;
-      var c=phaseColor(ww);
-      if(ww===S.w){btn.style.borderColor=c;btn.style.color=c;btn.style.background=c+'18';}
-      btn.onclick=function(){S.w=ww;S.d=0;save();render();};
-      wb.appendChild(btn);
-    })(w);
+  var el=document.getElementById('wkbar');
+  el.innerHTML='';
+  for(var i=1;i<=8;i++){
+    var b=document.createElement('button');
+    b.className='wb'+(S.w===i?' active':'');
+    b.textContent='WK '+i;
+    b.style.color=i===S.w?phaseColor(i):'';
+    b.style.borderColor=i===S.w?phaseColor(i):'';
+    (function(wk){ b.onclick=function(){ S.w=wk; S.d=0; saveAll(); renderAll(); }; })(i);
+    el.appendChild(b);
   }
 }
-
+ 
+// ═══════════════════════════════════════════════════════
+//  RENDER DAY GRID
+// ═══════════════════════════════════════════════════════
 function renderGrid(){
-  document.getElementById('dgrid').innerHTML=DAYS.map(function(nm,i){
-    var prog=dayProgress(S.w,i);
-    var act=i===S.d;
-    var pc=phaseColor(S.w);
+  var el=document.getElementById('dgrid');
+  el.innerHTML='';
+  for(var i=0;i<7;i++){
+    var cell=document.createElement('div');
+    var pr=dayProgress(S.w,i);
+    cell.className='dc'+(S.d===i?' sel':'')+(pr===100?' done':'');
     var tc=dtypeColor(i);
-    var done=prog===100;
-    return '<div class="dc'+(act?' active':'')+(done?' done':'')+'" onclick="selDay('+i+')" style="'+(act?'border-color:'+pc+';background:'+pc+'15':done?'border-color:var(--ck)':'')+'">'+
-      '<div class="dc-name" style="color:'+(act?pc:'var(--mu)')+'">'+nm+'</div>'+
-      '<div class="dc-type" style="color:'+tc+'">'+dtypeShort(i)+'</div>'+
-      (prog>0?'<div class="dc-prog" style="color:'+(done?'var(--ck)':pc)+'">'+prog+'%</div>':'')+
-    '</div>';
-  }).join('');
-}
-
-function renderDay(){
-  var w=S.w,d=S.d;
-  var day=buildDay(w,d);
-  var prog=dayProgress(w,d);
-  var pc=phaseColor(w);
-  var tc=dtypeColor(d);
-  var dn=(w-1)*7+d+1;
-  var logKey=w+'-'+d;
-  var logData=S.log[logKey]||{};
-
-  var html='<div class="dh">'+
-    '<div class="dh-label" style="color:'+pc+'">WEEK '+w+' · '+DAYSFULL[d].toUpperCase()+' · '+dayDate(w,d)+' · DAY '+dn+' OF 56</div>'+
-    '<div class="dh-title"><span style="color:'+tc+'">◆ </span>'+day.label+'</div>'+
-    (dtype(d)!=='rest'?'<div class="dh-time">⏰ 5:30 AM Gym</div>':'')+
-    '<div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px;">'+
-      '<div style="flex:1"><div class="pbw"><div class="pbf" style="width:'+prog+'%;background:'+(prog===100?'var(--ck)':pc)+'"></div></div></div>'+
-      '<div style="font-size:13px;font-weight:500;color:'+(prog===100?'var(--ck)':pc)+';margin-left:12px;">'+prog+'%</div>'+
-    '</div>'+
-  '</div>';
-
-  // Checklist sections
-  day.sections.forEach(function(sec,si){
-    var secDone=sec.items.filter(function(_,ii){return S.chk[w+'-'+d+'-'+si+'-'+ii];}).length;
-    html+='<div class="sec">'+
-      '<div class="sh" style="color:'+pc+'" onclick="toggleSec(this)">'+
-        '<span class="sh-t">▸ '+sec.t+'</span>'+
-        '<span class="sc" style="color:'+(secDone===sec.items.length&&sec.items.length>0?'var(--ck)':'var(--mu)')+'">'+secDone+'/'+sec.items.length+'</span>'+
-      '</div>'+
-      '<div class="sb">'+
-        sec.items.map(function(item,ii){
-          var k=w+'-'+d+'-'+si+'-'+ii;
-          var chked=!!S.chk[k];
-          return '<div class="ci'+(chked?' chk':'')+'" onclick="togChk(\''+k+'\','+w+','+d+')">'+
-            '<div class="cb">'+(chked?'✓':'')+'</div>'+
-            '<div class="ct">'+item+'</div>'+
-          '</div>';
-        }).join('')+
-      '</div>'+
-    '</div>';
-  });
-
-  // ─── DAILY LOG SECTION ────────────────────────────────────────────────────
-  var m=MACROS[phaseKey(w)];
-  var lk=logKey;
-
-  html+='<div class="log-sec">'+
-    '<div class="log-head">'+
-      '<span>📋 END OF DAY LOG — '+DAYSFULL[d].toUpperCase()+'</span>'+
-      '<span style="color:var(--mu);font-size:8px">AUTO-SAVES AS YOU TYPE</span>'+
-    '</div>'+
-    '<div class="log-body">'+
-
-      // Macros Consumed
-      '<div style="font-size:9px;letter-spacing:2px;color:var(--log);margin-bottom:8px;">MACROS CONSUMED TODAY</div>'+
-      '<div class="log-grid">'+
-        '<div class="log-field">'+
-          '<label class="log-label">Calories (target: '+m.cal+')</label>'+
-          '<input class="log-input" type="text" inputmode="numeric" placeholder="e.g. 2180" id="log-cal-'+lk+'" value="'+(logData.cal||'')+'" oninput="saveLog(\''+lk+'\',\'cal\',this.value)">'+
-        '</div>'+
-        '<div class="log-field">'+
-          '<label class="log-label">Protein g (target: '+m.p+'g)</label>'+
-          '<input class="log-input" type="text" inputmode="numeric" placeholder="e.g. 215" id="log-p-'+lk+'" value="'+(logData.p||'')+'" oninput="saveLog(\''+lk+'\',\'p\',this.value)">'+
-        '</div>'+
-        '<div class="log-field">'+
-          '<label class="log-label">Carbs g (target: '+m.c+'g)</label>'+
-          '<input class="log-input" type="text" inputmode="numeric" placeholder="e.g. 170" id="log-c-'+lk+'" value="'+(logData.c||'')+'" oninput="saveLog(\''+lk+'\',\'c\',this.value)">'+
-        '</div>'+
-        '<div class="log-field">'+
-          '<label class="log-label">Fat g (target: '+m.f+'g)</label>'+
-          '<input class="log-input" type="text" inputmode="numeric" placeholder="e.g. 62" id="log-f-'+lk+'" value="'+(logData.f||'')+'" oninput="saveLog(\''+lk+'\',\'f\',this.value)">'+
-        '</div>'+
-      '</div>'+
-
-      // Visual macro bars
-      '<div class="macro-bars" id="mbars-'+lk+'"></div>'+
-
-      // Water, Sleep, Steps
-      '<div style="font-size:9px;letter-spacing:2px;color:var(--log);margin:12px 0 8px;">DAILY METRICS</div>'+
-      '<div class="log-grid">'+
-        '<div class="log-field">'+
-          '<label class="log-label">Water (oz) target: 100+</label>'+
-          '<input class="log-input" type="text" inputmode="numeric" placeholder="e.g. 96" id="log-w-'+lk+'" value="'+(logData.water||'')+'" oninput="saveLog(\''+lk+'\',\'water\',this.value)">'+
-        '</div>'+
-        '<div class="log-field">'+
-          '<label class="log-label">Steps target: 8,000+</label>'+
-          '<input class="log-input" type="text" inputmode="numeric" placeholder="e.g. 9240" id="log-st-'+lk+'" value="'+(logData.steps||'')+'" oninput="saveLog(\''+lk+'\',\'steps\',this.value)">'+
-        '</div>'+
-        '<div class="log-field">'+
-          '<label class="log-label">Oura Sleep Score</label>'+
-          '<input class="log-input" type="text" inputmode="numeric" placeholder="e.g. 82" id="log-sl-'+lk+'" value="'+(logData.sleep||'')+'" oninput="saveLog(\''+lk+'\',\'sleep\',this.value)">'+
-        '</div>'+
-        '<div class="log-field">'+
-          '<label class="log-label">Oura HRV</label>'+
-          '<input class="log-input" type="text" inputmode="numeric" placeholder="e.g. 55" id="log-hrv-'+lk+'" value="'+(logData.hrv||'')+'" oninput="saveLog(\''+lk+'\',\'hrv\',this.value)">'+
-        '</div>'+
-      '</div>'+
-
-      // Whiskey tracker
-      '<div style="font-size:9px;letter-spacing:2px;color:var(--log);margin:12px 0 8px;">WHISKEY TONIGHT?</div>'+
-      '<div class="log-whiskey">'+
-        '<div class="wbtn'+(logData.whiskey==='none'?' sel0':'')+'" onclick="logWhiskey(\''+lk+'\',\'none\')">NONE ✓</div>'+
-        '<div class="wbtn'+(logData.whiskey==='1'?' sel':'')+'" onclick="logWhiskey(\''+lk+'\',\'1\')">1 GLASS</div>'+
-        '<div class="wbtn'+(logData.whiskey==='2'?' sel':'')+'" onclick="logWhiskey(\''+lk+'\',\'2\')">2 GLASSES</div>'+
-        '<div class="wbtn'+(logData.whiskey==='3+'?' sel':'')+'" onclick="logWhiskey(\''+lk+'\',\'3+\')">3+</div>'+
-      '</div>'+
-      (logData.whiskey&&logData.whiskey!=='none'?'<div style="font-size:10px;color:var(--p3);margin-top:6px;">▸ '+(logData.whiskey==='1'?'~200 cal — reduce carbs 20g tomorrow':logData.whiskey==='2'?'~400 cal — reduce carbs 40g tomorrow. Consider cutting to 1 next time.':'⚠️ 3+ glasses significantly impacts recovery and fat loss. Stay at 1–2 max.')+'</div>':'')+
-
-      // Body weight (Sundays especially)
-      (d===6?'<div style="font-size:9px;letter-spacing:2px;color:var(--log);margin:12px 0 8px;">WEEKLY WEIGH-IN (SUNDAY FASTED)</div>'+
-        '<div class="log-grid">'+
-          '<div class="log-field">'+
-            '<label class="log-label">Body Weight (lbs)</label>'+
-            '<input class="log-input" type="text" inputmode="decimal" placeholder="e.g. 198.4" id="log-bw-'+lk+'" value="'+(logData.bw||'')+'" oninput="saveLog(\''+lk+'\',\'bw\',this.value)">'+
-          '</div>'+
-          '<div class="log-field">'+
-            '<label class="log-label">Body Fat % (if measured)</label>'+
-            '<input class="log-input" type="text" inputmode="decimal" placeholder="e.g. 16.8" id="log-bf-'+lk+'" value="'+(logData.bf||'')+'" oninput="saveLog(\''+lk+'\',\'bf\',this.value)">'+
-          '</div>'+
-        '</div>':'')+ 
-
-      // Workout feel
-      '<div style="font-size:9px;letter-spacing:2px;color:var(--log);margin:12px 0 8px;">WORKOUT PERFORMANCE</div>'+
-      '<div class="log-grid">'+
-        '<div class="log-field">'+
-          '<label class="log-label">Energy Level (1–10)</label>'+
-          '<input class="log-input" type="text" inputmode="numeric" placeholder="e.g. 8" id="log-en-'+lk+'" value="'+(logData.energy||'')+'" oninput="saveLog(\''+lk+'\',\'energy\',this.value)">'+
-        '</div>'+
-        '<div class="log-field">'+
-          '<label class="log-label">Workout Intensity (1–10)</label>'+
-          '<input class="log-input" type="text" inputmode="numeric" placeholder="e.g. 9" id="log-wi-'+lk+'" value="'+(logData.wintensity||'')+'" oninput="saveLog(\''+lk+'\',\'wintensity\',this.value)">'+
-        '</div>'+
-      '</div>'+
-
-      // Notes
-      '<div style="font-size:9px;letter-spacing:2px;color:var(--log);margin:12px 0 8px;">NOTES / HOW YOU FELT TODAY</div>'+
-      '<textarea class="log-textarea" placeholder="Log anything worth noting — what you ate, how you felt, any PRs, cravings, energy levels, sleep quality details, stress at work, anything..." id="log-notes-'+lk+'" oninput="saveLog(\''+lk+'\',\'notes\',this.value)">'+escHTML(logData.notes||'')+'</textarea>'+
-
-      '<div class="log-save-indicator" id="log-ind-'+lk+'">● ALL ENTRIES AUTO-SAVED TO PHONE</div>'+
-    '</div>'+
-  '</div>';
-
-  // Nav
-  html+='<div class="daynav">'+
-    '<button class="navb" onclick="prevDay()">◀ PREV</button>'+
-    '<span style="font-size:10px;color:var(--mu);align-self:center">DAY '+dn+'/56</span>'+
-    '<button class="navb" onclick="nextDay()" style="border-color:'+pc+';color:'+pc+'">NEXT ▶</button>'+
-  '</div>';
-
-  document.getElementById('dayview').innerHTML=html;
-  renderMacroBars(lk,logData,m);
-}
-
-function escHTML(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
-
-function renderMacroBars(lk,logData,m){
-  var el=document.getElementById('mbars-'+lk);
-  if(!el)return;
-  var bars=[
-    {l:'CALORIES',actual:parseInt(logData.cal)||0,target:m.cal,color:'#22d3ee'},
-    {l:'PROTEIN',actual:parseInt(logData.p)||0,target:m.p,color:'#4ade80'},
-    {l:'CARBS',actual:parseInt(logData.c)||0,target:m.c,color:'#facc15'},
-    {l:'FAT',actual:parseInt(logData.f)||0,target:m.f,color:'#fb923c'}
-  ];
-  el.innerHTML=bars.map(function(b){
-    var pct=b.target>0?Math.min(Math.round(b.actual/b.target*100),100):0;
-    var over=b.actual>b.target;
-    return '<div class="mbar-row">'+
-      '<div class="mbar-label"><span>'+b.l+'</span><span style="color:'+(over?'var(--p4)':b.actual>0?b.color:'var(--mu)')+'">'+
-        (b.actual>0?b.actual+' / '+b.target+(over?' ⚠️':' ✓'):'—')+
-      '</span></div>'+
-      '<div class="mbar-track"><div class="mbar-fill" style="width:'+pct+'%;background:'+(over?'var(--p4)':b.color)+'"></div></div>'+
-    '</div>';
-  }).join('');
-}
-
-// ─── LOG ACTIONS ─────────────────────────────────────────────────────────────
-function saveLog(lk,field,val){
-  if(!S.log[lk]) S.log[lk]={};
-  S.log[lk][field]=val;
-  save();
-  // Flash indicator
-  var ind=document.getElementById('log-ind-'+lk);
-  if(ind){ind.classList.add('saved');ind.textContent='✓ SAVED TO PHONE';setTimeout(function(){ind.classList.remove('saved');ind.textContent='● ALL ENTRIES AUTO-SAVED TO PHONE';},1500);}
-  // Re-render macro bars on macro input change
-  if(['cal','p','c','f'].indexOf(field)>=0){
-    var m=MACROS[phaseKey(S.w)];
-    renderMacroBars(lk,S.log[lk]||{},m);
+    cell.innerHTML='<div class="dc-name">'+DAYS[i]+'</div>'+
+      '<div class="dc-type" style="color:'+tc+'">'+dtypeLabel(i)+'</div>'+
+      (pr>0?'<div class="dc-prog">'+pr+'%</div>':'');
+    (function(dd){ cell.onclick=function(){ S.d=dd; saveAll(); renderGrid(); renderDay(); }; })(i);
+    el.appendChild(cell);
   }
 }
-
-function logWhiskey(lk,val){
+ 
+// ═══════════════════════════════════════════════════════
+//  RENDER DAY VIEW
+// ═══════════════════════════════════════════════════════
+function renderDay(){
+  var day=buildDay(S.w,S.d);
+  var pr=dayProgress(S.w,S.d);
+  var pc=phaseColor(S.w);
+  var tc=dtypeColor(S.d);
+  var el=document.getElementById('dayview');
+ 
+  var tot=0,done=0;
+  day.sections.forEach(function(sec,si){
+    sec.items.forEach(function(_,ii){ tot++; if(S.chk[S.w+'-'+S.d+'-'+si+'-'+ii]) done++; });
+  });
+ 
+  var html='<div class="dh">'+
+    '<div class="dh-eyebrow" style="color:'+pc+'">'+phaseName(S.w)+' · WEEK '+S.w+' · '+dayDate(S.w,S.d)+'</div>'+
+    '<div class="dh-title" style="color:'+tc+'">'+day.label+'</div>'+
+    '<div class="dh-date">'+done+' / '+tot+' items complete</div>'+
+    '<div class="dh-pbar"><div class="dh-pfill" style="width:'+pr+'%;background:'+pc+'"></div></div>'+
+    '<div class="dh-pmeta"><span>'+done+' / '+tot+' tasks</span><span>'+pr+'%</span></div>'+
+  '</div>';
+ 
+  day.sections.forEach(function(sec,si){
+    var secDone=0;
+    sec.items.forEach(function(_,ii){ if(S.chk[S.w+'-'+S.d+'-'+si+'-'+ii]) secDone++; });
+    var isLog=(sec.t==='DAILY LOG');
+ 
+    if(isLog){
+      // daily log special section
+      html+='<div class="log-sec">'+
+        '<div class="log-head"><span>'+sec.t+'</span><span style="font-size:8px;letter-spacing:.1em;">BODY WEIGHT · MACROS · NOTES</span></div>'+
+        renderLogBody(S.w,S.d)+
+      '</div>';
+    } else {
+      var secId='sec-'+si;
+      html+='<div class="sec">'+
+        '<div class="sec-head" onclick="toggleSec(\''+secId+'\')">'+
+          '<span class="sec-head-title">'+sec.t+'</span>'+
+          '<span class="sec-head-meta">'+secDone+'/'+sec.items.length+' ▾</span>'+
+        '</div>'+
+        '<div class="sec-body" id="'+secId+'">';
+ 
+      sec.items.forEach(function(item,ii){
+        var ck=S.chk[S.w+'-'+S.d+'-'+si+'-'+ii];
+        html+='<div class="ti'+(ck?' done':'')+'" onclick="toggleChk('+S.w+','+S.d+','+si+','+ii+')">'+
+          '<div class="cb">'+(ck?'✓':'')+'</div>'+
+          '<div class="ct">'+item+'</div>'+
+        '</div>';
+      });
+      html+='</div></div>';
+    }
+  });
+ 
+  // nav
+  var prevW=S.w,prevD=S.d-1;
+  if(prevD<0){prevW--;prevD=6;}
+  var nextW=S.w,nextD=S.d+1;
+  if(nextD>6){nextW++;nextD=0;}
+ 
+  html+='<div class="daynav">'+
+    (S.w>1||S.d>0?'<button class="navb" onclick="navTo('+prevW+','+prevD+')">◄ Prev</button>':'<button class="navb" disabled>◄ Prev</button>')+
+    '<div style="font-size:9px;letter-spacing:.14em;color:var(--ink-mute);text-align:center;">WEEK '+S.w+' · DAY '+(S.d+1)+'</div>'+
+    (S.w<8||S.d<6?'<button class="navb" onclick="navTo('+nextW+','+nextD+')">Next ►</button>':'<button class="navb" disabled>Next ►</button>')+
+  '</div>';
+ 
+  // log section is last if not already in sections
+  var hasLog=day.sections.some(function(s){return s.t==='DAILY LOG';});
+  if(!hasLog){
+    html+='<div class="log-sec">'+
+      '<div class="log-head"><span>DAILY LOG</span><span style="font-size:8px;letter-spacing:.1em;">BODY WEIGHT · MACROS · NOTES</span></div>'+
+      renderLogBody(S.w,S.d)+
+    '</div>';
+  }
+ 
+  el.innerHTML=html;
+ 
+  // re-attach log listeners
+  attachLogListeners(S.w,S.d);
+}
+ 
+function renderLogBody(w,d){
+  var lk=w+'-'+d;
+  var ld=S.log[lk]||{};
+  var m=MACROS[phaseKey(w)];
+  return '<div class="log-body">'+
+    '<div class="log-grid">'+
+      '<div class="log-field"><div class="log-label">Body Weight (lbs)</div><input class="log-input" type="number" step="0.1" id="log-bw" value="'+(ld.bw||'')+'" placeholder="—"></div>'+
+      '<div class="log-field"><div class="log-label">Body Fat %</div><input class="log-input" type="number" step="0.1" id="log-bf" value="'+(ld.bf||'')+'" placeholder="—"></div>'+
+      '<div class="log-field"><div class="log-label">Calories Eaten</div><input class="log-input" type="number" id="log-cal" value="'+(ld.cal||'')+'" placeholder="'+m.cal+'"></div>'+
+      '<div class="log-field"><div class="log-label">Protein (g)</div><input class="log-input" type="number" id="log-prot" value="'+(ld.prot||'')+'" placeholder="'+m.p+'g"></div>'+
+      '<div class="log-full"><div class="log-label">Whiskey / Alcohol Tonight</div>'+
+        '<div class="log-whiskey">'+
+          '<button class="wbtn'+(ld.whiskey==='0'?' sel0':'')+'" onclick="setWhiskey(\'0\')">None ✓</button>'+
+          '<button class="wbtn'+(ld.whiskey==='1'?' sel':'')+'" onclick="setWhiskey(\'1\')">1 Glass (~200 cal)</button>'+
+          '<button class="wbtn'+(ld.whiskey==='2'?' sel':'')+'" onclick="setWhiskey(\'2\')">2 Glasses (~400 cal)</button>'+
+          '<button class="wbtn'+(ld.whiskey==='3+'?' sel':'')+'" onclick="setWhiskey(\'3+\')">3+ → impacts T & sleep</button>'+
+        '</div>'+
+      '</div>'+
+      '<div class="log-full"><div class="log-label">Notes</div><textarea class="log-textarea" id="log-notes" placeholder="Energy, sleep quality, how training felt, any observations...">'+(ld.notes||'')+'</textarea></div>'+
+    '</div>'+
+    renderMacroBars(ld,m)+
+    '<div class="log-saved" id="log-saved-indicator">Auto-saves on input</div>'+
+  '</div>';
+}
+ 
+function renderMacroBars(ld,m){
+  if(!ld.cal&&!ld.prot) return '';
+  var calPct=ld.cal?Math.min(100,Math.round(ld.cal/m.cal*100)):0;
+  var protPct=ld.prot?Math.min(100,Math.round(ld.prot/m.p*100)):0;
+  var calColor=calPct>110?'var(--ph4)':calPct>95?'var(--ph3)':'var(--accent)';
+  var protColor=protPct>=100?'var(--green)':protPct>80?'var(--accent)':'var(--ph4)';
+  return '<div class="macro-bars">'+
+    '<div class="mbar-row"><div class="mbar-label"><span>Calories</span><span>'+(ld.cal||0)+' / '+m.cal+'</span></div><div class="mbar-track"><div class="mbar-fill" style="width:'+calPct+'%;background:'+calColor+'"></div></div></div>'+
+    '<div class="mbar-row"><div class="mbar-label"><span>Protein</span><span>'+(ld.prot||0)+'g / '+m.p+'g</span></div><div class="mbar-track"><div class="mbar-fill" style="width:'+protPct+'%;background:'+protColor+'"></div></div></div>'+
+  '</div>';
+}
+ 
+function attachLogListeners(w,d){
+  var lk=w+'-'+d;
+  var fields=['bw','bf','cal','prot','notes'];
+  fields.forEach(function(f){
+    var el=document.getElementById('log-'+f);
+    if(!el) return;
+    el.addEventListener('input',function(){
+      if(!S.log[lk]) S.log[lk]={};
+      S.log[lk][f]=f==='notes'?el.value:parseFloat(el.value)||el.value;
+      var ind=document.getElementById('log-saved-indicator');
+      if(ind){ ind.textContent='Saving...'; ind.classList.remove('ok'); }
+      clearTimeout(el._t);
+      el._t=setTimeout(function(){
+        saveAll();
+        if(ind){ ind.textContent='✓ Saved'; ind.classList.add('ok'); }
+      },700);
+    });
+  });
+}
+ 
+function setWhiskey(val){
+  var lk=S.w+'-'+S.d;
   if(!S.log[lk]) S.log[lk]={};
   S.log[lk].whiskey=val;
-  save();
-  renderDay(); // re-render to show advice
+  saveAll();
+  renderDay();
 }
-
-// ─── CHECKLIST ACTIONS ───────────────────────────────────────────────────────
-function togChk(key,w,d){
-  S.chk[key]=!S.chk[key];
-  save();
+ 
+function toggleSec(id){
+  var el=document.getElementById(id);
+  if(el) el.classList.toggle('collapsed');
+}
+ 
+function toggleChk(w,d,si,ii){
+  var k=w+'-'+d+'-'+si+'-'+ii;
+  S.chk[k]=!S.chk[k];
+  saveAll();
   renderGrid();
   renderDay();
-  var prog=dayProgress(parseInt(w),parseInt(d));
-  if(prog===100) showToast('🔥 DAY COMPLETE!',true);
-  else showToast('✓ SAVED',false);
 }
-
-function toggleSec(el){el.nextElementSibling.classList.toggle('col');}
-
-function selDay(d){S.d=d;save();renderWkBar();renderGrid();renderDay();document.getElementById('main').scrollTop=0;}
-function prevDay(){if(S.d>0)S.d--;else if(S.w>1){S.w--;S.d=6;}save();render();document.getElementById('main').scrollTop=0;}
-function nextDay(){if(S.d<6)S.d++;else if(S.w<8){S.w++;S.d=0;}save();render();document.getElementById('main').scrollTop=0;}
-
-function switchView(v){
-  S.view=v;
-  document.getElementById('dailyview').style.display=v==='daily'?'block':'none';
-  document.getElementById('ovview').style.display=v==='overview'?'block':'none';
-  document.getElementById('tab-daily').classList.toggle('active',v==='daily');
-  document.getElementById('tab-overview').classList.toggle('active',v==='overview');
-  renderTop();
-  if(v==='overview') renderOverview();
+ 
+function navTo(w,d){
+  S.w=w; S.d=d;
+  saveAll();
+  renderAll();
+  document.getElementById('main').scrollTop=0;
 }
-
-var toastTmr;
-function showToast(msg,green){
-  var t=document.getElementById('toast');
-  t.textContent=msg;
-  t.className=green?'show green':'show';
-  clearTimeout(toastTmr);
-  toastTmr=setTimeout(function(){t.classList.remove('show');},1500);
+ 
+// ═══════════════════════════════════════════════════════
+//  RENDER SUPPLEMENTS DAILY
+// ═══════════════════════════════════════════════════════
+function renderSuppLog(){
+  var suppDay=getSuppDay();
+  var week=Math.ceil(suppDay/7);
+  var phase=suppDay<=7?'Foundation':suppDay<=28?'Acceleration':suppDay<=49?'Compound':'Final Push';
+  var totalItems=SUPP_PROTOCOL.reduce(function(s,b){return s+b.items.length;},0);
+  var doneCt=0;
+  SUPP_PROTOCOL.forEach(function(b){ b.items.forEach(function(it){ if(S.suppChk[suppDay+'-'+it.id]) doneCt++; }); });
+  var pct=Math.round(doneCt/totalItems*100);
+  var pc=phaseColor(week);
+ 
+  var html='<div style="padding:16px 0 10px;">'+
+    '<div style="font-size:9px;letter-spacing:.22em;color:'+pc+';text-transform:uppercase;">'+phase+' · Week '+week+'</div>'+
+    '<div style="font-family:\'Bebas Neue\',sans-serif;font-size:32px;letter-spacing:.04em;color:var(--ink);">Day <span style="color:var(--accent);">'+suppDay+'</span> <span style="font-size:.45em;color:var(--ink-mute);">/ 56</span></div>'+
+    '<div style="font-size:10px;color:var(--ink-mute);margin-top:2px;">'+doneCt+' / '+totalItems+' supplements checked</div>'+
+    '<div class="dh-pbar" style="margin-top:10px;"><div class="dh-pfill" style="width:'+pct+'%;"></div></div>'+
+    '<div class="dh-pmeta"><span>'+doneCt+' / '+totalItems+' items</span><span>'+pct+'%</span></div>'+
+  '</div>';
+ 
+  SUPP_PROTOCOL.forEach(function(block){
+    html+='<div style="margin-bottom:20px;">'+
+      '<div style="display:flex;align-items:baseline;gap:12px;padding-bottom:8px;border-bottom:1px dashed var(--line);margin-bottom:6px;flex-wrap:wrap;">'+
+        '<div style="font-family:\'Bebas Neue\',sans-serif;font-size:20px;letter-spacing:.04em;color:var(--ink);">'+block.block+'</div>'+
+        '<div style="font-size:10px;color:var(--accent);letter-spacing:.14em;text-transform:uppercase;">'+block.when+'</div>'+
+      '</div>';
+ 
+    block.items.forEach(function(item){
+      var isDone=!!S.suppChk[suppDay+'-'+item.id];
+      html+='<div class="si'+(isDone?' done':'')+(item.optional?' optional':'')+'" onclick="toggleSupp('+suppDay+',\''+item.id+'\')">'+
+        '<div class="cb">'+(isDone?'✓':'')+'</div>'+
+        '<div class="si-info">'+
+          '<div class="si-name">'+item.name+'<span class="si-dose">· '+item.dose+'</span></div>'+
+          '<div class="si-product">→ '+item.product+'</div>'+
+          '<div class="si-detail">'+item.detail+'</div>'+
+        '</div>'+
+      '</div>';
+    });
+    html+='</div>';
+  });
+ 
+  // controls
+  html+='<div class="controls" style="margin-top:16px;">'+
+    '<button class="btn" onclick="checkAllSupp()">Check All Today</button>'+
+    '<button class="btn btn-danger" onclick="resetSuppDay()">Reset Today</button>'+
+  '</div>';
+ 
+  document.getElementById('supplog-inner').innerHTML=html;
 }
-
-// ─── OVERVIEW ────────────────────────────────────────────────────────────────
+ 
+function toggleSupp(day,id){
+  var k=day+'-'+id;
+  S.suppChk[k]=!S.suppChk[k];
+  saveAll();
+  renderSuppLog();
+}
+function checkAllSupp(){
+  var suppDay=getSuppDay();
+  SUPP_PROTOCOL.forEach(function(b){ b.items.forEach(function(it){ S.suppChk[suppDay+'-'+it.id]=true; }); });
+  saveAll(); renderSuppLog();
+}
+function resetSuppDay(){
+  if(!confirm('Clear all supplement checks for today?')) return;
+  var suppDay=getSuppDay();
+  SUPP_PROTOCOL.forEach(function(b){ b.items.forEach(function(it){ delete S.suppChk[suppDay+'-'+it.id]; }); });
+  saveAll(); renderSuppLog();
+}
+ 
+// ═══════════════════════════════════════════════════════
+//  RENDER OVERVIEW
+// ═══════════════════════════════════════════════════════
 function renderOverview(){
-  var html='<div class="ov-sec">'+
-    '<div class="ov-hd">PROGRAM PHASES</div>'+
+  var html='';
+ 
+  // Phase cards
+  html+='<div class="ov-sec"><div class="ov-hd">PHASES — NUTRITION TARGETS</div>'+
     '<div class="ph-cards">'+
-    [{k:'1-2',n:'FOUNDATION',c:'var(--p1)',wk:'WEEKS 1-2',cal:2200,p:220,cr:175,f:65,desc:'Establish habits, fasted cardio 20–25 min, dial in 2,200 cal macros.'},
-     {k:'3-4',n:'ACCELERATE',c:'var(--p2)',wk:'WEEKS 3-4',cal:2200,p:225,cr:160,f:65,desc:'Cardio to 25–30 min. Carbs drop 15g. Add sauna protocol post-workout.'},
-     {k:'5-6',n:'PUSH',c:'var(--p3)',wk:'WEEKS 5-6',cal:2100,p:225,cr:145,f:62,desc:'Drop to 2,100 cal. 30 min cardio every gym day. Treadmill incline increases.'},
-     {k:'7-8',n:'PEAK',c:'var(--p4)',wk:'WEEKS 7-8',cal:2000,p:230,cr:125,f:58,desc:'Maximum deficit. Maintain all lifts. Cold plunge + sauna 3x/week.'}
+    [{k:'1-2',n:'FOUNDATION',c:'var(--ph1)',wk:'WEEKS 1–2',cal:2200,p:220,cr:175,f:65,desc:'Establish the deficit. Learn fasted cardio rhythm. Foundation supplement protocol.'},
+     {k:'3-4',n:'ACCELERATE',c:'var(--ph2)',wk:'WEEKS 3–4',cal:2200,p:225,cr:160,f:65,desc:'Cardio intensity up. Carbs taper. Ashwagandha and omega-3s hitting stride.'},
+     {k:'5-6',n:'PUSH',    c:'var(--ph3)',wk:'WEEKS 5–6',cal:2100,p:225,cr:145,f:62,desc:'Drop to 2,100 cal. 30 min cardio every gym day. Treadmill incline increases.'},
+     {k:'7-8',n:'PEAK',    c:'var(--ph4)',wk:'WEEKS 7–8',cal:2000,p:230,cr:125,f:58,desc:'Maximum deficit. Maintain all lifts. Cold plunge + sauna 3x/week.'}
     ].map(function(ph){
       return '<div class="ph-card" style="border-color:'+ph.c+'44;background:'+ph.c+'08">'+
         '<div class="ph-wk" style="color:'+ph.c+'">'+ph.wk+'</div>'+
         '<div class="ph-name">'+ph.n+'</div>'+
         '<div class="ph-desc">'+ph.desc+'</div>'+
-        '<div class="ph-mac"><span style="color:'+ph.c+'">'+ph.cal+'cal</span><span style="color:var(--mu)">'+ph.p+'P</span><span style="color:var(--mu)">'+ph.cr+'C</span><span style="color:var(--mu)">'+ph.f+'F</span></div>'+
+        '<div class="ph-mac"><span style="color:'+ph.c+'">'+ph.cal+'cal</span> <span style="color:var(--ink-mute)">'+ph.p+'P</span> <span style="color:var(--ink-mute)">'+ph.cr+'C</span> <span style="color:var(--ink-mute)">'+ph.f+'F</span></div>'+
       '</div>';
     }).join('')+
-    '</div>'+
-  '</div>';
-
+  '</div></div>';
+ 
   // Weekly split
-  html+='<div class="ov-sec"><div class="ov-hd">WEEKLY SPLIT</div>'+
-    [['MON','UPPER BODY — Chest + Back','#f59e0b'],
-     ['TUE','LOWER BODY — Quad Dominant','#f59e0b'],
-     ['WED','FULL REST — Active Recovery','#818cf8'],
-     ['THU','PUSH — Chest + Shoulders + Triceps','#f59e0b'],
-     ['FRI','PULL — Back + Biceps','#f59e0b'],
-     ['SAT','LEGS (Ham/Glute) + Arms Finisher','#f59e0b'],
-     ['SUN','ACTIVE RECOVERY — Cardio + Core','#22d3ee']
+  html+='<div class="ov-sec"><div class="ov-hd">WEEKLY TRAINING SPLIT</div>'+
+    [['MON','UPPER BODY — Chest + Back','var(--gym)'],
+     ['TUE','LOWER BODY — Quad Dominant','var(--gym)'],
+     ['WED','FULL REST — Active Recovery','var(--rest)'],
+     ['THU','PUSH — Chest + Shoulders + Triceps','var(--gym)'],
+     ['FRI','PULL — Back + Biceps','var(--gym)'],
+     ['SAT','LEGS (Ham/Glute) + Arms Finisher','var(--gym)'],
+     ['SUN','ACTIVE RECOVERY — Cardio + Core','var(--cardio)']
     ].map(function(x){
-      return '<div style="display:flex;gap:10px;padding:8px 0;border-bottom:1px solid var(--fa);align-items:center;">'+
-        '<span style="font-size:9px;letter-spacing:2px;color:'+x[2]+';min-width:35px">'+x[0]+'</span>'+
-        '<span style="font-size:11px;color:var(--tx)">'+x[1]+'</span>'+
-      '</div>';
-    }).join('')+
-  '</div>';
-
-  // Progress summary
-  var totalDays=56,completedDays=0,totalTasks=0,completedTasks=0;
-  for(var ww=1;ww<=8;ww++){for(var dd=0;dd<=6;dd++){var p=dayProgress(ww,dd);if(p===100)completedDays++;totalTasks++;if(p>0)completedTasks++;}}
-  
-  // Weekly progress with whiskey count
+      return '<div style="display:flex;gap:10px;padding:8px 0;border-bottom:1px solid var(--line);align-items:center;">'+
+        '<span style="font-size:9px;letter-spacing:.14em;color:'+x[2]+';min-width:34px;">'+x[0]+'</span>'+
+        '<span style="font-size:11px;color:var(--ink);">'+x[1]+'</span></div>';
+    }).join('')+'</div>';
+ 
+  // 56-day calendar
   html+='<div class="ov-sec"><div class="ov-hd">56-DAY PROGRESS CALENDAR</div>'+
-    '<div style="display:grid;grid-template-columns:repeat(7,1fr);gap:2px;margin-bottom:6px;">'+
+    '<div style="display:grid;grid-template-columns:repeat(7,1fr);gap:2px;margin-bottom:5px;">'+
     DAYS.map(function(d){return'<div class="cal-hd">'+d+'</div>';}).join('')+
-    '</div>'+
-    '<div class="cal-grid">'+
-    (function(){
-      var cells='';
-      for(var ww=1;ww<=8;ww++){
-        for(var dd=0;dd<=6;dd++){
-          var pr=dayProgress(ww,dd);
-          var pc=phaseColor(ww);
-          var tc=dtypeColor(dd);
-          var done=pr===100,partial=pr>0&&pr<100;
-          cells+='<div class="cal-c'+(done?' done':partial?' partial':'')+'" onclick="navToDay('+ww+','+dd+')" style="'+(done?'':'border-color:var(--bd)')+'">'+
-            '<div class="cal-wk" style="color:'+pc+'33">W'+ww+'</div>'+
-            '<div class="cal-ty" style="color:'+tc+'">'+dtypeShort(dd).slice(0,4)+'</div>'+
-            (pr>0?'<div class="cal-pc" style="color:'+(done?'var(--ck)':pc)+'">'+pr+'%</div>':'')+
-          '</div>';
-        }
-      }
-      return cells;
-    })()+
-    '</div>'+
-    '<div style="display:flex;gap:14px;margin-top:10px;font-size:10px;color:var(--mu)">'+
-      '<span><span style="color:#f59e0b">◆</span> Gym</span>'+
-      '<span><span style="color:#818cf8">◈</span> Rest</span>'+
-      '<span><span style="color:#22d3ee">◉</span> Cardio</span>'+
-      '<span><span style="color:var(--ck)">✓</span> Done</span>'+
-    '</div>'+
-  '</div>';
-
-  // Whiskey log summary
+    '</div><div class="cal-grid">';
+  for(var ww=1;ww<=8;ww++){
+    for(var dd=0;dd<=6;dd++){
+      var pr=dayProgress(ww,dd);
+      var done=pr===100,partial=pr>0&&pr<100;
+      var tc=dtypeColor(dd);
+      html+='<div class="cal-c'+(done?' done':partial?' partial':'')+'" onclick="navFromCal('+ww+','+dd+')">'+
+        '<div class="cal-wk" style="color:'+phaseColor(ww)+'33">W'+ww+'</div>'+
+        '<div class="cal-ty" style="color:'+tc+'">'+dtypeLabel(dd).slice(0,4)+'</div>'+
+        (pr>0?'<div class="cal-pc" style="color:'+(done?'var(--green)':phaseColor(ww))+'">'+pr+'%</div>':'')+
+      '</div>';
+    }
+  }
+  html+='</div>'+
+    '<div style="display:flex;gap:12px;margin-top:8px;font-size:10px;color:var(--ink-mute);">'+
+      '<span><span style="color:var(--gym)">◆</span> Gym</span>'+
+      '<span><span style="color:var(--rest)">◈</span> Rest</span>'+
+      '<span><span style="color:var(--cardio)">◉</span> Cardio</span>'+
+      '<span><span style="color:var(--green)">✓</span> Done</span>'+
+    '</div></div>';
+ 
+  // Whiskey log
   html+='<div class="ov-sec"><div class="ov-hd">WHISKEY LOG — ALL 8 WEEKS</div>'+
-    '<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;">'+
-    (function(){
-      var cells='';
-      for(var ww=1;ww<=8;ww++){
-        var wTotal=0,wDays=0;
-        for(var dd=0;dd<=6;dd++){
-          var lk=ww+'-'+dd;
-          var ld=S.log[lk]||{};
-          if(ld.whiskey&&ld.whiskey!=='none'){
-            wTotal+=ld.whiskey==='1'?1:ld.whiskey==='2'?2:3;
-            wDays++;
-          }
-        }
-        var pc=phaseColor(ww);
-        cells+='<div style="border:1px solid var(--bd);border-radius:4px;padding:10px 8px;text-align:center;">'+
-          '<div style="font-size:8px;letter-spacing:1px;color:var(--mu);">WEEK '+ww+'</div>'+
-          '<div style="font-size:18px;font-weight:bold;color:'+(wTotal>4?'var(--p4)':wTotal>2?'var(--p3)':wTotal>0?'var(--p2)':pc)+'">'+wTotal+'</div>'+
-          '<div style="font-size:8px;color:var(--mu);">glasses</div>'+
-        '</div>';
+    '<div style="font-size:11px;font-family:\'Fraunces\',serif;font-style:italic;color:var(--ink-dim);margin-bottom:10px;">Each glass: ~200 cal + measurable testosterone suppression for 24h (Cicero et al., 2019 meta-analysis). Track honestly.</div>'+
+    '<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:5px;">';
+  for(var ww2=1;ww2<=8;ww2++){
+    var wTotal=0;
+    for(var dd2=0;dd2<=6;dd2++){
+      var ld2=S.log[ww2+'-'+dd2]||{};
+      if(ld2.whiskey&&ld2.whiskey!=='0'){
+        wTotal+=ld2.whiskey==='3+'?3:parseInt(ld2.whiskey)||0;
       }
-      return cells;
-    })()+
-    '</div>'+
-    '<div style="font-size:10px;color:var(--mu);margin-top:8px;">Target: ≤8 glasses/week (1–2 nights). Each glass = ~200 cal.</div>'+
-  '</div>';
-
+    }
+    var wc=wTotal>4?'var(--ph4)':wTotal>2?'var(--ph3)':wTotal>0?'var(--ph2)':phaseColor(ww2);
+    html+='<div style="border:1px solid var(--line);padding:9px 6px;text-align:center;">'+
+      '<div style="font-size:8px;letter-spacing:.1em;color:var(--ink-mute);">WK '+ww2+'</div>'+
+      '<div style="font-family:\'Bebas Neue\',sans-serif;font-size:22px;color:'+wc+'">'+wTotal+'</div>'+
+      '<div style="font-size:8px;color:var(--ink-mute);">glasses</div>'+
+    '</div>';
+  }
+  html+='</div><div style="font-size:10px;color:var(--ink-mute);margin-top:7px;">Target: ≤8 glasses/week on 1–2 nights max.</div></div>';
+ 
   // Weight log
   html+='<div class="ov-sec"><div class="ov-hd">WEEKLY WEIGHT LOG (SUNDAY FASTED)</div>'+
-    '<div style="display:flex;flex-direction:column;gap:4px;">'+
-    (function(){
-      var rows='';
-      for(var ww=1;ww<=8;ww++){
-        var lk=ww+'-6'; // Sunday
-        var ld=S.log[lk]||{};
-        var pc=phaseColor(ww);
-        rows+='<div style="display:flex;justify-content:space-between;padding:8px 10px;border:1px solid var(--bd);border-radius:4px;align-items:center;">'+
-          '<div style="font-size:10px;color:'+pc+'">WEEK '+ww+'</div>'+
-          '<div style="font-size:13px;color:'+(ld.bw?'var(--tx)':'var(--mu)')+'">'+
-            (ld.bw?ld.bw+' lbs':'—')+
-          '</div>'+
-          '<div style="font-size:10px;color:var(--mu)">'+
-            (ld.bf?ld.bf+'% BF':'—')+
-          '</div>'+
-        '</div>';
-      }
-      return rows;
-    })()+
-  '</div></div>';
-
+    '<div style="display:flex;flex-direction:column;gap:3px;">';
+  for(var ww3=1;ww3<=8;ww3++){
+    var ld3=S.log[ww3+'-6']||{};
+    html+='<div style="display:flex;justify-content:space-between;padding:8px 10px;border:1px solid var(--line);align-items:center;">'+
+      '<div style="font-size:10px;color:'+phaseColor(ww3)+'">WEEK '+ww3+'</div>'+
+      '<div style="font-size:13px;color:'+(ld3.bw?'var(--ink)':'var(--ink-mute)')+'">'+( ld3.bw?ld3.bw+' lbs':'—')+'</div>'+
+      '<div style="font-size:10px;color:var(--ink-mute)">'+( ld3.bf?ld3.bf+'% BF':'—')+'</div>'+
+    '</div>';
+  }
+  html+='</div></div>';
+ 
   document.getElementById('ovview').innerHTML=html;
 }
-
-function navToDay(w,d){S.w=w;S.d=d;switchView('daily');document.getElementById('main').scrollTop=0;}
-
-// ─── INIT ─────────────────────────────────────────────────────────────────────
+ 
+function navFromCal(w,d){
+  S.w=w; S.d=d;
+  switchTab('daily');
+  renderAll();
+}
+ 
+// ═══════════════════════════════════════════════════════
+//  TAB SWITCHING
+// ═══════════════════════════════════════════════════════
+function switchTab(name){
+  S.activeTab=name;
+  document.querySelectorAll('.tab').forEach(function(t){
+    t.classList.toggle('active',t.dataset.panel===name);
+  });
+  document.querySelectorAll('.panel').forEach(function(p){
+    p.classList.toggle('active',p.id==='panel-'+name);
+  });
+  if(name==='overview') renderOverview();
+  if(name==='supplog')  renderSuppLog();
+  document.getElementById('main').scrollTop=0;
+}
+ 
+document.querySelectorAll('.tab').forEach(function(t){
+  t.addEventListener('click',function(){ switchTab(t.dataset.panel); });
+});
+ 
+// ═══════════════════════════════════════════════════════
+//  EXPORT / RESET
+// ═══════════════════════════════════════════════════════
+document.getElementById('export-btn').addEventListener('click',function(){
+  var blob=new Blob([JSON.stringify(S,null,2)],{type:'application/json'});
+  var url=URL.createObjectURL(blob);
+  var a=document.createElement('a');
+  a.href=url; a.download='cut-protocol-progress-'+new Date().toISOString().slice(0,10)+'.json';
+  a.click(); URL.revokeObjectURL(url);
+});
+document.getElementById('reset-btn').addEventListener('click',function(){
+  if(confirm('Erase ALL progress from both programs? This cannot be undone.')) {
+    S.chk={}; S.log={}; S.suppChk={};
+    S.w=1; S.d=0;
+    S.suppStart=new Date().toISOString().slice(0,10);
+    saveAll(); renderAll();
+  }
+});
+ 
+// ═══════════════════════════════════════════════════════
+//  MASTER RENDER
+// ═══════════════════════════════════════════════════════
+function renderAll(){
+  renderTop();
+  renderWkBar();
+  renderGrid();
+  renderDay();
+}
+ 
+// ═══════════════════════════════════════════════════════
+//  INIT
+// ═══════════════════════════════════════════════════════
 window.addEventListener('DOMContentLoaded',function(){
-  load();
+  loadAll();
   setTimeout(function(){
     document.getElementById('splash').classList.add('hide');
     document.getElementById('app').style.display='flex';
-    render();
-  },1500);
+    // Auto-detect today based on start date
+    var today=new Date();
+    var start=new Date(START);
+    start.setHours(0,0,0,0); today.setHours(0,0,0,0);
+    var diffDays=Math.floor((today-start)/(1000*60*60*24));
+    if(diffDays>=0 && diffDays<56){
+      S.w=Math.floor(diffDays/7)+1;
+      S.d=diffDays%7;
+    }
+    renderAll();
+  },1800);
 });
 </script>
 </body>
