@@ -497,6 +497,10 @@ body::before {
     <div class="tb-eyebrow" id="tb-phase">▸ FOUNDATION — WEEKS 1–2</div>
     <div class="tb-title">THE CUT PROTOCOL</div>
     <div class="tb-meta">200 LBS · 17.1% BF → TARGET 185 LBS · ~12% BF · 8 WEEKS</div>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:4px;padding-bottom:4px;">
+      <div id="last-saved" style="font-size:9px;letter-spacing:.1em;color:var(--ink-mute);">Checking storage...</div>
+      <div id="save-status" style="font-size:9px;letter-spacing:.1em;color:var(--ink-mute);"></div>
+    </div>
     <div class="mstrip" id="mstrip"></div>
   </div>
   <!-- TABS -->
@@ -717,12 +721,58 @@ var S = {
 var LS_KEY = 'cutProtocol_unified_v1';
 
 function saveAll() {
+  var payload = JSON.stringify(S);
+  var verified = false;
   try {
-    localStorage.setItem(LS_KEY, JSON.stringify(S));
-    var el = document.getElementById('last-saved');
-    if (el) el.textContent = new Date().toLocaleString('en-US',{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'});
-  } catch(e) {}
-  showToast('SAVED');
+    localStorage.setItem(LS_KEY, payload);
+    // Verify the write actually landed by reading it back
+    var readback = localStorage.getItem(LS_KEY);
+    if (readback && readback.length === payload.length) {
+      verified = true;
+    }
+  } catch(e) {
+    verified = false;
+  }
+
+  var now = new Date();
+  var timeStr = now.toLocaleString('en-US',{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'});
+
+  var lastSavedEl = document.getElementById('last-saved');
+  var statusEl = document.getElementById('save-status');
+
+  if (verified) {
+    if (lastSavedEl) {
+      lastSavedEl.textContent = '✓ Saved ' + timeStr;
+      lastSavedEl.style.color = 'var(--green)';
+    }
+    if (statusEl) {
+      statusEl.textContent = payload.length + ' bytes';
+      statusEl.style.color = 'var(--ink-mute)';
+    }
+    showToast('SAVED');
+    // Sunday export reminder
+    if (now.getDay() === 0) {
+      var reminderKey = 'exportReminder_' + now.toISOString().slice(0,10);
+      if (!localStorage.getItem(reminderKey)) {
+        localStorage.setItem(reminderKey, '1');
+        setTimeout(function(){
+          if(confirm("It's Sunday — export your progress as a backup?\n\nThis takes 2 seconds and protects your data.")) {
+            document.getElementById('export-btn').click();
+          }
+        }, 2000);
+      }
+    }
+  } else {
+    if (lastSavedEl) {
+      lastSavedEl.textContent = '⚠ Save failed — ' + timeStr;
+      lastSavedEl.style.color = 'var(--red)';
+    }
+    if (statusEl) {
+      statusEl.textContent = 'localStorage unavailable';
+      statusEl.style.color = 'var(--red)';
+    }
+    showToast('SAVE FAILED');
+  }
 }
 
 function loadAll() {
@@ -781,6 +831,31 @@ function loadAll() {
     }
   } catch(e) {}
   if (!S.suppStart) S.suppStart = new Date().toISOString().slice(0,10);
+
+  // Show storage health immediately on load
+  setTimeout(function(){
+    var lastSavedEl = document.getElementById('last-saved');
+    var statusEl = document.getElementById('save-status');
+    var existing = localStorage.getItem(LS_KEY);
+    if (existing && existing.length > 95) {
+      var parsed = JSON.parse(existing);
+      var chkCount = Object.keys(parsed.chk||{}).length;
+      var logCount = Object.keys(parsed.log||{}).length;
+      if (lastSavedEl) {
+        lastSavedEl.textContent = '✓ Storage OK — ' + chkCount + ' check-offs, ' + logCount + ' logs';
+        lastSavedEl.style.color = 'var(--green)';
+      }
+      if (statusEl) {
+        statusEl.textContent = existing.length + ' bytes';
+        statusEl.style.color = 'var(--ink-mute)';
+      }
+    } else {
+      if (lastSavedEl) {
+        lastSavedEl.textContent = 'No saved data yet — tap anything to start saving';
+        lastSavedEl.style.color = 'var(--ink-mute)';
+      }
+    }
+  }, 100);
 }
 
 function showToast(msg) {
