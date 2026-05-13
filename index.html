@@ -662,6 +662,8 @@ body::before {
         <div class="doc-h3" style="margin-top:8px;">Settings</div>
         <div class="controls">
           <button class="btn" id="export-btn">Export Progress (JSON)</button>
+          <button class="btn" id="import-btn">Import Progress (JSON)</button>
+          <input type="file" id="import-file" accept=".json" style="display:none;">
           <button class="btn btn-danger" id="reset-btn">Reset All Progress</button>
         </div>
         <div style="font-size:11px;color:var(--ink-mute);">Data saves to browser localStorage automatically on every check-off.</div>
@@ -725,28 +727,57 @@ function saveAll() {
 
 function loadAll() {
   try {
-    var raw = localStorage.getItem(LS_KEY);
-    if (raw) {
-      var parsed = JSON.parse(raw);
-      S.w = parsed.w || 1;
-      S.d = parsed.d || 0;
-      S.chk = parsed.chk || {};
-      S.log = parsed.log || {};
-      S.wo = parsed.wo || {};
-      S.suppChk = parsed.suppChk || {};
-      S.suppStart = parsed.suppStart || null;
+    // Scan every key this protocol may have ever written to, newest first
+    var candidateKeys = [
+      'cutProtocol_unified_v1',
+      'cutProtocol_unified_v2',
+      'cutProtocol_unified_v3'
+    ];
+    var best = null;
+    for (var ki = 0; ki < candidateKeys.length; ki++) {
+      var raw = localStorage.getItem(candidateKeys[ki]);
+      if (raw) {
+        try {
+          var parsed = JSON.parse(raw);
+          // Pick the candidate with the most data
+          var score = Object.keys(parsed.chk||{}).length +
+                      Object.keys(parsed.log||{}).length +
+                      Object.keys(parsed.suppChk||{}).length;
+          if (!best || score > best.score) {
+            best = { parsed: parsed, score: score, key: candidateKeys[ki] };
+          }
+        } catch(e) {}
+      }
     }
-    // Migrate old fat loss keys if present
-    var oldChk = localStorage.getItem('flp2_chk');
-    var oldLog = localStorage.getItem('flp2_log');
-    if (oldChk && Object.keys(S.chk).length === 0) S.chk = JSON.parse(oldChk);
-    if (oldLog && Object.keys(S.log).length === 0) S.log = JSON.parse(oldLog);
-    // Migrate old supplement keys if present
-    var oldSupp = localStorage.getItem('supplementProtocol_v2');
-    if (oldSupp && Object.keys(S.suppChk).length === 0) {
-      var op = JSON.parse(oldSupp);
-      if (op.checks) S.suppChk = op.checks;
-      if (op.startDate && !S.suppStart) S.suppStart = op.startDate;
+    if (best) {
+      var p = best.parsed;
+      S.w        = p.w        || 1;
+      S.d        = p.d        || 0;
+      S.chk      = p.chk      || {};
+      S.log      = p.log      || {};
+      S.wo       = p.wo       || {};
+      S.suppChk  = p.suppChk  || {};
+      S.suppStart= p.suppStart|| null;
+      // If we found data under a different key, re-save under current key
+      if (best.key !== LS_KEY) {
+        localStorage.setItem(LS_KEY, JSON.stringify(S));
+      }
+    }
+    // Migrate old fat loss keys if chk is still empty
+    if (Object.keys(S.chk).length === 0) {
+      var oldChk = localStorage.getItem('flp2_chk');
+      var oldLog = localStorage.getItem('flp2_log');
+      if (oldChk) S.chk = JSON.parse(oldChk);
+      if (oldLog) S.log = JSON.parse(oldLog);
+    }
+    // Migrate old supplement keys if suppChk is still empty
+    if (Object.keys(S.suppChk).length === 0) {
+      var oldSupp = localStorage.getItem('supplementProtocol_v2');
+      if (oldSupp) {
+        var op = JSON.parse(oldSupp);
+        if (op.checks) S.suppChk = op.checks;
+        if (op.startDate && !S.suppStart) S.suppStart = op.startDate;
+      }
     }
   } catch(e) {}
   if (!S.suppStart) S.suppStart = new Date().toISOString().slice(0,10);
@@ -1873,6 +1904,41 @@ document.getElementById('export-btn').addEventListener('click',function(){
   var a=document.createElement('a');
   a.href=url; a.download='cut-protocol-progress-'+new Date().toISOString().slice(0,10)+'.json';
   a.click(); URL.revokeObjectURL(url);
+});
+
+document.getElementById('import-btn').addEventListener('click',function(){
+  document.getElementById('import-file').click();
+});
+
+document.getElementById('import-file').addEventListener('change',function(e){
+  var file = e.target.files[0];
+  if (!file) return;
+  var reader = new FileReader();
+  reader.onload = function(ev) {
+    try {
+      var parsed = JSON.parse(ev.target.result);
+      // Validate it looks like a real protocol file
+      if (typeof parsed !== 'object' || parsed === null) throw new Error('Invalid file');
+      // Merge in all known fields — never wipe fields not in the import
+      if (parsed.chk)       S.chk       = parsed.chk;
+      if (parsed.log)       S.log       = parsed.log;
+      if (parsed.wo)        S.wo        = parsed.wo;
+      if (parsed.suppChk)   S.suppChk   = parsed.suppChk;
+      if (parsed.suppStart) S.suppStart = parsed.suppStart;
+      if (parsed.w)         S.w         = parsed.w;
+      if (parsed.d)         S.d         = parsed.d;
+      saveAll();
+      renderAll();
+      renderOverview();
+      showToast('DATA IMPORTED ✓');
+      alert('Import successful! All your progress has been restored.');
+    } catch(err) {
+      alert('Import failed — make sure you selected a valid Cut Protocol JSON export file.');
+    }
+    // Reset input so same file can be re-imported if needed
+    e.target.value = '';
+  };
+  reader.readAsText(file);
 });
 document.getElementById('reset-btn').addEventListener('click',function(){
   if(confirm('Erase ALL progress from both programs? This cannot be undone.')) {
