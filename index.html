@@ -455,6 +455,7 @@ body::before {
   cursor: pointer;
 }
 .overload-body { padding: 10px 14px; }
+.overload-body.collapsed { display: none; }
 .ol-row {
   display: flex; justify-content: space-between; align-items: center;
   padding: 5px 0; border-bottom: 1px solid rgba(42,41,38,.4); font-size: 11px;
@@ -1369,9 +1370,9 @@ function renderDay(){
   if(dtype(S.d)!=='rest' && dtype(S.d)!=='cardio') {
     var exArrays = getDayExArrays(S.w, S.d);
     if(exArrays.length > 0) {
-      html += '<div class="overload-summary"><div class="overload-head" onclick="this.nextElementSibling.classList.toggle(\'collapsed\')">'+
+      html += '<div class="overload-summary"><div class="overload-head" onclick="var b=this.nextElementSibling;b.classList.toggle(\'collapsed\');this.querySelector(\'.ol-toggle\').textContent=b.classList.contains(\'collapsed\')?\'TAP TO EXPAND\':\'TAP TO COLLAPSE\'">'+
         '<span>▸ PROGRESSIVE OVERLOAD — WEEK '+(S.w+1)+' TARGETS</span>'+
-        '<span style="font-size:8px;">TAP TO EXPAND</span>'+
+        '<span class="ol-toggle" style="font-size:8px;">TAP TO EXPAND</span>'+
       '</div><div class="overload-body collapsed">';
       exArrays.forEach(function(group){
         html += '<div style="font-size:8px;letter-spacing:.16em;color:var(--accent);text-transform:uppercase;margin:8px 0 4px;">'+group.label+'</div>';
