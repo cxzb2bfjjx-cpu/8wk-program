@@ -360,7 +360,110 @@ body::before {
 .v-drop  { color: var(--red);   border-color: var(--red); }
 .v-add   { color: var(--blue);  border-color: var(--blue); }
 
-/* ── MISC ─────────────────────────────────────────────── */
+/* ── EDIT WORKOUT MODE ─────────────────────────────────── */
+.edit-btn {
+  background: transparent; border: 1px solid var(--accent);
+  color: var(--accent); font-family: 'JetBrains Mono', monospace;
+  font-size: 9px; letter-spacing: .18em; text-transform: uppercase;
+  padding: 5px 12px; cursor: pointer; transition: all .2s; margin-left: auto;
+}
+.edit-btn:hover { background: var(--accent); color: var(--bg); }
+.edit-drawer {
+  position: fixed; inset: 0; background: rgba(0,0,0,.85);
+  z-index: 800; display: none; overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.edit-drawer.open { display: block; animation: fadeIn .2s ease; }
+.edit-inner {
+  background: var(--panel); margin: 0 auto;
+  max-width: 680px; min-height: 100vh; padding: 20px 16px 80px;
+}
+.edit-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 20px; padding-bottom: 14px; border-bottom: 1px solid var(--line);
+}
+.edit-title { font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: .04em; }
+.edit-close {
+  background: transparent; border: 1px solid var(--line); color: var(--ink);
+  font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: .14em;
+  padding: 8px 16px; cursor: pointer; transition: all .2s;
+}
+.edit-close:hover { border-color: var(--red); color: var(--red); }
+.edit-group { margin-bottom: 22px; }
+.edit-group-label {
+  font-size: 9px; letter-spacing: .22em; color: var(--accent);
+  text-transform: uppercase; margin-bottom: 10px; padding-bottom: 6px;
+  border-bottom: 1px dashed var(--line);
+}
+.edit-row {
+  background: var(--bg); border: 1px solid var(--line);
+  padding: 12px; margin-bottom: 8px;
+}
+.edit-row-name {
+  font-size: 12px; color: var(--ink); font-weight: 500; margin-bottom: 8px;
+}
+.edit-fields { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+@media (max-width: 480px) { .edit-fields { grid-template-columns: 1fr 1fr; } }
+.edit-field { display: flex; flex-direction: column; gap: 3px; }
+.edit-field-label { font-size: 8px; letter-spacing: .15em; color: var(--ink-mute); text-transform: uppercase; }
+.edit-field-ctrl { display: flex; align-items: center; gap: 0; }
+.ef-btn {
+  width: 28px; height: 30px; background: var(--panel2);
+  border: 1px solid var(--line); color: var(--ink); font-size: 14px;
+  cursor: pointer; transition: all .15s; flex-shrink: 0; display: flex;
+  align-items: center; justify-content: center;
+}
+.ef-btn:hover { border-color: var(--accent); color: var(--accent); background: rgba(201,169,110,.1); }
+.ef-input {
+  flex: 1; height: 30px; background: var(--bg); border: 1px solid var(--line);
+  border-left: none; border-right: none; color: var(--ink);
+  font-family: 'JetBrains Mono', monospace; font-size: 12px;
+  text-align: center; min-width: 0;
+}
+.ef-input:focus { outline: none; border-color: var(--accent); background: rgba(201,169,110,.04); }
+.edit-suggest {
+  font-size: 9px; color: var(--green); margin-top: 4px; letter-spacing: .06em;
+}
+.edit-save-bar {
+  position: sticky; bottom: 0; padding: 12px 0 0;
+  background: var(--panel); border-top: 1px solid var(--line); margin-top: 16px;
+}
+.edit-save-btn {
+  width: 100%; padding: 13px; background: var(--accent); color: var(--bg);
+  border: none; font-family: 'JetBrains Mono', monospace; font-size: 11px;
+  letter-spacing: .2em; text-transform: uppercase; cursor: pointer;
+  font-weight: 700; transition: opacity .2s;
+}
+.edit-save-btn:hover { opacity: .88; }
+.edit-reset-btn {
+  width: 100%; padding: 9px; margin-top: 6px; background: transparent;
+  border: 1px solid var(--line); color: var(--ink-mute);
+  font-family: 'JetBrains Mono', monospace; font-size: 9px;
+  letter-spacing: .18em; text-transform: uppercase; cursor: pointer; transition: all .2s;
+}
+.edit-reset-btn:hover { border-color: var(--red); color: var(--red); }
+
+/* ── OVERLOAD SUMMARY ──────────────────────────────────── */
+.overload-summary {
+  border: 1px solid var(--green); background: rgba(107,142,78,.05);
+  margin-bottom: 10px; overflow: hidden;
+}
+.overload-head {
+  padding: 10px 14px; background: rgba(107,142,78,.1);
+  font-size: 9px; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--green); display: flex; justify-content: space-between;
+  cursor: pointer;
+}
+.overload-body { padding: 10px 14px; }
+.ol-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 5px 0; border-bottom: 1px solid rgba(42,41,38,.4); font-size: 11px;
+}
+.ol-row:last-child { border-bottom: none; }
+.ol-name { color: var(--ink); flex: 1; }
+.ol-cur { color: var(--ink-mute); margin: 0 10px; white-space: nowrap; }
+.ol-sug { color: var(--green); font-weight: 700; white-space: nowrap; }
+.ol-body { color: var(--ink-mute); font-size: 9px; margin-left: 6px; letter-spacing: .1em; }
 .badge { display: inline-block; font-size: 9px; letter-spacing: .14em; color: var(--accent); border: 1px solid var(--accent); padding: 2px 7px; margin-left: 6px; vertical-align: middle; text-transform: uppercase; }
 .badge-new { color: var(--blue); border-color: var(--blue); }
 .stamp { display: inline-block; font-size: 9px; letter-spacing: .22em; color: var(--accent); border: 1px solid var(--accent); padding: 3px 9px; text-transform: uppercase; margin-bottom: 14px; }
@@ -571,6 +674,21 @@ body::before {
   </div><!-- /main -->
 </div><!-- /app -->
 
+<!-- ══ EDIT WORKOUT DRAWER ══════════════════════════════ -->
+<div class="edit-drawer" id="edit-drawer">
+  <div class="edit-inner">
+    <div class="edit-header">
+      <div class="edit-title">Edit <span style="color:var(--accent);">Workout</span></div>
+      <button class="edit-close" onclick="closeEditDrawer()">✕ Close</button>
+    </div>
+    <div id="edit-drawer-body"></div>
+    <div class="edit-save-bar">
+      <button class="edit-save-btn" onclick="saveEditDrawer()">✓ Save & Apply Changes</button>
+      <button class="edit-reset-btn" onclick="resetEditDrawer()">Reset This Day to Defaults</button>
+    </div>
+  </div>
+</div>
+
 <div class="toast" id="toast">✓ SAVED</div>
 
 <script>
@@ -582,6 +700,7 @@ var S = {
   w: 1, d: 0,
   chk: {},   // training/meal/habit check-offs: "w-d-si-ii" → true
   log: {},   // daily logs: "w-d" → {bw, bf, notes, whiskey, cal, prot}
+  wo: {},    // workout overrides: exerciseId → {sets, reps, weight, unit}
   // supplement state
   suppChk: {}, // "suppDay-itemId" → true
   suppStart: null,
@@ -612,6 +731,7 @@ function loadAll() {
       S.d = parsed.d || 0;
       S.chk = parsed.chk || {};
       S.log = parsed.log || {};
+      S.wo = parsed.wo || {};
       S.suppChk = parsed.suppChk || {};
       S.suppStart = parsed.suppStart || null;
     }
@@ -673,72 +793,279 @@ function cardioStr(d,ci){
   return '';
 }
 
-// Workout rotations
+// ═══════════════════════════════════════════════════════
+//  WORKOUT DATA — Structured objects for editable weights
+//  Each exercise: {id, name, sets, reps, weight, unit, type}
+//  type: 'compound' (+5 lbs/week), 'isolation' (+2.5 lbs/week),
+//        'bodyweight' (no weight progression), 'machine' (+5 lbs/week)
+// ═══════════════════════════════════════════════════════
+
 var CHEST_R=[
-  ['Barbell Bench Press — 4x10 @ 155lbs','Incline Dumbbell Press — 4x10 @ 50lb DBs','Cable Flyes 5° — 4x12 @ 30lbs each','PecDeck — 4x12 @ 100lbs'],
-  ['Dumbbell Bench Press — 4x10 @ 60lb DBs','Incline Barbell Press — 3x15 @ 70lbs','Seated Chest Press Machine — 4x12 progressive: 55/65/70/75lbs','Cable Flyes 9° — 4x10 @ 33lbs'],
-  ['Hex Dumbbell Press — 4x10 @ 55lb DBs','Decline Barbell Press — 4x12 @ 45s on bar','Seated Side Press — 4x10 @ 55lbs','Dumbbell Flyes — 3x15 @ 22.5lbs']
+  [
+    {id:'chr0_0',name:'Barbell Bench Press',sets:4,reps:10,weight:135,unit:'lbs',type:'compound'},
+    {id:'chr0_1',name:'Incline Dumbbell Press',sets:4,reps:10,weight:45,unit:'lbs',type:'compound'},
+    {id:'chr0_2',name:'Cable Flyes 5°',sets:4,reps:12,weight:25,unit:'lbs',type:'isolation'},
+    {id:'chr0_3',name:'PecDeck',sets:4,reps:12,weight:90,unit:'lbs',type:'machine'}
+  ],
+  [
+    {id:'chr1_0',name:'Dumbbell Bench Press',sets:4,reps:10,weight:55,unit:'lbs',type:'compound'},
+    {id:'chr1_1',name:'Incline Barbell Press',sets:3,reps:12,weight:65,unit:'lbs',type:'compound'},
+    {id:'chr1_2',name:'Seated Chest Press Machine',sets:4,reps:12,weight:60,unit:'lbs',type:'machine'},
+    {id:'chr1_3',name:'Cable Flyes 9°',sets:4,reps:10,weight:27.5,unit:'lbs',type:'isolation'}
+  ],
+  [
+    {id:'chr2_0',name:'Hex Dumbbell Press',sets:4,reps:10,weight:50,unit:'lbs',type:'compound'},
+    {id:'chr2_1',name:'Decline Barbell Press',sets:4,reps:12,weight:95,unit:'lbs',type:'compound'},
+    {id:'chr2_2',name:'Seated Side Press',sets:4,reps:10,weight:50,unit:'lbs',type:'machine'},
+    {id:'chr2_3',name:'Dumbbell Flyes',sets:3,reps:15,weight:20,unit:'lbs',type:'isolation'}
+  ]
 ];
+
 var BACK_R=[
-  ['Deadlifts (Barbell) — 3x8 @ 175lbs','Bent-Over Rows — 3x10 @ 55lb DBs each','Lat Pulldown Machine — 4x10 progressive: 150/160/170/180lbs','Seated Cable Rows — 4x12 @ 160lbs','Face Pulls — 3x12 moderate weight'],
-  ['Pull-Ups — 3x10 with 30lb assist','Seated Row Machine — 3x10 @ 90lbs each side','Low Rows Machine (vert handle) — 4x10 @ 70lbs es','Back Flyes Machine — 4x10 @ 70lbs','Lawnmower Pulls — 3x8 @ 70lbs each'],
-  ['Bent-Over Rows (heavier) — 3x8 @ 65lb DBs','Seated Lat Pulldown Machine — 4x10 @ 90–100lbs es','Crossbody Lat Pulls Kneeling — 3x10 @ 47lbs each','Cable Crossovers Guillotine — 4x8 @ 17lbs','Shrugs — 4-set ladder: 140/180/230/270lbs']
+  [
+    {id:'bkr0_0',name:'Deadlifts (Barbell)',sets:3,reps:8,weight:155,unit:'lbs',type:'compound'},
+    {id:'bkr0_1',name:'Bent-Over Rows',sets:3,reps:10,weight:50,unit:'lbs',type:'compound'},
+    {id:'bkr0_2',name:'Lat Pulldown Machine',sets:4,reps:10,weight:140,unit:'lbs',type:'machine'},
+    {id:'bkr0_3',name:'Seated Cable Rows',sets:4,reps:12,weight:150,unit:'lbs',type:'machine'},
+    {id:'bkr0_4',name:'Face Pulls',sets:3,reps:12,weight:40,unit:'lbs',type:'isolation'}
+  ],
+  [
+    {id:'bkr1_0',name:'Pull-Ups (assisted)',sets:3,reps:10,weight:30,unit:'lbs assist',type:'compound'},
+    {id:'bkr1_1',name:'Seated Row Machine',sets:3,reps:10,weight:80,unit:'lbs es',type:'machine'},
+    {id:'bkr1_2',name:'Low Rows Machine (vert handle)',sets:4,reps:10,weight:65,unit:'lbs es',type:'machine'},
+    {id:'bkr1_3',name:'Back Flyes Machine',sets:4,reps:10,weight:65,unit:'lbs',type:'isolation'},
+    {id:'bkr1_4',name:'Lawnmower Pulls',sets:3,reps:8,weight:65,unit:'lbs',type:'compound'}
+  ],
+  [
+    {id:'bkr2_0',name:'Bent-Over Rows (heavier)',sets:3,reps:8,weight:60,unit:'lbs DBs',type:'compound'},
+    {id:'bkr2_1',name:'Seated Lat Pulldown Machine',sets:4,reps:10,weight:85,unit:'lbs es',type:'machine'},
+    {id:'bkr2_2',name:'Crossbody Lat Pulls Kneeling',sets:3,reps:10,weight:42.5,unit:'lbs',type:'isolation'},
+    {id:'bkr2_3',name:'Cable Crossovers (Guillotine)',sets:4,reps:8,weight:15,unit:'lbs',type:'isolation'},
+    {id:'bkr2_4',name:'Shrugs',sets:4,reps:10,weight:135,unit:'lbs',type:'compound'}
+  ]
 ];
+
 var QUAD_R=[
-  ['Window Squat Machine — pyramid: 15x140/12x160/10x180/8x200/6x220/4x240lbs','Leg Press — 4x10 @ 220–260lbs','Quad Curl (non-rocking) — 4x10 @ 175lbs','Hamstring Curls — 4x10 @ 120lbs','Hip Abduction — 4x12 @ 130–145lbs','Calf Raises (Seated) — 3x20 @ 140lbs'],
-  ['Barbell Back Squats — pyramid: 15x45s/12x55s/10x65s/10x65s/12x55s/15x45s','Squat Press Machine — 4x15 @ 270lbs','Leg Press — 4x12 @ 240–280lbs','Quad Curl Rocking Machine — 4x12 @ 125lbs','Hip Adduction — 4x12 progressive: 145/150/155/160lbs','Calf Raises (Standing) — 3x30 @ 220lbs'],
-  ['Window Machine Split Squat — 3x8 per leg @ 120lbs','Bulgarian Split Squat — 3x10 per leg @ 80lb DB','Walking Lunges — 3x12 per leg @ 24kg KB each side','Single Leg Hamstring Curl — 4x10 @ 55lbs','Hip Thrust Machine — 3x12: 45s/45s+25s/2x45s','Calf Raises (Single Leg Seated) — 4x15 @ 70lbs']
+  [
+    {id:'qdr0_0',name:'Window Squat Machine',sets:5,reps:10,weight:160,unit:'lbs',type:'machine'},
+    {id:'qdr0_1',name:'Leg Press',sets:4,reps:10,weight:220,unit:'lbs',type:'machine'},
+    {id:'qdr0_2',name:'Quad Curl (non-rocking)',sets:4,reps:10,weight:155,unit:'lbs',type:'machine'},
+    {id:'qdr0_3',name:'Hamstring Curls',sets:4,reps:10,weight:110,unit:'lbs',type:'machine'},
+    {id:'qdr0_4',name:'Hip Abduction',sets:4,reps:12,weight:120,unit:'lbs',type:'machine'},
+    {id:'qdr0_5',name:'Calf Raises (Seated)',sets:3,reps:20,weight:120,unit:'lbs',type:'isolation'}
+  ],
+  [
+    {id:'qdr1_0',name:'Barbell Back Squats',sets:4,reps:10,weight:95,unit:'lbs',type:'compound'},
+    {id:'qdr1_1',name:'Squat Press Machine',sets:4,reps:15,weight:250,unit:'lbs',type:'machine'},
+    {id:'qdr1_2',name:'Leg Press',sets:4,reps:12,weight:230,unit:'lbs',type:'machine'},
+    {id:'qdr1_3',name:'Quad Curl Rocking Machine',sets:4,reps:12,weight:115,unit:'lbs',type:'machine'},
+    {id:'qdr1_4',name:'Hip Adduction',sets:4,reps:12,weight:135,unit:'lbs',type:'machine'},
+    {id:'qdr1_5',name:'Calf Raises (Standing)',sets:3,reps:20,weight:200,unit:'lbs',type:'isolation'}
+  ],
+  [
+    {id:'qdr2_0',name:'Window Machine Split Squat',sets:3,reps:8,weight:100,unit:'lbs',type:'machine'},
+    {id:'qdr2_1',name:'Bulgarian Split Squat',sets:3,reps:10,weight:65,unit:'lbs DB',type:'compound'},
+    {id:'qdr2_2',name:'Walking Lunges',sets:3,reps:12,weight:20,unit:'kg KB es',type:'compound'},
+    {id:'qdr2_3',name:'Single Leg Hamstring Curl',sets:4,reps:10,weight:50,unit:'lbs',type:'machine'},
+    {id:'qdr2_4',name:'Hip Thrust Machine',sets:3,reps:12,weight:135,unit:'lbs',type:'compound'},
+    {id:'qdr2_5',name:'Calf Raises (Single Leg Seated)',sets:4,reps:15,weight:65,unit:'lbs',type:'isolation'}
+  ]
 ];
+
 var PUSH_CHEST_R=[
-  ['Incline Dumbbell Press — 4x8 @ 55lb DBs','Dumbbell Flyes — 3x15 @ 22.5lbs','Seated Chest Press Machine — 4x10 @ 70lbs es'],
-  ['Barbell Bench Press — 4x10 @ 155lbs','Cable Flyes 5° — 4x12 @ 30lbs','Decline Barbell Press — 4x10 @ 50s on bar'],
-  ['Hex Dumbbell Press — 4x10 @ 55lb DBs','PecDeck — 4x12 @ 100lbs','Cable Flyes 9° — 2x12@30 + 2x10@33lbs']
+  [
+    {id:'pcr0_0',name:'Incline Dumbbell Press',sets:4,reps:8,weight:50,unit:'lbs DBs',type:'compound'},
+    {id:'pcr0_1',name:'Dumbbell Flyes',sets:3,reps:15,weight:20,unit:'lbs',type:'isolation'},
+    {id:'pcr0_2',name:'Seated Chest Press Machine',sets:4,reps:10,weight:65,unit:'lbs es',type:'machine'}
+  ],
+  [
+    {id:'pcr1_0',name:'Barbell Bench Press',sets:4,reps:10,weight:135,unit:'lbs',type:'compound'},
+    {id:'pcr1_1',name:'Cable Flyes 5°',sets:4,reps:12,weight:27.5,unit:'lbs',type:'isolation'},
+    {id:'pcr1_2',name:'Decline Barbell Press',sets:4,reps:10,weight:95,unit:'lbs',type:'compound'}
+  ],
+  [
+    {id:'pcr2_0',name:'Hex Dumbbell Press',sets:4,reps:10,weight:50,unit:'lbs DBs',type:'compound'},
+    {id:'pcr2_1',name:'PecDeck',sets:4,reps:12,weight:90,unit:'lbs',type:'machine'},
+    {id:'pcr2_2',name:'Cable Flyes 9°',sets:4,reps:10,weight:27.5,unit:'lbs',type:'isolation'}
+  ]
 ];
+
 var PUSH_SHOULDER_R=[
-  ['Overhead Dumbbell Press — 4x10 @ 50lb DBs','Lateral Raises — 3x12 @ 12lbs','Front Raise Super ROM — 4x10 @ 45lbs','Upright Machine Shoulder Press — 3x10 @ 70lbs'],
-  ['Overhead Barbell Press — 3x12 @ 75lbs','Incline Bench Leaning Lateral Raise — 3x12 @ 15lbs','Upright Machine Shoulder Press — 4x8 @ 75lbs','Front Raise (cable arm machine) — 4x10 @ 17lbs'],
-  ['Overhead Barbell Press — 3x10 @ 80lbs','Lateral Raises — 3x12 @ 12–15lbs','Front Raises (DB) — 3x12 @ 12lbs','Incline Leaning Lateral Raise — 3x10 @ 17.5lbs']
+  [
+    {id:'psr0_0',name:'Overhead Dumbbell Press',sets:4,reps:10,weight:45,unit:'lbs DBs',type:'compound'},
+    {id:'psr0_1',name:'Lateral Raises',sets:3,reps:12,weight:12,unit:'lbs',type:'isolation'},
+    {id:'psr0_2',name:'Front Raise Super ROM',sets:4,reps:10,weight:40,unit:'lbs',type:'isolation'},
+    {id:'psr0_3',name:'Upright Machine Shoulder Press',sets:3,reps:10,weight:65,unit:'lbs',type:'machine'}
+  ],
+  [
+    {id:'psr1_0',name:'Overhead Barbell Press',sets:3,reps:12,weight:65,unit:'lbs',type:'compound'},
+    {id:'psr1_1',name:'Incline Bench Leaning Lateral Raise',sets:3,reps:12,weight:12.5,unit:'lbs',type:'isolation'},
+    {id:'psr1_2',name:'Upright Machine Shoulder Press',sets:4,reps:8,weight:70,unit:'lbs',type:'machine'},
+    {id:'psr1_3',name:'Front Raise (cable arm machine)',sets:4,reps:10,weight:15,unit:'lbs',type:'isolation'}
+  ],
+  [
+    {id:'psr2_0',name:'Overhead Barbell Press',sets:3,reps:10,weight:70,unit:'lbs',type:'compound'},
+    {id:'psr2_1',name:'Lateral Raises',sets:3,reps:12,weight:12,unit:'lbs',type:'isolation'},
+    {id:'psr2_2',name:'Front Raises (DB)',sets:3,reps:12,weight:12,unit:'lbs',type:'isolation'},
+    {id:'psr2_3',name:'Incline Leaning Lateral Raise',sets:3,reps:10,weight:15,unit:'lbs',type:'isolation'}
+  ]
 ];
+
 var PUSH_TRI_R=[
-  ['Tricep Dips — 4x12 bodyweight','Tricep Pushdown — 4x10 @ 100lbs slow/controlled','Skullcrushers — 3x12 @ 65lbs'],
-  ['Close-Grip Bench Press (EZ bar) — 4x15 @ 95lbs','Overhead Cable Extension — 3x10 @ 130–140lbs','Seated Dips Machine — 4 progressive: 180/230/270/320lbs'],
-  ['Overhead DB Tricep Press — 4x12 @ 70lbs','Tricep Pushdown (slow) — 4x10 @ 100lbs','Overhead Cable Extension ladder — 3x8: 57.5/65/70lbs']
+  [
+    {id:'ptr0_0',name:'Tricep Dips',sets:4,reps:12,weight:0,unit:'bodyweight',type:'bodyweight'},
+    {id:'ptr0_1',name:'Tricep Pushdown',sets:4,reps:10,weight:90,unit:'lbs',type:'isolation'},
+    {id:'ptr0_2',name:'Skullcrushers',sets:3,reps:12,weight:55,unit:'lbs',type:'isolation'}
+  ],
+  [
+    {id:'ptr1_0',name:'Close-Grip Bench Press (EZ bar)',sets:4,reps:15,weight:85,unit:'lbs',type:'compound'},
+    {id:'ptr1_1',name:'Overhead Cable Extension',sets:3,reps:10,weight:120,unit:'lbs',type:'isolation'},
+    {id:'ptr1_2',name:'Seated Dips Machine',sets:4,reps:12,weight:180,unit:'lbs',type:'machine'}
+  ],
+  [
+    {id:'ptr2_0',name:'Overhead DB Tricep Press',sets:4,reps:12,weight:65,unit:'lbs',type:'isolation'},
+    {id:'ptr2_1',name:'Tricep Pushdown (slow)',sets:4,reps:10,weight:90,unit:'lbs',type:'isolation'},
+    {id:'ptr2_2',name:'Overhead Cable Extension',sets:3,reps:8,weight:55,unit:'lbs',type:'isolation'}
+  ]
 ];
+
 var PULL_BACK_R=[
-  ['Deadlifts (Barbell) — 3x8 @ 175lbs','Lat Pulldown Machine — 4x10 progressive: 150/160/170/180lbs','Seated Cable Rows — 4x12 @ 160lbs','Back Flyes Machine — 4x10 @ 70lbs','Face Pulls — 3x12 moderate'],
-  ['Pull-Ups — 3x10 with 30lb assist','Bent-Over Rows — 3x10 @ 55lb DBs','Low Rows Machine (horiz handle) — 4x10 @ 65lbs es','Seated Lat Pulldown Machine — 4x10 @ 90lbs es','Lawnmower Pulls — 3x8 @ 70lbs'],
-  ['Seated Row Machine — 3x8 @ 115lbs es','Lat Pulldown ladder — 4 sets: 150/160/170/180lbs','Crossbody Lat Pulls Kneeling — 3x10 @ 47lbs each','Cable Crossovers Guillotine — 4x8 @ 17lbs','Shrugs — ladder: 140/180/230/270lbs']
+  [
+    {id:'pbr0_0',name:'Deadlifts (Barbell)',sets:3,reps:8,weight:155,unit:'lbs',type:'compound'},
+    {id:'pbr0_1',name:'Lat Pulldown Machine',sets:4,reps:10,weight:140,unit:'lbs',type:'machine'},
+    {id:'pbr0_2',name:'Seated Cable Rows',sets:4,reps:12,weight:150,unit:'lbs',type:'machine'},
+    {id:'pbr0_3',name:'Back Flyes Machine',sets:4,reps:10,weight:65,unit:'lbs',type:'isolation'},
+    {id:'pbr0_4',name:'Face Pulls',sets:3,reps:12,weight:40,unit:'lbs',type:'isolation'}
+  ],
+  [
+    {id:'pbr1_0',name:'Pull-Ups (assisted)',sets:3,reps:10,weight:30,unit:'lbs assist',type:'compound'},
+    {id:'pbr1_1',name:'Bent-Over Rows',sets:3,reps:10,weight:50,unit:'lbs DBs',type:'compound'},
+    {id:'pbr1_2',name:'Low Rows Machine (horiz handle)',sets:4,reps:10,weight:60,unit:'lbs es',type:'machine'},
+    {id:'pbr1_3',name:'Seated Lat Pulldown Machine',sets:4,reps:10,weight:85,unit:'lbs es',type:'machine'},
+    {id:'pbr1_4',name:'Lawnmower Pulls',sets:3,reps:8,weight:65,unit:'lbs',type:'compound'}
+  ],
+  [
+    {id:'pbr2_0',name:'Seated Row Machine',sets:3,reps:8,weight:100,unit:'lbs es',type:'machine'},
+    {id:'pbr2_1',name:'Lat Pulldown Machine',sets:4,reps:10,weight:140,unit:'lbs',type:'machine'},
+    {id:'pbr2_2',name:'Crossbody Lat Pulls Kneeling',sets:3,reps:10,weight:42.5,unit:'lbs',type:'isolation'},
+    {id:'pbr2_3',name:'Cable Crossovers (Guillotine)',sets:4,reps:8,weight:15,unit:'lbs',type:'isolation'},
+    {id:'pbr2_4',name:'Shrugs',sets:4,reps:10,weight:135,unit:'lbs',type:'compound'}
+  ]
 ];
+
 var PULL_BIC_R=[
-  ['Barbell Bicep Curls — 4x10 @ 65lbs','Hammer Curls — 4x12 @ 35lbs','Underhand Pulldowns — 4x10 @ 140lbs'],
-  ['Incline DB Curl (palms out) — 4x10 @ 35lbs','Hammer Twist Curl — 4x15 @ 22.5lbs','Regular Preacher Curl (cambered bar) — 3x10 @ 55lbs'],
-  ['Bayesian Cable Curl — 4x8 @ 30lbs','Reverse Hand Barbell Curls — 3x8 @ 40lbs','Seated High Bayesian Cable Curl — 4x10 @ 17.5lbs']
+  [
+    {id:'plb0_0',name:'Barbell Bicep Curls',sets:4,reps:10,weight:55,unit:'lbs',type:'compound'},
+    {id:'plb0_1',name:'Hammer Curls',sets:4,reps:12,weight:30,unit:'lbs',type:'isolation'},
+    {id:'plb0_2',name:'Underhand Pulldowns',sets:4,reps:10,weight:120,unit:'lbs',type:'machine'}
+  ],
+  [
+    {id:'plb1_0',name:'Incline DB Curl (palms out)',sets:4,reps:10,weight:30,unit:'lbs',type:'isolation'},
+    {id:'plb1_1',name:'Hammer Twist Curl',sets:4,reps:15,weight:20,unit:'lbs',type:'isolation'},
+    {id:'plb1_2',name:'Regular Preacher Curl (cambered bar)',sets:3,reps:10,weight:45,unit:'lbs',type:'isolation'}
+  ],
+  [
+    {id:'plb2_0',name:'Bayesian Cable Curl',sets:4,reps:8,weight:25,unit:'lbs',type:'isolation'},
+    {id:'plb2_1',name:'Reverse Hand Barbell Curls',sets:3,reps:8,weight:35,unit:'lbs',type:'compound'},
+    {id:'plb2_2',name:'Seated High Bayesian Cable Curl',sets:4,reps:10,weight:15,unit:'lbs',type:'isolation'}
+  ]
 ];
+
 var SAT_LEG_R=[
-  ['RDLs (Barbell) — 4x10 @ 155lbs','Hamstring Curls — pyramid: 15x140/12x160/10x160/8x180/6x200lbs','Hip Thrust Machine — 3 progressive: 45s/45s+25s/2x45s','Hip Abduction Machine — pyramid: 15x115/12x120/10x130/8x140lbs','Hamstring Pushback Machine — 3x12 @ 185lbs','Calf Raises (Seated) — 3x20 @ 140lbs'],
-  ['Squat Press Machine — 4x10 @ 360lbs','Single Leg Hamstring Curl — 4x10 @ 55lbs each','Hip Adduction Machine — progressive: 4x15@145/4x12@150/4x10@155/4x8@160','Walking Lunges — 3x12 per leg @ 24kg KB','Seated Leg Press Jumps — 4x15 @ 50lbs','Calf Raises (Single Leg Seated) — 4x15 @ 70lbs'],
-  ['Bulgarian Split Squat — 3x10 per leg @ 80lb DB','Deadlifts — 3x10 @ 135lbs','Quad Curl (non-rocking) — 4x10 @ 175lbs','Hip Abduction + Adduction superset — 4x12 each @ 145lbs','Window Squat Machine — 3x12 @ 220lbs','Calf Raises (Standing) — 3x30 @ 220lbs']
+  [
+    {id:'slr0_0',name:'RDLs (Barbell)',sets:4,reps:10,weight:135,unit:'lbs',type:'compound'},
+    {id:'slr0_1',name:'Hamstring Curls',sets:4,reps:10,weight:110,unit:'lbs',type:'machine'},
+    {id:'slr0_2',name:'Hip Thrust Machine',sets:3,reps:12,weight:135,unit:'lbs',type:'compound'},
+    {id:'slr0_3',name:'Hip Abduction Machine',sets:4,reps:12,weight:110,unit:'lbs',type:'machine'},
+    {id:'slr0_4',name:'Hamstring Pushback Machine',sets:3,reps:12,weight:165,unit:'lbs',type:'machine'},
+    {id:'slr0_5',name:'Calf Raises (Seated)',sets:3,reps:20,weight:120,unit:'lbs',type:'isolation'}
+  ],
+  [
+    {id:'slr1_0',name:'Squat Press Machine',sets:4,reps:10,weight:320,unit:'lbs',type:'machine'},
+    {id:'slr1_1',name:'Single Leg Hamstring Curl',sets:4,reps:10,weight:50,unit:'lbs',type:'machine'},
+    {id:'slr1_2',name:'Hip Adduction Machine',sets:4,reps:12,weight:135,unit:'lbs',type:'machine'},
+    {id:'slr1_3',name:'Walking Lunges',sets:3,reps:12,weight:20,unit:'kg KB',type:'compound'},
+    {id:'slr1_4',name:'Seated Leg Press Jumps',sets:4,reps:15,weight:50,unit:'lbs',type:'machine'},
+    {id:'slr1_5',name:'Calf Raises (Single Leg Seated)',sets:4,reps:15,weight:65,unit:'lbs',type:'isolation'}
+  ],
+  [
+    {id:'slr2_0',name:'Bulgarian Split Squat',sets:3,reps:10,weight:65,unit:'lbs DB',type:'compound'},
+    {id:'slr2_1',name:'Deadlifts',sets:3,reps:10,weight:125,unit:'lbs',type:'compound'},
+    {id:'slr2_2',name:'Quad Curl (non-rocking)',sets:4,reps:10,weight:155,unit:'lbs',type:'machine'},
+    {id:'slr2_3',name:'Hip Abduction + Adduction superset',sets:4,reps:12,weight:135,unit:'lbs',type:'machine'},
+    {id:'slr2_4',name:'Window Squat Machine',sets:3,reps:12,weight:200,unit:'lbs',type:'machine'},
+    {id:'slr2_5',name:'Calf Raises (Standing)',sets:3,reps:20,weight:200,unit:'lbs',type:'isolation'}
+  ]
 ];
+
 var SAT_ARM_R=[
-  ['Head-Height Cable Curl (toward ear) — 3x10 @ 20lbs','Overhead DB Tricep Press — 3x10 @ 75lbs','Tricep Pushdown — 3x15 @ 57.5lbs each side (115lbs)'],
-  ['Barbell Bicep Curls — 3x12 @ 50lbs','Skullcrushers — 3x12 @ 65lbs','Hammer Curls — 3x10 @ 37.5lbs'],
-  ['Incline DB Curl (palms out) — 4x10 @ 35lbs','Close-Grip Bench Press (EZ bar) — 3x15 @ 105lbs','Preacher Curl (cambered bar) — 4x8 @ 20lbs each side']
+  [
+    {id:'sar0_0',name:'Head-Height Cable Curl',sets:3,reps:10,weight:17.5,unit:'lbs',type:'isolation'},
+    {id:'sar0_1',name:'Overhead DB Tricep Press',sets:3,reps:10,weight:65,unit:'lbs',type:'isolation'},
+    {id:'sar0_2',name:'Tricep Pushdown',sets:3,reps:15,weight:100,unit:'lbs',type:'isolation'}
+  ],
+  [
+    {id:'sar1_0',name:'Barbell Bicep Curls',sets:3,reps:12,weight:45,unit:'lbs',type:'compound'},
+    {id:'sar1_1',name:'Skullcrushers',sets:3,reps:12,weight:55,unit:'lbs',type:'isolation'},
+    {id:'sar1_2',name:'Hammer Curls',sets:3,reps:10,weight:32.5,unit:'lbs',type:'isolation'}
+  ],
+  [
+    {id:'sar2_0',name:'Incline DB Curl (palms out)',sets:4,reps:10,weight:30,unit:'lbs',type:'isolation'},
+    {id:'sar2_1',name:'Close-Grip Bench Press (EZ bar)',sets:3,reps:15,weight:85,unit:'lbs',type:'compound'},
+    {id:'sar2_2',name:'Preacher Curl (cambered bar)',sets:4,reps:8,weight:17.5,unit:'lbs es',type:'isolation'}
+  ]
 ];
+
 var SUN_CARDIO=[
   ['OPTION A — Life Time Cycle Class (45–60 min): Best Sunday option','OPTION B — 30 min Elliptical at moderate effort, 65–70% max HR','OPTION C — 30 min Treadmill walk @ 3.5mph at 5–8° incline'],
   ['OPTION A — Life Time Cycle Class (45–60 min): Lock this in as weekly habit','OPTION B — 30 min Rower + 15 min Treadmill incline walk @ 8–10°','OPTION C — 35 min Elliptical + 10 min Core circuit']
 ];
 var CORE_ITEMS=['Planks — 3 sets of 45–60 seconds, rest 30 sec between','Russian Twists — 3x12 per side','Leg Raises — 3x12','Mountain Climbers — 3x45 seconds','Kneeling Cable Ab Crunches — 3x12 @ 52.5lbs'];
 
+// ─── Progressive overload helpers ───────────────────────────────────────────
+// Get the user-edited version of an exercise, or the base default
+function getEx(ex, w) {
+  var over = S.wo && S.wo[ex.id];
+  var base = over ? over : ex;
+  return base;
+}
+// Calculate suggested weight for week w+1 (shown as "next week target")
+function suggestedWeight(ex, w) {
+  var base = getEx(ex, w);
+  if (base.unit === 'bodyweight' || base.weight === 0) return null;
+  var inc = base.type === 'isolation' ? 2.5 : 5;
+  return Math.round((base.weight + inc) * 4) / 4; // round to nearest 0.25
+}
+// Format exercise as display string using current (possibly edited) values
+function exStr(ex, w) {
+  var e = getEx(ex, w);
+  if (e.unit === 'bodyweight') return e.name + ' — ' + e.sets + 'x' + e.reps + ' bodyweight';
+  return e.name + ' — ' + e.sets + 'x' + e.reps + ' @ ' + e.weight + ' ' + e.unit;
+}
+// Build a flat string list from a structured exercise array (for checklist rendering)
+function exArrToItems(exArr, w) {
+  return exArr.map(function(ex){ return exStr(ex, w); });
+}
+// Get all exercise arrays for a given day (for edit mode and overload summary)
+function getDayExArrays(w, d) {
+  var r = (w-1)%3;
+  var result = [];
+  if (d===0) result = [{label:'CHEST',arr:CHEST_R[r]},{label:'BACK',arr:BACK_R[r]}];
+  else if (d===1) result = [{label:'LEGS — QUAD DOMINANT',arr:QUAD_R[r]}];
+  else if (d===3) result = [{label:'CHEST',arr:PUSH_CHEST_R[r]},{label:'SHOULDERS',arr:PUSH_SHOULDER_R[r]},{label:'TRICEPS',arr:PUSH_TRI_R[r]}];
+  else if (d===4) result = [{label:'BACK',arr:PULL_BACK_R[r]},{label:'BICEPS',arr:PULL_BIC_R[r]}];
+  else if (d===5) result = [{label:'LEGS — HAMSTRING & GLUTE DOMINANT',arr:SAT_LEG_R[r]},{label:'ARMS FINISHER',arr:SAT_ARM_R[r]}];
+  return result;
+}
+
 // ─── Section builders ────────────────────────────────────────────────────────
 function preWO(){
-  return {t:'PRE-WORKOUT — 5:15 AM',items:[
+  return {t:'PRE-WORKOUT — MORNING',items:[
     'Wake up — check Oura ring sleep score before getting out of bed',
     'Drink 16oz water immediately upon waking',
     'Jocko Creatine — 5g (1 scoop) mixed with water — Dose 1 of 2',
     'Combat Tested 3.0 — 4 capsules | Jocko D3 — 1 softgel | Thorne Basic Nutrients — 2 capsules | Re-Lyte — 1 scoop',
-    'Optional: 1 scoop Jocko Mölk if energy is low',
-    'Drive to Life Time — arrive at gym by 5:28 AM'
+    'Optional: 1 scoop Jocko Mölk if energy is low'
   ]};
 }
 function postWO(extras){
@@ -752,7 +1079,6 @@ function habitSec(){
     'No caffeine after 12 PM — half-life is 6 hours; afternoon caffeine measurably degrades sleep',
     'Sleep 7.5–9 hours — in bed by 9:30–10 PM (testosterone and cortisol require this)',
     'Check Oura ring score before bed — note HRV trend',
-    'Compression sleeves on trained muscle groups tonight',
     'Set tomorrow\'s 5:00 AM alarm before bed'
   ]};
 }
@@ -783,8 +1109,8 @@ function buildMon(w,m,r,ci,cardio){
   return {label:'UPPER BODY — Chest + Back',type:'gym',sections:[
     preWO(),
     {t:'FASTED CARDIO — 5:30 AM',items:[cardio,'Target HR: 135–155 BPM (65–75% max)','Bring water — sip between intervals']},
-    {t:'CHEST',items:CHEST_R[r]},
-    {t:'BACK',items:BACK_R[r]},
+    {t:'CHEST',items:exArrToItems(CHEST_R[r],w)},
+    {t:'BACK',items:exArrToItems(BACK_R[r],w)},
     postWO(['10 min Steam Room or 3 min Cold Plunge if time allows']),
     mealPlan(m,['Post-workout: Mölk shake immediately','Meal 1 (optional): 2–3 egg bites + 3oz 99% lean ground turkey (~35g protein)','Lunch on road: 6oz chicken breast + frozen mixed veggies (~45g protein)','Dinner: 6oz lean steak or shrimp + mixed veggies + small rice or sweet potato (~40g protein)','Evening snack: 1 cup frozen blueberries if hungry (~80 cal)']),
     eveningSupp(),
@@ -796,12 +1122,12 @@ function buildTue(w,m,r,ci,cardio){
   return {label:'LOWER BODY — Quad Dominant',type:'gym',sections:[
     preWO(),
     {t:'FASTED CARDIO — 5:30 AM (Keep moderate — heavy legs follow)',items:[cardio,'Keep HR moderate — legs need energy for squats/press','Hydrate well before loading the bar']},
-    {t:'LEGS — QUAD DOMINANT',items:QUAD_R[r]},
+    {t:'LEGS — QUAD DOMINANT',items:exArrToItems(QUAD_R[r],w)},
     postWO(['10 min Hot Tub — great for quad and knee recovery','Stretch quads, hamstrings, hip flexors — minimum 5 minutes']),
     mealPlan(m,['Post-workout: Mölk shake immediately','Lunch on road: 5oz ground turkey + mixed veggies + small rice','Dinner: 6oz chicken breast + sweet potato (small) + mixed veggies','Note: Eat your carbs today — leg days are highest calorie-burn']),
     eveningSupp(),
     sleepSupp(),
-    {t:'DAILY HABITS',items:['Hit 8,000+ steps','Drink 100–128oz water (aim for 128oz today — heavy training)','No caffeine after 12 PM','Compression leg sleeves tonight','Sleep 7.5–9 hours — legs recover during deep sleep','Check Oura ring','Set 5:00 AM alarm']}
+    {t:'DAILY HABITS',items:['Hit 8,000+ steps','Drink 100–128oz water (aim for 128oz today — heavy training)','No caffeine after 12 PM','Sleep 7.5–9 hours — legs recover during deep sleep','Check Oura ring','Set 5:00 AM alarm']}
   ]};
 }
 function buildRest(w,m){
@@ -818,7 +1144,7 @@ function buildRest(w,m){
     mealPlan(m,['Breakfast: 2–3 egg bites + 3oz ground turkey + kefir','Lunch: 5–6oz chicken breast + frozen mixed veggies + side salad','Dinner: 5oz lean steak or 6oz shrimp + mixed veggies','Snack: Protein bar mid-afternoon to hit protein target']),
     eveningSupp(),
     sleepSupp(),
-    {t:'RECOVERY PROTOCOLS',items:['Drink 100–128oz water throughout the day','Optional: 15–20 min Dry Sauna at Life Time if passing by','Foam roll or stretch any tight areas — 10 min before bed','Compression sleeves on most sore muscle group tonight','In bed by 9:30 PM — best recovery night of the week','Sleep: 7.5–9 hours minimum tonight']},
+    {t:'RECOVERY PROTOCOLS',items:['Drink 100–128oz water throughout the day','Optional: 15–20 min Dry Sauna at Life Time if passing by','Foam roll or stretch any tight areas — 10 min before bed','In bed by 9:30 PM — best recovery night of the week','Sleep: 7.5–9 hours minimum tonight']},
     {t:'MINDSET & PREP',items:['Review food log from Mon–Tue — did you hit protein both days?','Prep easy lunch options for Thu–Fri if possible','Confirm Thursday 5:00 AM alarm is set','Rest well. Thursday is a push day — come back ready.']}
   ]};
 }
@@ -826,9 +1152,9 @@ function buildThu(w,m,r,ci,cardio){
   return {label:'PUSH DAY — Chest + Shoulders + Triceps',type:'gym',sections:[
     preWO(),
     {t:'FASTED CARDIO — 5:30 AM',items:[cardio,'Target HR: 135–155 BPM','Fasted cardio — fat oxidation maximized right now']},
-    {t:'CHEST',items:PUSH_CHEST_R[r]},
-    {t:'SHOULDERS',items:PUSH_SHOULDER_R[r]},
-    {t:'TRICEPS',items:PUSH_TRI_R[r]},
+    {t:'CHEST',items:exArrToItems(PUSH_CHEST_R[r],w)},
+    {t:'SHOULDERS',items:exArrToItems(PUSH_SHOULDER_R[r],w)},
+    {t:'TRICEPS',items:exArrToItems(PUSH_TRI_R[r],w)},
     postWO(['5 min shoulder + tricep stretch: cross-body pull, overhead reach','10 min Steam Room or Dry Sauna if schedule allows']),
     mealPlan(m,['Post-workout: Mölk shake immediately','Lunch on road: 6oz chicken breast + frozen veggies + optional small rice','Dinner: 6oz 99% lean ground turkey + mixed veggies','Snack: Kefir + nut granola — watch granola portion']),
     eveningSupp(),
@@ -840,8 +1166,8 @@ function buildFri(w,m,r,ci,cardio){
   return {label:'PULL DAY — Back + Biceps',type:'gym',sections:[
     preWO(),
     {t:'FASTED CARDIO — 5:30 AM',items:[cardio,'Incline walking: max fat burn, zero impact on back recovery','Target HR: 130–150 BPM']},
-    {t:'BACK',items:PULL_BACK_R[r]},
-    {t:'BICEPS',items:PULL_BIC_R[r]},
+    {t:'BACK',items:exArrToItems(PULL_BACK_R[r],w)},
+    {t:'BICEPS',items:exArrToItems(PULL_BIC_R[r],w)},
     postWO(['10 min Steam Room or Cold Plunge — it\'s Friday, reward the week','Stretch lats and biceps — doorway lat stretch, overhead reach']),
     mealPlan(m,['Post-workout: Mölk shake immediately','Lunch on road: 6oz shrimp + frozen mixed veggies + small rice','Dinner: 5–6oz lean steak + mixed veggies — Friday meal, make it enjoyable','Evening: 1 cup frozen blueberries']),
     eveningSupp(),
@@ -853,9 +1179,9 @@ function buildSat(w,m,r,ci,cardio){
   return {label:'LEGS (Ham/Glute) + ARMS FINISHER',type:'gym',sections:[
     preWO(),
     {t:'FASTED CARDIO — 5:30 AM (Moderate — heavy legs follow)',items:[cardio,'Keep intensity moderate — heavy posterior chain work follows','Target HR: 130–150 BPM']},
-    {t:'LEGS — HAMSTRING & GLUTE DOMINANT',items:SAT_LEG_R[r]},
-    {t:'ARMS FINISHER — 15–20 min',items:SAT_ARM_R[r]},
-    {t:'POST-WORKOUT RECOVERY — Take Your Time (It\'s Saturday)',items:['Jocko Mölk — 1–2 scoops immediately post-workout','Drink 16oz water post-workout','15 min Dry Sauna or Steam Room — maximum recovery benefit','3–5 min Cold Plunge immediately after sauna — reduces inflammation, boosts recovery hormones','OR: 15 min Hot Tub for legs if skipping sauna','Compression leg sleeves tonight']},
+    {t:'LEGS — HAMSTRING & GLUTE DOMINANT',items:exArrToItems(SAT_LEG_R[r],w)},
+    {t:'ARMS FINISHER — 15–20 min',items:exArrToItems(SAT_ARM_R[r],w)},
+    {t:'POST-WORKOUT RECOVERY — Take Your Time (It\'s Saturday)',items:['Jocko Mölk — 1–2 scoops immediately post-workout','Drink 16oz water post-workout','15 min Dry Sauna or Steam Room — maximum recovery benefit','3–5 min Cold Plunge immediately after sauna — reduces inflammation, boosts recovery hormones','OR: 15 min Hot Tub for legs if skipping sauna']},
     mealPlan(m,['Post-workout: Mölk shake immediately','Brunch/Lunch: 3 eggs + 4oz ground turkey + fruit','Dinner: 5–6oz lean steak or shrimp + veggies + rice or sweet potato']),
     eveningSupp(),
     sleepSupp(),
@@ -1030,11 +1356,39 @@ function renderDay(){
 
   var html='<div class="dh">'+
     '<div class="dh-eyebrow" style="color:'+pc+'">'+phaseName(S.w)+' · WEEK '+S.w+' · '+dayDate(S.w,S.d)+'</div>'+
-    '<div class="dh-title" style="color:'+tc+'">'+day.label+'</div>'+
+    '<div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;">'+
+      '<div class="dh-title" style="color:'+tc+'">'+day.label+'</div>'+
+      (dtype(S.d)!=='rest'&&dtype(S.d)!=='cardio' ? '<button class="edit-btn" onclick="openEditDrawer()">✎ Edit Workout</button>' : '')+
+    '</div>'+
     '<div class="dh-date">'+done+' / '+tot+' items complete</div>'+
     '<div class="dh-pbar"><div class="dh-pfill" style="width:'+pr+'%;background:'+pc+'"></div></div>'+
     '<div class="dh-pmeta"><span>'+done+' / '+tot+' tasks</span><span>'+pr+'%</span></div>'+
   '</div>';
+
+  // Progressive overload summary — only on gym days
+  if(dtype(S.d)!=='rest' && dtype(S.d)!=='cardio') {
+    var exArrays = getDayExArrays(S.w, S.d);
+    if(exArrays.length > 0) {
+      html += '<div class="overload-summary"><div class="overload-head" onclick="this.nextElementSibling.classList.toggle(\'collapsed\')">'+
+        '<span>▸ PROGRESSIVE OVERLOAD — WEEK '+(S.w+1)+' TARGETS</span>'+
+        '<span style="font-size:8px;">TAP TO EXPAND</span>'+
+      '</div><div class="overload-body collapsed">';
+      exArrays.forEach(function(group){
+        html += '<div style="font-size:8px;letter-spacing:.16em;color:var(--accent);text-transform:uppercase;margin:8px 0 4px;">'+group.label+'</div>';
+        group.arr.forEach(function(ex){
+          var cur = getEx(ex, S.w);
+          var sug = suggestedWeight(ex, S.w);
+          if(sug === null) return; // skip bodyweight
+          html += '<div class="ol-row">'+
+            '<span class="ol-name">'+cur.name+'</span>'+
+            '<span class="ol-cur">'+cur.sets+'x'+cur.reps+' @ '+cur.weight+' '+cur.unit+'</span>'+
+            '<span class="ol-sug">→ '+sug+' '+cur.unit+'</span>'+
+          '</div>';
+        });
+      });
+      html += '</div></div>';
+    }
+  }
 
   day.sections.forEach(function(sec,si){
     var secDone=0;
@@ -1356,6 +1710,137 @@ function navFromCal(w,d){
   S.w=w; S.d=d;
   switchTab('daily');
   renderAll();
+}
+
+// ═══════════════════════════════════════════════════════
+//  EDIT WORKOUT DRAWER
+// ═══════════════════════════════════════════════════════
+var _editTemp = {}; // temporary edits before saving
+
+function openEditDrawer() {
+  _editTemp = JSON.parse(JSON.stringify(S.wo || {})); // clone current overrides
+  renderEditDrawer();
+  document.getElementById('edit-drawer').classList.add('open');
+  document.getElementById('main').style.overflow = 'hidden';
+}
+
+function closeEditDrawer() {
+  document.getElementById('edit-drawer').classList.remove('open');
+  document.getElementById('main').style.overflow = '';
+}
+
+function saveEditDrawer() {
+  S.wo = JSON.parse(JSON.stringify(_editTemp));
+  saveAll();
+  closeEditDrawer();
+  renderDay(); // refresh checklist with new values
+  showToast('WORKOUT SAVED');
+}
+
+function resetEditDrawer() {
+  if(!confirm('Reset all exercises for this day to default weights?')) return;
+  var exArrays = getDayExArrays(S.w, S.d);
+  exArrays.forEach(function(g){
+    g.arr.forEach(function(ex){ delete _editTemp[ex.id]; delete S.wo[ex.id]; });
+  });
+  saveAll();
+  renderEditDrawer();
+  renderDay();
+  showToast('RESET TO DEFAULTS');
+}
+
+function renderEditDrawer() {
+  var exArrays = getDayExArrays(S.w, S.d);
+  var r = (S.w-1)%3;
+  var html = '';
+
+  exArrays.forEach(function(group) {
+    html += '<div class="edit-group"><div class="edit-group-label">'+group.label+'</div>';
+    group.arr.forEach(function(ex) {
+      var cur = _editTemp[ex.id] ? _editTemp[ex.id] : {sets:ex.sets,reps:ex.reps,weight:ex.weight,unit:ex.unit};
+      var sug = suggestedWeight(ex, S.w);
+      var isBodyweight = ex.unit === 'bodyweight';
+      html += '<div class="edit-row">'+
+        '<div class="edit-row-name">'+ex.name+'</div>'+
+        '<div class="edit-fields">'+
+          // SETS
+          '<div class="edit-field">'+
+            '<div class="edit-field-label">Sets</div>'+
+            '<div class="edit-field-ctrl">'+
+              '<button class="ef-btn" onclick="editAdj(\''+ex.id+'\',\'sets\',-1)">−</button>'+
+              '<input class="ef-input" type="number" id="ef-sets-'+ex.id+'" value="'+cur.sets+'" min="1" max="10" onchange="editSet(\''+ex.id+'\',\'sets\',this.value)">'+
+              '<button class="ef-btn" onclick="editAdj(\''+ex.id+'\',\'sets\',1)">+</button>'+
+            '</div>'+
+          '</div>'+
+          // REPS
+          '<div class="edit-field">'+
+            '<div class="edit-field-label">Reps</div>'+
+            '<div class="edit-field-ctrl">'+
+              '<button class="ef-btn" onclick="editAdj(\''+ex.id+'\',\'reps\',-1)">−</button>'+
+              '<input class="ef-input" type="number" id="ef-reps-'+ex.id+'" value="'+cur.reps+'" min="1" max="50" onchange="editSet(\''+ex.id+'\',\'reps\',this.value)">'+
+              '<button class="ef-btn" onclick="editAdj(\''+ex.id+'\',\'reps\',1)">+</button>'+
+            '</div>'+
+          '</div>'+
+          // WEIGHT (skip if bodyweight)
+          (!isBodyweight ?
+          '<div class="edit-field">'+
+            '<div class="edit-field-label">Weight ('+cur.unit+')</div>'+
+            '<div class="edit-field-ctrl">'+
+              '<button class="ef-btn" onclick="editAdj(\''+ex.id+'\',\'weight\',-2.5)">−</button>'+
+              '<input class="ef-input" type="number" id="ef-weight-'+ex.id+'" value="'+cur.weight+'" min="0" step="2.5" onchange="editSet(\''+ex.id+'\',\'weight\',this.value)">'+
+              '<button class="ef-btn" onclick="editAdj(\''+ex.id+'\',\'weight\',2.5)">+</button>'+
+            '</div>'+
+            (sug !== null ? '<div class="edit-suggest">▸ Wk '+(S.w+1)+' target: '+sug+' '+cur.unit+'</div>' : '')+
+          '</div>' : '<div class="edit-field"><div class="edit-field-label">Weight</div><div style="font-size:11px;color:var(--ink-mute);padding-top:6px;">Bodyweight</div></div>')+
+        '</div>'+
+      '</div>';
+    });
+    html += '</div>';
+  });
+
+  document.getElementById('edit-drawer-body').innerHTML = html;
+}
+
+function editEnsure(id, ex) {
+  // Ensure temp object exists for this exercise
+  if (!_editTemp[id]) {
+    // find base exercise
+    var allArrays = [CHEST_R,BACK_R,QUAD_R,PUSH_CHEST_R,PUSH_SHOULDER_R,PUSH_TRI_R,PULL_BACK_R,PULL_BIC_R,SAT_LEG_R,SAT_ARM_R];
+    var found = null;
+    for(var i=0;i<allArrays.length&&!found;i++){
+      for(var j=0;j<allArrays[i].length&&!found;j++){
+        for(var k=0;k<allArrays[i][j].length&&!found;k++){
+          if(allArrays[i][j][k].id===id) found=allArrays[i][j][k];
+        }
+      }
+    }
+    if(found) _editTemp[id]={sets:found.sets,reps:found.reps,weight:found.weight,unit:found.unit,type:found.type};
+  }
+}
+
+function editAdj(id, field, delta) {
+  editEnsure(id);
+  if(!_editTemp[id]) return;
+  var val = parseFloat(_editTemp[id][field]) + delta;
+  if(field==='sets') val = Math.max(1, Math.min(10, val));
+  else if(field==='reps') val = Math.max(1, Math.min(50, val));
+  else if(field==='weight') val = Math.max(0, val);
+  val = Math.round(val * 4) / 4; // snap to 0.25
+  _editTemp[id][field] = val;
+  // Update the input field
+  var inp = document.getElementById('ef-'+field+'-'+id);
+  if(inp) inp.value = val;
+}
+
+function editSet(id, field, rawVal) {
+  editEnsure(id);
+  if(!_editTemp[id]) return;
+  var val = parseFloat(rawVal);
+  if(isNaN(val)) return;
+  if(field==='sets') val = Math.max(1, Math.min(10, val));
+  else if(field==='reps') val = Math.max(1, Math.min(50, val));
+  else if(field==='weight') val = Math.max(0, Math.round(val*4)/4);
+  _editTemp[id][field] = val;
 }
 
 // ═══════════════════════════════════════════════════════
